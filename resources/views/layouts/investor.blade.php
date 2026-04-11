@@ -153,7 +153,7 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
 
             <p class="sidebar-section-label" x-show="sidebarOpen">Account</p>
 
-            <a href="{{ route('investor.profile.edit') }}"
+            <a href="{{ route('investor.profile') }}"
                class="sidebar-link {{ request()->routeIs('investor.profile*') ? 'active' : '' }}">
                 <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
@@ -229,7 +229,7 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
             <a href="{{ route('investor.portfolio.index') }}" class="sidebar-link">My Portfolio</a>
             <a href="{{ route('investor.returns.index') }}" class="sidebar-link">Returns & ROI</a>
             <a href="{{ route('investor.documents.index') }}" class="sidebar-link">Documents</a>
-            <a href="{{ route('investor.profile.edit') }}" class="sidebar-link">My Profile</a>
+            <a href="{{ route('investor.profile') }}" class="sidebar-link">My Profile</a>
         </nav>
         <div class="px-2 py-4 border-t border-white/10">
             <form action="{{ route('logout') }}" method="POST">
@@ -303,7 +303,7 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
                             <p class="text-xs font-semibold text-gray-900 truncate">{{ auth()->user()->name ?? 'Investor' }}</p>
                             <p class="text-xs text-gray-500 truncate">{{ auth()->user()->email ?? '' }}</p>
                         </div>
-                        <a href="{{ route('investor.profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">My Profile</a>
+                        <a href="{{ route('investor.profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">My Profile</a>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors">Sign Out</button>

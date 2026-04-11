@@ -57,7 +57,7 @@
             {{-- Admin Notes --}}
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                 <h3 class="text-sm font-semibold text-gray-700 mb-3">Admin Notes</h3>
-                <form method="POST" action="{{ route('admin.inquiries.update', $inquiry) }}">
+                <form method="POST" action="{{ route('admin.inquiries.status', $inquiry) }}">
                     @csrf
                     @method('PATCH')
                     <input type="hidden" name="action" value="notes"/>
@@ -74,7 +74,7 @@
         <div class="space-y-5">
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
                 <h3 class="text-sm font-semibold text-gray-700 mb-3">Update Status</h3>
-                <form method="POST" action="{{ route('admin.inquiries.update', $inquiry) }}">
+                <form method="POST" action="{{ route('admin.inquiries.status', $inquiry) }}">
                     @csrf
                     @method('PATCH')
                     <input type="hidden" name="action" value="status"/>

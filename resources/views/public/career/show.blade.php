@@ -11,7 +11,7 @@
         <nav class="flex items-center gap-2 text-sm text-gray-400 mb-6 flex-wrap">
             <a href="{{ route('home') }}" class="hover:text-[#C9A84C]">Home</a>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            <a href="{{ route('career.index') }}" class="hover:text-[#C9A84C]">Careers</a>
+            <a href="{{ route('careers.index') }}" class="hover:text-[#C9A84C]">Careers</a>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             <span class="text-[#C9A84C]">{{ $job->title ?? 'Job' }}</span>
         </nav>
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="flex-shrink-0">
-                <a href="{{ route('career.apply', $job->slug ?? $job->id) }}"
+                <a href="{{ route('careers.show', $job->slug ?? $job->id) }}"
                    class="block bg-[#C9A84C] hover:bg-[#E8C97A] text-[#0A1628] font-bold px-10 py-4 rounded-full transition-all hover:scale-105 text-center">
                     Apply Now
                 </a>
@@ -121,7 +121,7 @@
             <div class="bg-gradient-to-r from-[#0A1628] to-[#1a2d4a] rounded-2xl p-8 text-center">
                 <h3 class="font-display text-2xl font-bold text-white mb-3">Ready to Join Our Team?</h3>
                 <p class="text-gray-300 mb-6">Submit your application and take the first step towards a rewarding career at SHEFAHOMES.</p>
-                <a href="{{ route('career.apply', $job->slug ?? $job->id) }}"
+                <a href="{{ route('careers.show', $job->slug ?? $job->id) }}"
                    class="inline-block bg-[#C9A84C] hover:bg-[#E8C97A] text-[#0A1628] font-bold px-10 py-4 rounded-full transition-all hover:scale-105">
                     Apply for This Position
                 </a>

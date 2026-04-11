@@ -29,13 +29,13 @@
 <section class="bg-white border-b border-gray-200 sticky top-16 z-30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center gap-2 overflow-x-auto py-4">
-            <a href="{{ route('career.index') }}"
+            <a href="{{ route('careers.index') }}"
                class="flex-shrink-0 px-5 py-2 rounded-full text-sm font-semibold transition-all {{ !request('department') ? 'bg-[#0A1628] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200' }}">
                 All Departments
             </a>
             @if(isset($departments))
             @foreach($departments as $dept)
-            <a href="{{ route('career.index') }}?department={{ $dept }}"
+            <a href="{{ route('careers.index') }}?department={{ $dept }}"
                class="flex-shrink-0 px-5 py-2 rounded-full text-sm font-semibold transition-all {{ request('department') == $dept ? 'bg-[#C9A84C] text-[#0A1628]' : 'bg-gray-100 text-gray-600 hover:bg-gray-200' }}">
                 {{ $dept }}
             </a>
@@ -112,11 +112,11 @@
                         @endif
 
                         <div class="flex flex-wrap gap-3">
-                            <a href="{{ route('career.show', $job->slug ?? $job->id) }}"
+                            <a href="{{ route('careers.show', $job->slug ?? $job->id) }}"
                                class="bg-[#0A1628] hover:bg-[#C9A84C] text-white hover:text-[#0A1628] font-semibold text-sm px-6 py-3 rounded-xl transition-all">
                                 View Full Details
                             </a>
-                            <a href="{{ route('career.apply', $job->slug ?? $job->id) }}"
+                            <a href="{{ route('careers.show', $job->slug ?? $job->id) }}"
                                class="bg-[#C9A84C] hover:bg-[#E8C97A] text-[#0A1628] font-semibold text-sm px-6 py-3 rounded-xl transition-all">
                                 Apply Now
                             </a>

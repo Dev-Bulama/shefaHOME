@@ -11,9 +11,9 @@
         <nav class="flex items-center gap-2 text-sm text-gray-400 mb-6 flex-wrap">
             <a href="{{ route('home') }}" class="hover:text-[#C9A84C]">Home</a>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            <a href="{{ route('career.index') }}" class="hover:text-[#C9A84C]">Careers</a>
+            <a href="{{ route('careers.index') }}" class="hover:text-[#C9A84C]">Careers</a>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            <a href="{{ route('career.show', $job->slug ?? $job->id ?? '#') }}" class="hover:text-[#C9A84C]">{{ $job->title ?? 'Position' }}</a>
+            <a href="{{ route('careers.show', $job->slug ?? $job->id ?? '#') }}" class="hover:text-[#C9A84C]">{{ $job->title ?? 'Position' }}</a>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             <span class="text-[#C9A84C]">Apply</span>
         </nav>
@@ -55,7 +55,7 @@
                 </div>
                 @endif
 
-                <form action="{{ route('career.apply.store', $job->slug ?? $job->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+                <form action="{{ route('careers.apply', $job->slug ?? $job->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                     @csrf
                     <input type="hidden" name="job_id" value="{{ $job->id }}">
 
@@ -120,7 +120,7 @@
                         <input type="checkbox" name="consent" id="consent" required
                                class="w-4 h-4 text-[#C9A84C] border-gray-300 rounded mt-1 focus:ring-[#C9A84C]">
                         <label for="consent" class="text-gray-500 text-sm leading-relaxed">
-                            I consent to SHEFAHOMES storing and processing my personal data for recruitment purposes in accordance with the <a href="{{ route('pages.privacy') }}" class="text-[#C9A84C] hover:underline">Privacy Policy</a>.
+                            I consent to SHEFAHOMES storing and processing my personal data for recruitment purposes in accordance with the <a href="{{ route('privacy') }}" class="text-[#C9A84C] hover:underline">Privacy Policy</a>.
                         </label>
                     </div>
 

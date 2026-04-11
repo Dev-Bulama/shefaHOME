@@ -76,6 +76,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('blog-categories', Admin\BlogCategoryController::class);
     Route::resource('careers', Admin\CareerController::class);
     Route::get('career-applications', [Admin\CareerController::class, 'applications'])->name('careers.applications');
+    Route::get('career-applications/{id}', [Admin\CareerController::class, 'showApplication'])->name('careers.applications.show');
+    Route::patch('career-applications/{id}/status', [Admin\CareerController::class, 'updateApplicationStatus'])->name('careers.applications.update-status');
     Route::resource('faqs', Admin\FaqController::class);
     Route::resource('faq-categories', Admin\FaqCategoryController::class);
     Route::get('inquiries', [Admin\InquiryController::class, 'index'])->name('inquiries.index');
@@ -103,6 +105,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('estates', Admin\EstateController::class);
     // Newsletter
     Route::get('newsletter', [Admin\NewsletterController::class, 'index'])->name('newsletter.index');
+    Route::delete('newsletter/{id}', [Admin\NewsletterController::class, 'destroy'])->name('newsletter.destroy');
     // Virtual Tours
     Route::resource('virtual-tours', Admin\VirtualTourController::class);
 });

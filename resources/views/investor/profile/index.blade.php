@@ -109,7 +109,7 @@
     {{-- Password Change --}}
     <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
         <h3 class="text-sm font-semibold text-gray-700 mb-5">Change Password</h3>
-        <form method="POST" action="{{ route('investor.profile.password') }}">
+        <form method="POST" action="{{ route('investor.profile.update') }}">
             @csrf
             @method('PUT')
             <div class="space-y-4">

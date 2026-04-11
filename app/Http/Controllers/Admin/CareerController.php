@@ -34,4 +34,15 @@ class CareerController extends Controller {
         if($request->status) $apps->where('status',$request->status);
         return view('admin.careers.applications', ['applications'=>$apps->paginate(20)]);
     }
+
+    public function showApplication($id) {
+        $application = CareerApplication::with('career')->findOrFail($id);
+        return view('admin.careers.applications', ['application'=>$application, 'applications'=>CareerApplication::with('career')->latest()->paginate(20)]);
+    }
+
+    public function updateApplicationStatus(Request $request, $id) {
+        $request->validate(['status'=>'required|in:new,reviewed,shortlisted,rejected']);
+        CareerApplication::findOrFail($id)->update(['status'=>$request->status]);
+        return redirect()->back()->with('success','Application status updated!');
+    }
 }

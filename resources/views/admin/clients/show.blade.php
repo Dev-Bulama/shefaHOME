@@ -54,7 +54,7 @@
             {{-- Upload Document --}}
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
                 <h3 class="text-sm font-semibold text-gray-700 mb-3">Upload Document</h3>
-                <form method="POST" action="{{ route('admin.clients.documents.store', $client) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.clients.documents.upload', $client) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="space-y-3">
                         <div>
@@ -197,7 +197,7 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
             </div>
-            <form method="POST" action="{{ route('admin.clients.payments.store', $client) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.clients.payments.add', $client) }}" enctype="multipart/form-data">
                 @csrf
                 <div class="space-y-4">
                     <div>

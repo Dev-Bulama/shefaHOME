@@ -93,7 +93,7 @@
             <p x-show="error" x-text="error" class="mt-3 text-[#0A1628] font-semibold text-sm bg-[#0A1628]/10 px-4 py-2 rounded-xl inline-block"></p>
 
             <p class="mt-4 text-[#0A1628]/50 text-xs">
-                By subscribing you agree to our <a href="{{ route('pages.privacy') }}" class="underline hover:text-[#0A1628]">Privacy Policy</a>.
+                By subscribing you agree to our <a href="{{ route('privacy') }}" class="underline hover:text-[#0A1628]">Privacy Policy</a>.
                 Unsubscribe anytime.
             </p>
         </div>

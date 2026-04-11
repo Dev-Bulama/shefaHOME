@@ -118,7 +118,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('properties.map') }}"
+                        <a href="{{ route('properties.index') }}"
                            class="text-gray-400 hover:text-[#C9A84C] text-sm transition-colors flex items-center gap-2 group">
                             <span class="w-1.5 h-1.5 rounded-full bg-[#C9A84C]/40 group-hover:bg-[#C9A84C] transition-colors flex-shrink-0"></span>
                             Property Map
@@ -146,14 +146,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('team') }}"
+                        <a href="{{ route('about') }}"
                            class="text-gray-400 hover:text-[#C9A84C] text-sm transition-colors flex items-center gap-2 group">
                             <span class="w-1.5 h-1.5 rounded-full bg-[#C9A84C]/40 group-hover:bg-[#C9A84C] transition-colors flex-shrink-0"></span>
                             Our Team
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('careers') }}"
+                        <a href="{{ route('careers.index') }}"
                            class="text-gray-400 hover:text-[#C9A84C] text-sm transition-colors flex items-center gap-2 group">
                             <span class="w-1.5 h-1.5 rounded-full bg-[#C9A84C]/40 group-hover:bg-[#C9A84C] transition-colors flex-shrink-0"></span>
                             Careers
@@ -314,7 +314,7 @@
                         Terms of Service
                     </a>
                     <span class="text-gray-700">·</span>
-                    <a href="{{ route('sitemap') }}"
+                    <a href="{{ '#' }}"
                        class="text-gray-500 hover:text-[#C9A84C] text-xs transition-colors">
                         Sitemap
                     </a>

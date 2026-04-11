@@ -103,7 +103,7 @@
 
                         <div class="border-t border-gray-100 my-1"></div>
 
-                        <a href="{{ route('properties.map') }}"
+                        <a href="{{ route('properties.index') }}"
                            class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-[#0A1628]/5 hover:text-[#0A1628] transition-colors group">
                             <div class="w-7 h-7 bg-[#0A1628]/8 rounded-lg flex items-center justify-center group-hover:bg-[#C9A84C]/20">
                                 <svg class="w-3.5 h-3.5 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -214,7 +214,7 @@
                     <a href="{{ route('properties.index', ['type' => 'sale']) }}" @click="mobileOpen=false" class="block px-3 py-2 text-sm text-gray-300 hover:text-[#C9A84C] rounded-lg transition-colors">For Sale</a>
                     <a href="{{ route('properties.index', ['type' => 'rent']) }}" @click="mobileOpen=false" class="block px-3 py-2 text-sm text-gray-300 hover:text-[#C9A84C] rounded-lg transition-colors">For Rent</a>
                     <a href="{{ route('properties.index', ['type' => 'shortlet']) }}" @click="mobileOpen=false" class="block px-3 py-2 text-sm text-gray-300 hover:text-[#C9A84C] rounded-lg transition-colors">Shortlets</a>
-                    <a href="{{ route('properties.map') }}" @click="mobileOpen=false" class="block px-3 py-2 text-sm text-gray-300 hover:text-[#C9A84C] rounded-lg transition-colors">Map View</a>
+                    <a href="{{ route('properties.index') }}" @click="mobileOpen=false" class="block px-3 py-2 text-sm text-gray-300 hover:text-[#C9A84C] rounded-lg transition-colors">Map View</a>
                 </div>
             </div>
 

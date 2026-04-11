@@ -36,7 +36,7 @@
     @endif
 
     {{-- Reset Password Form --}}
-    <form action="{{ route('password.store') }}" method="POST" class="space-y-5">
+    <form action="{{ route('password.update') }}" method="POST" class="space-y-5">
         @csrf
 
         {{-- Hidden token & email --}}

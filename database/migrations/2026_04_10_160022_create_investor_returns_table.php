@@ -1,0 +1,37 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('investor_returns', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('investor_profile_id')->constrained('investor_profiles')->cascadeOnDelete();
+            $table->foreignId('property_id')->constrained('properties')->cascadeOnDelete();
+            $table->string('reference')->unique();
+            $table->decimal('amount_invested', 15, 2);
+            $table->decimal('return_amount', 15, 2)->default(0);
+            $table->decimal('return_percentage', 5, 2)->default(0);
+            $table->date('investment_date');
+            $table->date('maturity_date')->nullable();
+            $table->enum('status', ['active', 'matured', 'paid', 'cancelled'])->default('active');
+            $table->text('notes')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('investor_returns');
+    }
+};

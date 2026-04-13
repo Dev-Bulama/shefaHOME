@@ -64,6 +64,24 @@
         </form>
     </div>
 
+    {{-- Run Migrations & Seed --}}
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+        <h2 class="text-lg font-semibold text-gray-800 mb-1">Database Migrations</h2>
+        <p class="text-sm text-gray-500 mb-4">Run pending migrations and seed default data (navigation menus, page content). Run this after deploying new code.</p>
+        <form method="POST" action="{{ route('admin.system-update.upload') }}" class="flex flex-wrap gap-3">
+            @csrf
+            <input type="hidden" name="run_migrations_only" value="1">
+            <button type="submit"
+                    onclick="return confirm('Run database migrations now?')"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1A237E] hover:bg-[#0D1566] text-white text-sm font-semibold rounded-lg transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582 4-8 4"/>
+                </svg>
+                Run Migrations
+            </button>
+        </form>
+    </div>
+
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
         <h2 class="text-lg font-semibold text-gray-800 mb-4">Update History</h2>
         @if(!empty($updateHistory))

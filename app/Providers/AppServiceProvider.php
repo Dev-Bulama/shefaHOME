@@ -28,25 +28,32 @@ class AppServiceProvider extends ServiceProvider
                 $phone1   = Settings::get('phone_1', '+234 800 000 0000');
                 $email    = Settings::get('contact_email', 'info@shefahomes.com');
 
-                // Dynamic navigation menu items (header)
-                $navMenuItems = collect();
+                // Full header navigation tree (used by navbar)
+                $navHeaderItems = collect();
+                // Legacy alias used in some older views
+                $navMenuItems   = collect();
                 if (Schema::hasTable('navigation_menus')) {
-                    $navMenuItems = \App\Models\NavigationMenu::with('children')
+                    $navHeaderItems = \App\Models\NavigationMenu::with(['children' => function ($q) {
+                            $q->where('is_active', true)->orderBy('sort_order');
+                        }])
                         ->active()
                         ->topLevel()
                         ->forLocation('header')
                         ->orderBy('sort_order')
                         ->get();
+                    // Legacy: extras that previously went only into Company dropdown
+                    $navMenuItems = $navHeaderItems;
                 }
 
-                $view->with(compact('siteName', 'whatsapp', 'phone1', 'email', 'navMenuItems'));
+                $view->with(compact('siteName', 'whatsapp', 'phone1', 'email', 'navHeaderItems', 'navMenuItems'));
             } catch (\Throwable $e) {
                 $view->with([
-                    'siteName'     => 'SHEFAHOMES',
-                    'whatsapp'     => '2348000000000',
-                    'phone1'       => '+234 800 000 0000',
-                    'email'        => 'info@shefahomes.com',
-                    'navMenuItems' => collect(),
+                    'siteName'      => 'SHEFAHOMES',
+                    'whatsapp'      => '2348000000000',
+                    'phone1'        => '+234 800 000 0000',
+                    'email'         => 'info@shefahomes.com',
+                    'navHeaderItems'=> collect(),
+                    'navMenuItems'  => collect(),
                 ]);
             }
         });

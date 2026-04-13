@@ -55,6 +55,7 @@ Route::get('/client-partnership', fn() => view('public.pages.partnership'))->nam
 Route::get('/joint-venture-partnership', [PageController::class, 'jointVenture'])->name('joint-venture');
 Route::get('/our-services', [PageController::class, 'services'])->name('services');
 Route::get('/csr', [PageController::class, 'csr'])->name('csr');
+Route::get('/invest-with-us', fn() => redirect()->route('investor-info'))->name('invest-with-us');
 
 // /admin root redirect — prevents 404 when visiting /admin directly
 Route::get('/admin', function () {
@@ -126,6 +127,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::put('navigation/{id}', [Admin\NavigationController::class, 'update'])->name('navigation.update');
     Route::delete('navigation/{id}', [Admin\NavigationController::class, 'destroy'])->name('navigation.destroy');
     Route::post('navigation/reorder', [Admin\NavigationController::class, 'reorder'])->name('navigation.reorder');
+    // Page Content Management
+    Route::get('pages', [Admin\PageContentController::class, 'index'])->name('pages.index');
+    Route::get('pages/{page}/edit', [Admin\PageContentController::class, 'edit'])->name('pages.edit');
+    Route::post('pages/{page}', [Admin\PageContentController::class, 'update'])->name('pages.update');
+    Route::post('pages/{page}/fields', [Admin\PageContentController::class, 'addField'])->name('pages.addField');
+    Route::delete('pages/fields/{id}', [Admin\PageContentController::class, 'deleteField'])->name('pages.deleteField');
 });
 
 // INVESTOR ROUTES

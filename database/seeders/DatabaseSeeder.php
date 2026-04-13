@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder {
             AwardSeeder::class,
             PartnerSeeder::class,
             CareerSeeder::class,
+            NavigationMenuSeeder::class,
+            PageContentSeeder::class,
         ]);
     }
 }

@@ -27,7 +27,6 @@
 
         <form method="POST" action="{{ route('admin.settings.update') }}" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
 
             {{-- General Tab --}}
             <div x-show="activeTab === 'general'" class="p-6 space-y-5">

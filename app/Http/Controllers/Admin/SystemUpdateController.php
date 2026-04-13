@@ -14,6 +14,21 @@ class SystemUpdateController extends Controller {
     }
 
     public function upload(Request $request) {
+        // Migrations-only run (no zip upload needed)
+        if ($request->input('run_migrations_only') === '1') {
+            try {
+                Artisan::call('migrate', ['--force' => true]);
+                Artisan::call('db:seed', ['--class' => 'NavigationMenuSeeder', '--force' => true]);
+                Artisan::call('db:seed', ['--class' => 'PageContentSeeder', '--force' => true]);
+                Artisan::call('config:clear');
+                Artisan::call('view:clear');
+                Artisan::call('cache:clear');
+                return back()->with('success', 'Migrations ran successfully and caches cleared.');
+            } catch (\Throwable $e) {
+                return back()->with('error', 'Migration failed: ' . $e->getMessage());
+            }
+        }
+
         $request->validate(['update_zip' => 'required|file|mimes:zip|max:102400']); // 100MB
 
         $zipFile = $request->file('update_zip');

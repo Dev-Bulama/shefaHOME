@@ -271,10 +271,12 @@
     <div class="bg-blue-50 border border-blue-100 rounded-xl p-5 text-sm text-blue-800">
         <p class="font-semibold mb-1">How navigation works</p>
         <ul class="list-disc list-inside space-y-1 text-xs text-blue-700">
-            <li><strong>Header Navigation</strong> items appear in the top navbar under a <em>"More"</em> dropdown alongside the built-in links.</li>
+            <li>The navbar is <strong>fully driven by this list</strong> — every link shown on the website comes from here.</li>
+            <li><strong>Top-level items</strong> with no parent appear directly in the navigation bar.</li>
+            <li><strong>Items with children</strong> (sub-items) automatically render as dropdowns.</li>
             <li><strong>Footer</strong> items appear in the footer quick-links column.</li>
-            <li><strong>Sub-items</strong> appear nested under their parent item in the header dropdown.</li>
-            <li>Built-in links (Home, Properties, About, Blog, Contact) always appear and cannot be removed here.</li>
+            <li>You can add, edit, reorder (by sort_order), enable/disable any link including the default ones.</li>
+            <li>Use <code>#</code> as the URL for a dropdown parent that has no destination of its own.</li>
         </ul>
     </div>
 

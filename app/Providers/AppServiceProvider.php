@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Schema;
 use App\Helpers\Settings;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,13 +27,26 @@ class AppServiceProvider extends ServiceProvider
                 $whatsapp = Settings::get('whatsapp_number', '2348000000000');
                 $phone1   = Settings::get('phone_1', '+234 800 000 0000');
                 $email    = Settings::get('contact_email', 'info@shefahomes.com');
-                $view->with(compact('siteName', 'whatsapp', 'phone1', 'email'));
-            } catch (\Exception $e) {
+
+                // Dynamic navigation menu items (header)
+                $navMenuItems = collect();
+                if (Schema::hasTable('navigation_menus')) {
+                    $navMenuItems = \App\Models\NavigationMenu::with('children')
+                        ->active()
+                        ->topLevel()
+                        ->forLocation('header')
+                        ->orderBy('sort_order')
+                        ->get();
+                }
+
+                $view->with(compact('siteName', 'whatsapp', 'phone1', 'email', 'navMenuItems'));
+            } catch (\Throwable $e) {
                 $view->with([
-                    'siteName' => 'SHEFAHOMES',
-                    'whatsapp' => '2348000000000',
-                    'phone1'   => '+234 800 000 0000',
-                    'email'    => 'info@shefahomes.com',
+                    'siteName'     => 'SHEFAHOMES',
+                    'whatsapp'     => '2348000000000',
+                    'phone1'       => '+234 800 000 0000',
+                    'email'        => 'info@shefahomes.com',
+                    'navMenuItems' => collect(),
                 ]);
             }
         });

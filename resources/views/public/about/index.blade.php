@@ -1,209 +1,234 @@
 @extends('layouts.app')
 
-@section('title', 'About SHEFAHOMES — Premium Real Estate Nigeria')
-@section('meta_description', 'Learn the story of SHEFAHOMES, Nigeria\'s premier real estate developer. Our mission, vision, team and track record of excellence.')
+@section('title', 'About Us — Shefa Homes and Properties Ltd')
+@section('description', 'Building strategic assets and creating lasting value. Shefa Homes and Properties Ltd is a forward-thinking real estate investment and development company in Nigeria.')
 
 @section('content')
 
-{{-- Page Hero --}}
-<section class="relative bg-[#0A1628] py-24 overflow-hidden">
-    <div class="absolute inset-0">
-        <img src="https://picsum.photos/seed/about-hero/1400/500" class="w-full h-full object-cover opacity-20" alt="">
-        <div class="absolute inset-0 bg-gradient-to-r from-[#0A1628] via-[#0A1628]/90 to-[#0A1628]/70"></div>
-    </div>
+{{-- Hero --}}
+<section class="relative bg-[#0A1628] py-28 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#0A1628] via-[#0A1628]/95 to-[#1a2e50]"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 opacity-10 rounded-full" style="background:radial-gradient(circle, #C9A84C, transparent)"></div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl">
-            <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">Our Story</span>
-            <h1 class="font-display text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight">
-                Building Nigeria's <span class="text-[#C9A84C]">Future</span>,<br>One Estate at a Time
+            <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-4">Who We Are</span>
+            <h1 class="font-display text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                Building Strategic Assets.<br><span class="text-[#C9A84C]">Creating Lasting Value.</span>
             </h1>
             <p class="text-gray-300 text-xl leading-relaxed">
-                A decade of turning real estate dreams into legal, documented and profitable realities for Nigerians at home and abroad.
+                A forward-thinking real estate investment and development company committed to delivering structured, high-value property solutions across Nigeria's fastest-growing corridors.
             </p>
         </div>
     </div>
 </section>
 
-{{-- Company Story --}}
+{{-- Who We Are --}}
 <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div data-reveal>
-                <img src="https://picsum.photos/seed/about-story/800/600" alt="SHEFAHOMES Story" class="w-full rounded-3xl shadow-2xl shadow-[#0A1628]/15 object-cover h-[480px]">
-            </div>
-            <div data-reveal style="transition-delay:200ms">
-                <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">Who We Are</span>
+                <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">Our Story</span>
                 <h2 class="font-display text-4xl font-bold text-[#0A1628] mb-6 leading-tight">
-                    Born from a Vision to Democratise Real Estate
+                    More than property — strategic real estate opportunities
                 </h2>
-                <div class="space-y-4 text-gray-500 leading-relaxed">
-                    <p>SHEFAHOMES was founded on the belief that every hardworking Nigerian deserves to own a piece of their nation's land — with proper documentation, strategic location and genuine aftercare.</p>
-                    <p>Since our inception, we have allocated over 5,000 plots across Nigeria's fastest-growing property corridors, in Lagos, Abuja, Ogun, Enugu and beyond. Every property we sell comes with a government-approved title and a dedicated account manager.</p>
-                    <p>We are members of the Real Estate Developers Association of Nigeria (REDAN), the Lagos State Real Estate Regulatory Authority (LASRERA) and the Federal Capital Development Authority (FCDA) approved developers list.</p>
+                <div class="space-y-4 text-gray-500 leading-relaxed text-base">
+                    <p>
+                        Shefa Homes and Properties Ltd is a forward-thinking real estate investment and development company committed to delivering structured, high-value property solutions across Nigeria's fastest-growing corridors.
+                    </p>
+                    <p>
+                        We do not merely sell land — we curate strategic real estate opportunities designed for long-term capital appreciation, wealth preservation, and sustainable development.
+                    </p>
                 </div>
-                <div class="mt-8 flex flex-wrap gap-4">
-                    <a href="{{ route('properties.index') }}" class="bg-[#C9A84C] text-[#0A1628] font-bold px-8 py-4 rounded-full hover:bg-[#E8C97A] transition-all hover:scale-105">
-                        Explore Properties
-                    </a>
-                    <a href="{{ route('contact') }}" class="border-2 border-[#0A1628] text-[#0A1628] hover:border-[#C9A84C] hover:text-[#C9A84C] font-bold px-8 py-4 rounded-full transition-all">
-                        Talk to Us
-                    </a>
+                <div class="mt-8 p-6 bg-[#0A1628]/3 rounded-2xl border border-[#0A1628]/8">
+                    <h4 class="font-semibold text-[#0A1628] mb-3">Our Philosophy</h4>
+                    <p class="text-gray-500 text-sm mb-4 italic">Real estate is more than ownership — it is a legacy asset.</p>
+                    <div class="grid grid-cols-2 gap-3">
+                        @foreach(['Strategic acquisition','Structured investment planning','Transparent documentation','Professional project execution'] as $pillar)
+                        <div class="flex items-center gap-2">
+                            <div class="w-4 h-4 bg-[#C9A84C]/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                <div class="w-2 h-2 bg-[#C9A84C] rounded-full"></div>
+                            </div>
+                            <span class="text-gray-700 text-sm font-medium">{{ $pillar }}</span>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-4" data-reveal style="transition-delay:200ms">
+                <div class="grid grid-cols-2 gap-4">
+                    @foreach([
+                        ['Investment-focused model', 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'],
+                        ['High-growth locations', 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z'],
+                        ['JV partnerships', 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0'],
+                        ['Integrity & accountability', 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'],
+                    ] as [$label, $icon])
+                    <div class="bg-white border border-gray-100 rounded-2xl p-5 hover:border-[#C9A84C]/30 hover:shadow-sm transition-all text-center">
+                        <div class="w-10 h-10 bg-[#C9A84C]/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <svg class="w-5 h-5 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $icon }}"/>
+                            </svg>
+                        </div>
+                        <p class="text-xs font-semibold text-gray-700">{{ $label }}</p>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="bg-[#0A1628] rounded-2xl p-6 text-white">
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        We operate with discipline, precision, and a deep understanding of emerging real estate markets. Every property we present is selected with growth potential, security, and long-term investor value in mind.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-{{-- Mission & Vision --}}
+{{-- Vision / Mission --}}
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-14" data-reveal>
-            <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">Purpose &amp; Direction</span>
-            <h2 class="font-display text-4xl md:text-5xl font-bold text-[#0A1628]">Our <span class="text-[#C9A84C]">Mission &amp; Vision</span></h2>
+        <div class="text-center max-w-2xl mx-auto mb-14" data-reveal>
+            <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">Our Direction</span>
+            <h2 class="font-display text-4xl font-bold text-[#0A1628]">Vision & Mission</h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {{-- Mission --}}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <div class="bg-[#0A1628] rounded-3xl p-10 text-white relative overflow-hidden" data-reveal>
-                <div class="absolute top-0 right-0 w-32 h-32 bg-[#C9A84C]/10 rounded-bl-full"></div>
-                <div class="w-14 h-14 bg-[#C9A84C]/20 rounded-2xl flex items-center justify-center mb-6">
-                    <svg class="w-7 h-7 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                </div>
-                <h3 class="font-display text-2xl font-bold text-[#C9A84C] mb-4">Our Mission</h3>
-                <p class="text-gray-300 leading-relaxed text-lg">
-                    To make land and property ownership accessible to every Nigerian by providing premium, legally secured real estate with transparent processes, flexible payment options and unmatched client support.
-                </p>
-            </div>
-            {{-- Vision --}}
-            <div class="bg-[#C9A84C] rounded-3xl p-10 text-[#0A1628] relative overflow-hidden" data-reveal style="transition-delay:150ms">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-[#0A1628]/10 rounded-bl-full"></div>
-                <div class="w-14 h-14 bg-[#0A1628]/15 rounded-2xl flex items-center justify-center mb-6">
-                    <svg class="w-7 h-7 text-[#0A1628]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                </div>
-                <h3 class="font-display text-2xl font-bold text-[#0A1628] mb-4">Our Vision</h3>
-                <p class="text-[#0A1628]/80 leading-relaxed text-lg">
-                    To be Africa's most trusted real estate company — a household name synonymous with integrity, innovation and life-changing property investments that span every state in Nigeria and beyond.
-                </p>
-            </div>
-        </div>
-
-        {{-- Core values --}}
-        <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6">
-            @foreach([
-                ['icon'=>'shield','value'=>'Integrity','desc'=>'Every promise, kept.'],
-                ['icon'=>'star','value'=>'Excellence','desc'=>'Standards that set us apart.'],
-                ['icon'=>'users','value'=>'Community','desc'=>'Clients are family.'],
-                ['icon'=>'refresh','value'=>'Innovation','desc'=>'Always improving.'],
-            ] as $i => $v)
-            <div class="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100 hover:border-[#C9A84C]/30 hover:shadow-md transition-all" data-reveal style="transition-delay:{{ $i*100 }}ms">
-                <div class="w-12 h-12 bg-[#C9A84C]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-6 h-6 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        @if($v['icon']==='shield')<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                        @elseif($v['icon']==='star')<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
-                        @elseif($v['icon']==='users')<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                        @else<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                        @endif
+                <div class="absolute top-0 right-0 w-40 h-40 bg-[#C9A84C]/10 rounded-full -translate-y-10 translate-x-10"></div>
+                <div class="w-12 h-12 bg-[#C9A84C] rounded-2xl flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-[#0A1628]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                     </svg>
                 </div>
-                <h4 class="font-bold text-[#0A1628] mb-1">{{ $v['value'] }}</h4>
-                <p class="text-gray-400 text-sm">{{ $v['desc'] }}</p>
+                <h3 class="font-display text-2xl font-bold text-[#C9A84C] mb-4">Vision Statement</h3>
+                <p class="text-gray-300 leading-relaxed text-base">
+                    To contribute to the creation of thriving communities and ecosystems by building long-term relationships with our clients founded on trust and integrity.
+                </p>
+            </div>
+            <div class="bg-[#C9A84C] rounded-3xl p-10 text-[#0A1628] relative overflow-hidden" data-reveal style="transition-delay:200ms">
+                <div class="absolute top-0 right-0 w-40 h-40 bg-[#0A1628]/10 rounded-full -translate-y-10 translate-x-10"></div>
+                <div class="w-12 h-12 bg-[#0A1628] rounded-2xl flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                </div>
+                <h3 class="font-display text-2xl font-bold text-[#0A1628] mb-4">Mission Statement</h3>
+                <p class="text-[#0A1628]/80 leading-relaxed text-base">
+                    To deliver exceptional service and transparent communication to our investors, partners, and stakeholders.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- Core Values --}}
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-14" data-reveal>
+            <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">What Drives Us</span>
+            <h2 class="font-display text-4xl font-bold text-[#0A1628]">Core Values</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach([
+                ['Portfolio Diversification', 'Acquire and manage a diverse portfolio of high-potential land assets for maximum long-term value.', 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'],
+                ['Integrity & Ethics', 'Conduct business with honesty, transparency and the highest ethical standards in every transaction.', 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'],
+                ['Open Communication', 'Provide clear and regular communication to investors and stakeholders at every stage of engagement.', 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'],
+                ['Long-term Growth', 'Prioritise sustainable growth and long-term returns over short-term gains for all stakeholders.', 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'],
+                ['Community Engagement', 'Engage positively with local communities and contribute meaningfully to their growth and development.', 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5'],
+                ['Professional Excellence', 'We operate with discipline, precision, and a deep understanding of emerging real estate markets.', 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z'],
+            ] as [$title, $desc, $icon])
+            <div class="group bg-white border border-gray-100 rounded-2xl p-6 hover:border-[#C9A84C]/40 hover:shadow-lg transition-all duration-300" data-reveal>
+                <div class="w-11 h-11 bg-[#C9A84C]/10 group-hover:bg-[#C9A84C]/20 rounded-xl flex items-center justify-center mb-4 transition-colors">
+                    <svg class="w-5 h-5 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $icon }}"/>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-[#0A1628] text-base mb-2">{{ $title }}</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">{{ $desc }}</p>
             </div>
             @endforeach
         </div>
     </div>
 </section>
 
-{{-- Stats Bar --}}
-<section class="py-16 bg-[#0A1628]"
-         x-data="{animated:false}"
-         x-intersect.once="animated=true; $el.querySelectorAll('[data-count]').forEach(el=>{const t=parseInt(el.dataset.count),s=t/125;let c=0;const ti=setInterval(()=>{c+=s;if(c>=t){c=t;clearInterval(ti);}el.textContent=Math.floor(c).toLocaleString();},16);})">
+{{-- What Sets Us Apart --}}
+<section class="py-20 bg-[#0A1628]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            @foreach([['5000','+','Happy Clients'],['50','+','Premium Estates'],['15','+','States'],['10','+','Years']] as $s)
-            <div>
-                <div class="font-display text-5xl font-bold text-[#C9A84C]">
-                    <span data-count="{{ $s[0] }}">0</span>{{ $s[1] }}
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div data-reveal>
+                <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">Our Edge</span>
+                <h2 class="font-display text-4xl font-bold text-white mb-8">What Sets Us Apart</h2>
+                <div class="space-y-4">
+                    @foreach([
+                        'Investment-focused model built for serious investors',
+                        'Carefully selected high-growth locations',
+                        'Structured Joint Venture partnerships',
+                        'Professional project management systems',
+                        'Commitment to integrity and accountability',
+                    ] as $point)
+                    <div class="flex items-start gap-3">
+                        <div class="w-6 h-6 bg-[#C9A84C]/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <svg class="w-3.5 h-3.5 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </div>
+                        <p class="text-gray-300 font-medium">{{ $point }}</p>
+                    </div>
+                    @endforeach
                 </div>
-                <p class="text-gray-400 mt-2 text-sm uppercase tracking-wider">{{ $s[2] }}</p>
             </div>
-            @endforeach
+            <div class="space-y-4" data-reveal style="transition-delay:200ms">
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+                    <h4 class="text-[#C9A84C] font-semibold mb-2">Office Address</h4>
+                    <p class="text-gray-300 text-sm">5, Charity Road, Opposite UBA Oko/Oba<br>Ifako-Ijaye Ijaiye, Lagos</p>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+                        <h4 class="text-white font-semibold mb-1 text-sm">Call Us</h4>
+                        <a href="tel:08105494713" class="text-[#C9A84C] text-sm font-medium hover:text-[#E8C97A] transition-colors">08105494713</a>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+                        <h4 class="text-white font-semibold mb-1 text-sm">WhatsApp</h4>
+                        <a href="https://wa.me/2349122388541" target="_blank" class="text-[#C9A84C] text-sm font-medium hover:text-[#E8C97A] transition-colors">09122388541</a>
+                    </div>
+                </div>
+                <div class="bg-[#C9A84C] rounded-2xl p-6">
+                    <h4 class="text-[#0A1628] font-bold mb-2">Ready to Partner?</h4>
+                    <p class="text-[#0A1628]/70 text-sm mb-4">Let's build something meaningful together.</p>
+                    <div class="flex gap-3">
+                        <a href="{{ route('contact') }}" class="flex-1 text-center bg-[#0A1628] text-white font-semibold px-4 py-2.5 rounded-xl text-sm hover:bg-[#0A1628]/90 transition-all">Contact Us</a>
+                        <a href="{{ route('joint-venture') }}" class="flex-1 text-center border-2 border-[#0A1628] text-[#0A1628] font-semibold px-4 py-2.5 rounded-xl text-sm hover:bg-[#0A1628] hover:text-white transition-all">JV Partnership</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 {{-- Team --}}
 @if(isset($team) && $team->count())
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-14" data-reveal>
-            <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">The People Behind the Vision</span>
-            <h2 class="font-display text-4xl md:text-5xl font-bold text-[#0A1628]">Meet Our <span class="text-[#C9A84C]">Team</span></h2>
-        </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-            @foreach($team as $i => $member)
-            <div class="group relative bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
-                 data-reveal style="transition-delay:{{ $i * 100 }}ms">
-                <div class="relative h-60 overflow-hidden">
-                    @if($member->photo_url)
-                    <img src="{{ $member->photo_url }}" alt="{{ $member->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    @else
-                    <div class="w-full h-full bg-gradient-to-br from-[#0A1628] to-[#1a2d4a] flex items-center justify-center">
-                        <span class="text-4xl font-bold text-[#C9A84C]">{{ strtoupper(substr($member->name,0,1)) }}</span>
-                    </div>
-                    @endif
-                    {{-- Bio overlay on hover --}}
-                    <div class="absolute inset-0 bg-[#0A1628]/90 flex items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <p class="text-gray-300 text-xs text-center leading-relaxed">{{ Str::limit($member->bio ?? '', 140) }}</p>
-                    </div>
-                </div>
-                <div class="p-4 text-center">
-                    <h4 class="font-bold text-[#0A1628] mb-0.5">{{ $member->name }}</h4>
-                    <p class="text-[#C9A84C] text-xs font-semibold">{{ $member->title }}</p>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-@endif
-
-{{-- Awards --}}
-@if(isset($awards) && $awards->count())
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-14">
-            <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">Recognition</span>
-            <h2 class="font-display text-4xl font-bold text-[#0A1628]">Awards &amp; <span class="text-[#C9A84C]">Accreditations</span></h2>
+        <div class="text-center max-w-2xl mx-auto mb-14" data-reveal>
+            <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">The People</span>
+            <h2 class="font-display text-4xl font-bold text-[#0A1628]">Meet Our Team</h2>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-            @foreach($awards as $i => $award)
-            <div class="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100 hover:border-[#C9A84C]/30 hover:shadow-md transition-all"
-                 data-reveal style="transition-delay:{{ $i*100 }}ms">
-                <div class="w-12 h-12 bg-[#C9A84C]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-6 h-6 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            @foreach($team as $member)
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all group" data-reveal>
+                <div class="aspect-[4/3] overflow-hidden bg-gray-100">
+                    @if($member->photo)
+                    <img src="{{ Storage::url($member->photo) }}" alt="{{ $member->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    @else
+                    <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#0A1628] to-[#1a2e50]">
+                        <span class="text-4xl font-bold text-[#C9A84C]">{{ substr($member->name,0,1) }}</span>
+                    </div>
+                    @endif
                 </div>
-                <h4 class="font-bold text-[#0A1628] text-sm mb-1">{{ $award->title }}</h4>
-                <p class="text-[#C9A84C] text-xs font-semibold">{{ $award->year }}</p>
-                @if($award->organization)<p class="text-gray-400 text-xs mt-1">{{ $award->organization }}</p>@endif
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-@endif
-
-{{-- Partners row --}}
-@if(isset($partners) && $partners->count())
-<section class="py-12 bg-white border-t border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p class="text-center text-xs font-semibold text-gray-400 uppercase tracking-widest mb-8">Our Partners &amp; Regulators</p>
-        <div class="flex flex-wrap items-center justify-center gap-8">
-            @foreach($partners as $partner)
-            <div class="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all">
-                @if($partner->logo_url)
-                <img src="{{ $partner->logo_url }}" alt="{{ $partner->name }}" class="h-10 max-w-[120px] object-contain">
-                @else
-                <span class="text-gray-400 font-bold px-4 py-2 border border-gray-200 rounded-xl text-sm">{{ $partner->name }}</span>
-                @endif
+                <div class="p-5">
+                    <h3 class="font-semibold text-[#0A1628] text-base">{{ $member->name }}</h3>
+                    <p class="text-[#C9A84C] text-sm font-medium">{{ $member->position }}</p>
+                    @if($member->bio)
+                    <p class="text-gray-500 text-xs mt-2 leading-relaxed line-clamp-3">{{ $member->bio }}</p>
+                    @endif
+                </div>
             </div>
             @endforeach
         </div>

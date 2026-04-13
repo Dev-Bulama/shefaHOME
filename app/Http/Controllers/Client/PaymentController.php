@@ -4,6 +4,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ClientPayment;
 use App\Models\Property;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -51,16 +53,60 @@ class PaymentController extends Controller {
     }
 
     public function verify(Request $request) {
-        // Paystack verification
-        $reference = $request->reference;
-        $profile = auth()->user()->clientProfile()->firstOrFail();
-        // In production: call Paystack API to verify payment
-        $payment = $profile->payments()->where('status','active')->first();
-        if($payment) {
-            $payment->update(['amount_paid'=>$payment->amount_paid + $request->amount, 'balance'=>max(0,$payment->balance-$request->amount),'status'=>$payment->balance<=$request->amount?'completed':'active']);
-            return response()->json(['success'=>true,'payment_id'=>$payment->id]);
+        $reference = $request->query('reference');
+        $paymentId  = $request->query('payment_id');
+
+        if (!$reference) {
+            return redirect()->route('client.payments.index')
+                ->with('error', 'Invalid payment reference.');
         }
-        return response()->json(['success'=>false,'message'=>'Payment not found']);
+
+        // Verify with Paystack API
+        $secretKey = config('services.paystack.secret_key');
+
+        try {
+            $response = Http::withToken($secretKey)
+                ->get(config('services.paystack.payment_url') . '/transaction/verify/' . rawurlencode($reference));
+
+            $body = $response->json();
+
+            if (!$response->successful() || ($body['status'] ?? false) !== true || ($body['data']['status'] ?? '') !== 'success') {
+                Log::warning('Paystack verification failed', ['reference' => $reference, 'body' => $body]);
+                return redirect()->route('client.payments.index')
+                    ->with('error', 'Payment could not be verified. Please contact support with reference: ' . $reference);
+            }
+
+            // Amount Paystack confirmed (in kobo → naira)
+            $confirmedAmount = ($body['data']['amount'] ?? 0) / 100;
+
+        } catch (\Exception $e) {
+            Log::error('Paystack verification exception', ['reference' => $reference, 'error' => $e->getMessage()]);
+            return redirect()->route('client.payments.index')
+                ->with('error', 'A network error occurred during payment verification. Please contact support with reference: ' . $reference);
+        }
+
+        $profile = auth()->user()->clientProfile()->firstOrFail();
+
+        $payment = $paymentId
+            ? $profile->payments()->find($paymentId)
+            : $profile->payments()->where('status', 'active')->first();
+
+        if (!$payment) {
+            return redirect()->route('client.payments.index')
+                ->with('error', 'Payment record not found. Please contact support with reference: ' . $reference);
+        }
+
+        $newPaid    = $payment->amount_paid + $confirmedAmount;
+        $newBalance = max(0, $payment->total_amount - $newPaid);
+
+        $payment->update([
+            'amount_paid' => $newPaid,
+            'balance'     => $newBalance,
+            'status'      => $newBalance <= 0 ? 'completed' : 'active',
+        ]);
+
+        return redirect()->route('client.payments.receipt', $payment->id)
+            ->with('success', 'Payment of ₦' . number_format($confirmedAmount, 2) . ' verified and recorded successfully!');
     }
 
     public function receipt(int $id) {

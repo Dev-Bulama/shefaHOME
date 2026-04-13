@@ -116,13 +116,6 @@
                     </div>
                 </div>
 
-                {{-- About --}}
-                <a href="{{ route('about') }}"
-                   class="px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200
-                          {{ request()->routeIs('about') ? 'text-[#C9A84C]' : 'text-gray-200 hover:text-white hover:bg-white/10' }}">
-                    About
-                </a>
-
                 {{-- Virtual Tour --}}
                 <a href="{{ route('virtual-tour') }}"
                    class="px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200
@@ -136,6 +129,57 @@
                           {{ request()->routeIs('blog*') ? 'text-[#C9A84C]' : 'text-gray-200 hover:text-white hover:bg-white/10' }}">
                     Blog
                 </a>
+
+                {{-- Company Dropdown --}}
+                <div class="relative" x-data="{ open: false }" @mouseenter="open=true" @mouseleave="open=false">
+                    <button class="flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200
+                                   {{ request()->routeIs('about','services','joint-venture','investor-info','csr') ? 'text-[#C9A84C]' : 'text-gray-200 hover:text-white hover:bg-white/10' }}">
+                        Company
+                        <svg class="w-4 h-4 transition-transform duration-200" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div x-show="open"
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="opacity-0 translate-y-1"
+                         x-transition:enter-end="opacity-100 translate-y-0"
+                         x-transition:leave="transition ease-in duration-150"
+                         x-transition:leave-start="opacity-100 translate-y-0"
+                         x-transition:leave-end="opacity-0 translate-y-1"
+                         class="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-60 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 z-50"
+                         style="display:none;">
+                        @foreach([
+                            ['About Us', route('about'), 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z', 'about'],
+                            ['Our Services', route('services'), 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5', 'services'],
+                            ['JV Partnership', route('joint-venture'), 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0', 'joint-venture'],
+                            ['Invest With Us', route('investor-info'), 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6', 'investor-info'],
+                        ] as [$label, $url, $icon, $route])
+                        <a href="{{ $url }}"
+                           class="flex items-center gap-3 px-4 py-2.5 text-sm {{ request()->routeIs($route) ? 'text-[#C9A84C] bg-[#C9A84C]/5' : 'text-gray-700 hover:bg-[#0A1628]/5 hover:text-[#0A1628]' }} transition-colors group">
+                            <div class="w-7 h-7 bg-[#0A1628]/8 rounded-lg flex items-center justify-center group-hover:bg-[#C9A84C]/20 transition-colors">
+                                <svg class="w-3.5 h-3.5 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $icon }}"/>
+                                </svg>
+                            </div>
+                            {{ $label }}
+                        </a>
+                        @endforeach
+                        @if($navMenuItems->isNotEmpty())
+                        <div class="border-t border-gray-100 my-1"></div>
+                        @foreach($navMenuItems as $navItem)
+                        <a href="{{ $navItem->url }}" {{ $navItem->opens_new_tab ? 'target="_blank" rel="noopener"' : '' }}
+                           class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-[#0A1628]/5 hover:text-[#0A1628] transition-colors group">
+                            <div class="w-7 h-7 bg-[#0A1628]/8 rounded-lg flex items-center justify-center group-hover:bg-[#C9A84C]/20">
+                                <svg class="w-3 h-3 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </div>
+                            {{ $navItem->label }}
+                        </a>
+                        @endforeach
+                        @endif
+                    </div>
+                </div>
 
                 {{-- Contact --}}
                 <a href="{{ route('contact') }}"
@@ -218,15 +262,7 @@
                 </div>
             </div>
 
-            <a href="{{ route('about') }}"
-               @click="mobileOpen=false"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors
-                      {{ request()->routeIs('about') ? 'text-[#C9A84C] bg-[#C9A84C]/10' : 'text-gray-200 hover:text-white hover:bg-white/10' }}">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                About
-            </a>
+
 
             <a href="{{ route('virtual-tour') }}"
                @click="mobileOpen=false"
@@ -247,6 +283,33 @@
                 </svg>
                 Blog
             </a>
+
+            {{-- Mobile Company section --}}
+            <div x-data="{ companyOpen: false }">
+                <button @click="companyOpen=!companyOpen"
+                        class="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors
+                               {{ request()->routeIs('about','services','joint-venture','investor-info','csr') ? 'text-[#C9A84C] bg-[#C9A84C]/10' : 'text-gray-200 hover:text-white hover:bg-white/10' }}">
+                    <span class="flex items-center gap-3">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5"/>
+                        </svg>
+                        Company
+                    </span>
+                    <svg class="w-4 h-4 transition-transform" :class="companyOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div x-show="companyOpen" x-transition class="mt-1 ml-4 pl-4 border-l border-white/10 space-y-1">
+                    <a href="{{ route('about') }}" @click="mobileOpen=false" class="block px-3 py-2 text-sm text-gray-300 hover:text-[#C9A84C] rounded-lg transition-colors">About Us</a>
+                    <a href="{{ route('services') }}" @click="mobileOpen=false" class="block px-3 py-2 text-sm text-gray-300 hover:text-[#C9A84C] rounded-lg transition-colors">Our Services</a>
+                    <a href="{{ route('joint-venture') }}" @click="mobileOpen=false" class="block px-3 py-2 text-sm text-gray-300 hover:text-[#C9A84C] rounded-lg transition-colors">JV Partnership</a>
+                    <a href="{{ route('investor-info') }}" @click="mobileOpen=false" class="block px-3 py-2 text-sm text-gray-300 hover:text-[#C9A84C] rounded-lg transition-colors">Invest With Us</a>
+                    @foreach($navMenuItems as $navItem)
+                    <a href="{{ $navItem->url }}" @click="mobileOpen=false" {{ $navItem->opens_new_tab ? 'target="_blank" rel="noopener"' : '' }}
+                       class="block px-3 py-2 text-sm text-gray-300 hover:text-[#C9A84C] rounded-lg transition-colors">{{ $navItem->label }}</a>
+                    @endforeach
+                </div>
+            </div>
 
             <a href="{{ route('contact') }}"
                @click="mobileOpen=false"

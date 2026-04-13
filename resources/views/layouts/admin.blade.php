@@ -183,6 +183,14 @@ tailwind.config = {
 
             <p class="sidebar-section-label" x-show="sidebarOpen">System</p>
 
+            <a href="{{ route('admin.navigation.index') }}"
+               class="sidebar-link {{ request()->routeIs('admin.navigation*') ? 'active' : '' }}">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"/>
+                </svg>
+                <span x-show="sidebarOpen">Navigation</span>
+            </a>
+
             <a href="{{ route('admin.settings.index') }}"
                class="sidebar-link {{ request()->routeIs('admin.settings*') ? 'active' : '' }}">
                 <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -261,6 +269,7 @@ tailwind.config = {
             <a href="{{ route('admin.inquiries.index') }}" class="sidebar-link">Inquiries</a>
             <a href="{{ route('admin.careers.index') }}" class="sidebar-link">Careers</a>
             <a href="{{ route('admin.faqs.index') }}" class="sidebar-link">FAQs</a>
+            <a href="{{ route('admin.navigation.index') }}" class="sidebar-link">Navigation</a>
             <a href="{{ route('admin.settings.index') }}" class="sidebar-link">Settings</a>
             <a href="{{ route('admin.system-update.index') }}" class="sidebar-link">System Update</a>
         </nav>

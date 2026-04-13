@@ -13,6 +13,7 @@ use App\Http\Controllers\Public\FaqController as PublicFaqController;
 use App\Http\Controllers\Public\InvestorInfoController;
 use App\Http\Controllers\Public\InquiryController as PublicInquiryController;
 use App\Http\Controllers\Public\NewsletterController;
+use App\Http\Controllers\Public\PageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\Investor;
@@ -51,6 +52,17 @@ Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])
 Route::get('/terms-and-conditions', fn() => view('public.pages.terms'))->name('terms');
 Route::get('/privacy-policy', fn() => view('public.pages.privacy'))->name('privacy');
 Route::get('/client-partnership', fn() => view('public.pages.partnership'))->name('partnership');
+Route::get('/joint-venture-partnership', [PageController::class, 'jointVenture'])->name('joint-venture');
+Route::get('/our-services', [PageController::class, 'services'])->name('services');
+Route::get('/csr', [PageController::class, 'csr'])->name('csr');
+
+// /admin root redirect — prevents 404 when visiting /admin directly
+Route::get('/admin', function () {
+    if (auth()->check() && auth()->user()->hasAnyRole(['super_admin', 'admin', 'staff'])) {
+        return redirect()->route('admin.dashboard');
+    }
+    return redirect()->route('admin.login');
+});
 
 // ADMIN AUTH
 Route::get('/admin/login', [AuthController::class, 'showAdminLogin'])->name('admin.login')->middleware('guest');
@@ -108,6 +120,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::delete('newsletter/{id}', [Admin\NewsletterController::class, 'destroy'])->name('newsletter.destroy');
     // Virtual Tours
     Route::resource('virtual-tours', Admin\VirtualTourController::class);
+    // Navigation Menus
+    Route::get('navigation', [Admin\NavigationController::class, 'index'])->name('navigation.index');
+    Route::post('navigation', [Admin\NavigationController::class, 'store'])->name('navigation.store');
+    Route::put('navigation/{id}', [Admin\NavigationController::class, 'update'])->name('navigation.update');
+    Route::delete('navigation/{id}', [Admin\NavigationController::class, 'destroy'])->name('navigation.destroy');
+    Route::post('navigation/reorder', [Admin\NavigationController::class, 'reorder'])->name('navigation.reorder');
 });
 
 // INVESTOR ROUTES
@@ -131,7 +149,7 @@ Route::prefix('client')->name('client.')->middleware(['auth', 'client'])->group(
     Route::get('/payments', [Client\PaymentController::class, 'index'])->name('payments.index');
     Route::get('/payments/make', [Client\PaymentController::class, 'make'])->name('payments.make');
     Route::post('/payments', [Client\PaymentController::class, 'store'])->name('payments.store');
-    Route::post('/payments/verify', [Client\PaymentController::class, 'verify'])->name('payments.verify');
+    Route::get('/payments/verify', [Client\PaymentController::class, 'verify'])->name('payments.verify');
     Route::get('/payments/receipt/{id}', [Client\PaymentController::class, 'receipt'])->name('payments.receipt');
     Route::get('/documents', [Client\DocumentController::class, 'index'])->name('documents.index');
     Route::get('/documents/{id}/download', [Client\DocumentController::class, 'download'])->name('documents.download');

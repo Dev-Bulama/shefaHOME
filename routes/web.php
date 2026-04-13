@@ -131,7 +131,7 @@ Route::prefix('client')->name('client.')->middleware(['auth', 'client'])->group(
     Route::get('/payments', [Client\PaymentController::class, 'index'])->name('payments.index');
     Route::get('/payments/make', [Client\PaymentController::class, 'make'])->name('payments.make');
     Route::post('/payments', [Client\PaymentController::class, 'store'])->name('payments.store');
-    Route::post('/payments/verify', [Client\PaymentController::class, 'verify'])->name('payments.verify');
+    Route::get('/payments/verify', [Client\PaymentController::class, 'verify'])->name('payments.verify');
     Route::get('/payments/receipt/{id}', [Client\PaymentController::class, 'receipt'])->name('payments.receipt');
     Route::get('/documents', [Client\DocumentController::class, 'index'])->name('documents.index');
     Route::get('/documents/{id}/download', [Client\DocumentController::class, 'download'])->name('documents.download');

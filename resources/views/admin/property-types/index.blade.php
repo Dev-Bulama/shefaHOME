@@ -8,11 +8,11 @@
     {{-- Page Header --}}
     <div class="flex items-center justify-between">
         <div>
-            <h2 class="text-xl font-bold text-[#0A1628]">Property Types</h2>
+            <h2 class="text-xl font-bold text-[#1A237E]">Property Types</h2>
             <p class="text-sm text-gray-500 mt-0.5">Categorise listings by property type (e.g. Apartment, Duplex, Land).</p>
         </div>
         <a href="{{ route('admin.property-types.create') }}"
-           class="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#b8963e] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors shadow-sm">
+           class="inline-flex items-center gap-2 bg-[#27AE22] hover:bg-[#b8963e] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors shadow-sm">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
             </svg>
@@ -37,7 +37,7 @@
                 @forelse($propertyTypes as $type)
                 <tr class="hover:bg-gray-50 transition-colors">
                     <td class="px-6 py-4">
-                        <div class="w-10 h-10 bg-[#0A1628]/5 rounded-lg flex items-center justify-center text-xl">
+                        <div class="w-10 h-10 bg-[#1A237E]/5 rounded-lg flex items-center justify-center text-xl">
                             {{ $type->icon ?: '🏠' }}
                         </div>
                     </td>
@@ -49,14 +49,14 @@
                         {{ Str::limit($type->description, 80) ?: '—' }}
                     </td>
                     <td class="px-6 py-4">
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#0A1628]/10 text-[#0A1628]">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#1A237E]/10 text-[#1A237E]">
                             {{ $type->properties_count ?? $type->properties()->count() }}
                         </span>
                     </td>
                     <td class="px-6 py-4 text-right">
                         <div class="flex items-center justify-end gap-3">
                             <a href="{{ route('admin.property-types.edit', $type) }}"
-                               class="text-[#0A1628] hover:text-[#C9A84C] text-sm font-medium transition-colors">Edit</a>
+                               class="text-[#1A237E] hover:text-[#27AE22] text-sm font-medium transition-colors">Edit</a>
                             <form action="{{ route('admin.property-types.destroy', $type) }}" method="POST"
                                   x-data onsubmit="return confirm('Are you sure you want to delete this property type? This may affect existing listings.')">
                                 @csrf
@@ -75,7 +75,7 @@
                                       d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                             </svg>
                             <p class="text-gray-500 text-sm">No property types yet.
-                                <a href="{{ route('admin.property-types.create') }}" class="text-[#C9A84C] hover:underline">Add the first one.</a>
+                                <a href="{{ route('admin.property-types.create') }}" class="text-[#27AE22] hover:underline">Add the first one.</a>
                             </p>
                         </div>
                     </td>

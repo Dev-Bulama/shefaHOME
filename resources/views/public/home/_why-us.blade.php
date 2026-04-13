@@ -7,16 +7,16 @@
             {{-- Left: Image --}}
             <div class="relative" data-reveal>
                 {{-- Main image --}}
-                <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-[#0A1628]/20">
+                <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-[#1A237E]/20">
                     <img src="https://picsum.photos/seed/luxury2/800/600"
                          alt="Luxury Real Estate"
                          class="w-full h-[500px] object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-[#0A1628]/40 via-transparent to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-tr from-[#1A237E]/40 via-transparent to-transparent"></div>
                 </div>
 
                 {{-- Floating badge top-right --}}
                 <div class="absolute -top-6 -right-6 hidden lg:block">
-                    <div class="bg-[#C9A84C] text-[#0A1628] font-bold rounded-2xl p-5 shadow-xl text-center">
+                    <div class="bg-[#27AE22] text-[#1A237E] font-bold rounded-2xl p-5 shadow-xl text-center">
                         <div class="text-3xl font-display font-black">10+</div>
                         <div class="text-xs font-semibold uppercase tracking-wide">Years of<br>Excellence</div>
                     </div>
@@ -24,7 +24,7 @@
 
                 {{-- Floating stat card bottom-left --}}
                 <div class="absolute -bottom-8 -left-6 hidden lg:block">
-                    <div class="bg-white rounded-2xl p-5 shadow-2xl shadow-[#0A1628]/15 border border-gray-100 min-w-[180px]">
+                    <div class="bg-white rounded-2xl p-5 shadow-2xl shadow-[#1A237E]/15 border border-gray-100 min-w-[180px]">
                         <div class="flex items-center gap-3 mb-2">
                             <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center">
                                 <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -33,7 +33,7 @@
                             </div>
                             <div>
                                 <p class="text-xs text-gray-400">Verified Titles</p>
-                                <p class="font-bold text-[#0A1628]">100% Government Approved</p>
+                                <p class="font-bold text-[#1A237E]">100% Government Approved</p>
                             </div>
                         </div>
                         <div class="h-1 bg-gray-100 rounded-full">
@@ -43,14 +43,14 @@
                 </div>
 
                 {{-- Decorative dots --}}
-                <div class="absolute -z-10 -bottom-10 -right-10 w-40 h-40 opacity-20" style="background-image: radial-gradient(circle, #C9A84C 1.5px, transparent 1.5px); background-size: 12px 12px;"></div>
+                <div class="absolute -z-10 -bottom-10 -right-10 w-40 h-40 opacity-20" style="background-image: radial-gradient(circle, #27AE22 1.5px, transparent 1.5px); background-size: 12px 12px;"></div>
             </div>
 
             {{-- Right: Content --}}
             <div data-reveal style="transition-delay: 200ms">
-                <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">Why Choose Us</span>
-                <h2 class="font-display text-4xl md:text-5xl font-bold text-[#0A1628] mb-4 leading-tight">
-                    We Don't Just Sell<br>Land — We Build <span class="text-[#C9A84C]">Futures</span>
+                <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-3">Why Choose Us</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-[#1A237E] mb-4 leading-tight">
+                    We Don't Just Sell<br>Land — We Build <span class="text-[#27AE22]">Futures</span>
                 </h2>
                 <p class="text-gray-500 text-lg mb-10 leading-relaxed">
                     SHEFAHOMES is Nigeria's most trusted real estate development company. We combine government-approved titles, flexible payment plans and unmatched aftercare service to deliver lasting value for every investor.
@@ -110,7 +110,7 @@
                             @endif
                         </div>
                         <div class="flex-1">
-                            <h4 class="font-bold text-[#0A1628] text-base mb-1">{{ $feature['title'] }}</h4>
+                            <h4 class="font-bold text-[#1A237E] text-base mb-1">{{ $feature['title'] }}</h4>
                             <p class="text-gray-500 text-sm leading-relaxed">{{ $feature['desc'] }}</p>
                         </div>
                     </div>
@@ -120,11 +120,11 @@
                 {{-- CTA --}}
                 <div class="mt-10 flex flex-wrap gap-4">
                     <a href="{{ route('about') }}"
-                       class="bg-[#0A1628] hover:bg-[#C9A84C] text-white hover:text-[#0A1628] font-bold px-8 py-4 rounded-full transition-all hover:scale-105 hover:shadow-lg">
+                       class="bg-[#1A237E] hover:bg-[#27AE22] text-white hover:text-[#1A237E] font-bold px-8 py-4 rounded-full transition-all hover:scale-105 hover:shadow-lg">
                         Our Story
                     </a>
                     <a href="{{ route('properties.index') }}"
-                       class="border-2 border-[#0A1628] text-[#0A1628] hover:border-[#C9A84C] hover:text-[#C9A84C] font-bold px-8 py-4 rounded-full transition-all">
+                       class="border-2 border-[#1A237E] text-[#1A237E] hover:border-[#27AE22] hover:text-[#27AE22] font-bold px-8 py-4 rounded-full transition-all">
                         Browse Estates
                     </a>
                 </div>

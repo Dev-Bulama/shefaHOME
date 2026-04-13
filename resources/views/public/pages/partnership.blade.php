@@ -6,16 +6,16 @@
 @section('content')
 
 {{-- Page Header --}}
-<section class="bg-[#0A1628] py-24 relative overflow-hidden">
+<section class="bg-[#1A237E] py-24 relative overflow-hidden">
     <div class="absolute inset-0">
         <img src="https://picsum.photos/seed/partnership-hero/1400/600" class="w-full h-full object-cover opacity-15" alt="">
-        <div class="absolute inset-0 bg-gradient-to-r from-[#0A1628] via-[#0A1628]/95 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#1A237E] via-[#1A237E]/95 to-transparent"></div>
     </div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-2xl">
-            <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">Collaborate</span>
+            <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-3">Collaborate</span>
             <h1 class="font-display text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight">
-                Partner With <span class="text-[#C9A84C]">SHEFAHOMES</span>
+                Partner With <span class="text-[#27AE22]">SHEFAHOMES</span>
             </h1>
             <p class="text-gray-300 text-xl leading-relaxed">
                 We believe in the power of strategic partnerships. Together, we can expand access to quality real estate across Nigeria.
@@ -28,9 +28,9 @@
 <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-14" data-reveal>
-            <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">Opportunities</span>
-            <h2 class="font-display text-4xl md:text-5xl font-bold text-[#0A1628] mb-4">
-                Types of <span class="text-[#C9A84C]">Partnership</span>
+            <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-3">Opportunities</span>
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-[#1A237E] mb-4">
+                Types of <span class="text-[#27AE22]">Partnership</span>
             </h2>
             <p class="text-gray-500 text-lg max-w-xl mx-auto">Whether you are an individual, organisation or corporation, there is a partnership model for you.</p>
         </div>
@@ -97,12 +97,12 @@
                         @endif
                     </svg>
                 </div>
-                <h3 class="font-display font-bold text-[#0A1628] text-xl mb-3">{{ $pt['title'] }}</h3>
+                <h3 class="font-display font-bold text-[#1A237E] text-xl mb-3">{{ $pt['title'] }}</h3>
                 <p class="text-gray-500 text-sm leading-relaxed mb-5">{{ $pt['desc'] }}</p>
                 <ul class="space-y-2">
                     @foreach($pt['perks'] as $perk)
                     <li class="flex items-center gap-2 text-xs text-gray-500">
-                        <svg class="w-4 h-4 text-[#C9A84C] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <svg class="w-4 h-4 text-[#27AE22] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                         {{ $perk }}
                     </li>
                     @endforeach
@@ -117,11 +117,11 @@
 <section class="py-20 bg-gray-50">
     <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10">
-            <h2 class="font-display text-4xl font-bold text-[#0A1628] mb-4">Ready to Partner With Us?</h2>
+            <h2 class="font-display text-4xl font-bold text-[#1A237E] mb-4">Ready to Partner With Us?</h2>
             <p class="text-gray-500 text-lg">Fill in the form below and our partnerships team will respond within 48 hours.</p>
         </div>
         <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
-            <div class="h-1 bg-gradient-to-r from-[#0A1628] via-[#C9A84C] to-[#0A1628]"></div>
+            <div class="h-1 bg-gradient-to-r from-[#1A237E] via-[#27AE22] to-[#1A237E]"></div>
             <div class="p-8">
                 @if(session('success'))
                 <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 text-center mb-6">
@@ -138,28 +138,28 @@
                         <div>
                             <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Full Name *</label>
                             <input type="text" name="name" required value="{{ old('name') }}" placeholder="John Doe"
-                                   class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C] text-[#0A1628] @error('name') border-red-400 @enderror">
+                                   class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22] text-[#1A237E] @error('name') border-red-400 @enderror">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Organisation</label>
                             <input type="text" name="organisation" value="{{ old('organisation') }}" placeholder="Your Company"
-                                   class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C] text-[#0A1628]">
+                                   class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22] text-[#1A237E]">
                         </div>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Email Address *</label>
                         <input type="email" name="email" required value="{{ old('email') }}" placeholder="you@company.com"
-                               class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C] text-[#0A1628] @error('email') border-red-400 @enderror">
+                               class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22] text-[#1A237E] @error('email') border-red-400 @enderror">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Phone Number</label>
                         <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="+234 800 000 0000"
-                               class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C] text-[#0A1628]">
+                               class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22] text-[#1A237E]">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Partnership Type *</label>
                         <select name="partnership_type" required
-                                class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C] text-gray-700 bg-white">
+                                class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22] text-gray-700 bg-white">
                             <option value="">Select partnership type</option>
                             <option value="referral">Referral Partner</option>
                             <option value="corporate">Corporate Partner</option>
@@ -172,10 +172,10 @@
                     <div>
                         <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Tell Us More *</label>
                         <textarea name="message" rows="4" required placeholder="Describe your partnership proposal and how you can add value..."
-                                  class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C] text-[#0A1628] resize-none">{{ old('message') }}</textarea>
+                                  class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22] text-[#1A237E] resize-none">{{ old('message') }}</textarea>
                     </div>
                     <button type="submit"
-                            class="w-full bg-[#C9A84C] hover:bg-[#b8943d] text-[#0A1628] font-bold py-4 rounded-xl transition-all hover:scale-[1.01] hover:shadow-lg hover:shadow-[#C9A84C]/30 text-base">
+                            class="w-full bg-[#27AE22] hover:bg-[#1D9418] text-[#1A237E] font-bold py-4 rounded-xl transition-all hover:scale-[1.01] hover:shadow-lg hover:shadow-[#27AE22]/30 text-base">
                         Submit Partnership Enquiry
                     </button>
                 </form>
@@ -185,7 +185,7 @@
 </section>
 
 {{-- Trust signals --}}
-<section class="py-12 bg-[#0A1628] text-center">
+<section class="py-12 bg-[#1A237E] text-center">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <p class="text-gray-400 mb-6">We already work with some of Nigeria's most respected institutions</p>
         <div class="flex flex-wrap items-center justify-center gap-8 text-gray-500 text-sm font-bold">

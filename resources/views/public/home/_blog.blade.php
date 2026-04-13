@@ -5,13 +5,13 @@
         {{-- Header --}}
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-14" data-reveal>
             <div>
-                <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-2">Real Estate Insights</span>
-                <h2 class="font-display text-4xl md:text-5xl font-bold text-[#0A1628]">
-                    From Our <span class="text-[#C9A84C]">Blog</span>
+                <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-2">Real Estate Insights</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-[#1A237E]">
+                    From Our <span class="text-[#27AE22]">Blog</span>
                 </h2>
             </div>
             <a href="{{ route('blog.index') }}"
-               class="flex-shrink-0 inline-flex items-center gap-2 text-[#0A1628] hover:text-[#C9A84C] font-semibold border-2 border-[#0A1628] hover:border-[#C9A84C] px-6 py-3 rounded-full transition-all text-sm">
+               class="flex-shrink-0 inline-flex items-center gap-2 text-[#1A237E] hover:text-[#27AE22] font-semibold border-2 border-[#1A237E] hover:border-[#27AE22] px-6 py-3 rounded-full transition-all text-sm">
                 View All Articles
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -23,7 +23,7 @@
         @if(isset($latestPosts) && $latestPosts->count())
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($latestPosts as $index => $post)
-            <article class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-[#0A1628]/10 border border-gray-100 transition-all duration-500 hover:-translate-y-1 flex flex-col"
+            <article class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-[#1A237E]/10 border border-gray-100 transition-all duration-500 hover:-translate-y-1 flex flex-col"
                      data-reveal style="transition-delay: {{ $index * 120 }}ms">
 
                 {{-- Image --}}
@@ -44,7 +44,7 @@
 
                     {{-- Category badge --}}
                     @if($post->category)
-                    <span class="absolute top-4 left-4 bg-[#C9A84C] text-[#0A1628] text-xs font-bold px-3 py-1.5 rounded-full">
+                    <span class="absolute top-4 left-4 bg-[#27AE22] text-[#1A237E] text-xs font-bold px-3 py-1.5 rounded-full">
                         {{ is_object($post->category) ? $post->category->name : $post->category }}
                     </span>
                     @endif
@@ -67,7 +67,7 @@
                     </div>
 
                     {{-- Title --}}
-                    <h3 class="font-display font-bold text-[#0A1628] text-lg mb-3 leading-snug group-hover:text-[#C9A84C] transition-colors line-clamp-2">
+                    <h3 class="font-display font-bold text-[#1A237E] text-lg mb-3 leading-snug group-hover:text-[#27AE22] transition-colors line-clamp-2">
                         <a href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a>
                     </h3>
 
@@ -78,7 +78,7 @@
 
                     {{-- Read more --}}
                     <a href="{{ route('blog.show', $post->slug) }}"
-                       class="inline-flex items-center gap-2 text-[#0A1628] hover:text-[#C9A84C] font-semibold text-sm transition-colors group/link">
+                       class="inline-flex items-center gap-2 text-[#1A237E] hover:text-[#27AE22] font-semibold text-sm transition-colors group/link">
                         Read More
                         <svg class="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>

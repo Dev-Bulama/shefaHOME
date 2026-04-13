@@ -12,7 +12,7 @@
             <p class="text-sm text-gray-500 mt-0.5">Add custom links to the site header and footer navigation.</p>
         </div>
         <button @click="showForm = !showForm; editMode = false; editItem = null"
-            class="inline-flex items-center gap-2 px-4 py-2 bg-[#C9A84C] text-[#0A1628] text-sm font-semibold rounded-lg hover:bg-[#E8C97A] transition">
+            class="inline-flex items-center gap-2 px-4 py-2 bg-[#27AE22] text-[#1A237E] text-sm font-semibold rounded-lg hover:bg-[#4ADE80] transition">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
             </svg>
@@ -73,7 +73,7 @@
                 </div>
             </div>
             <div class="flex gap-3 mt-5">
-                <button type="submit" class="px-6 py-2 bg-[#0A1628] text-white text-sm font-semibold rounded-lg hover:bg-[#0A1628]/90 transition">
+                <button type="submit" class="px-6 py-2 bg-[#1A237E] text-white text-sm font-semibold rounded-lg hover:bg-[#1A237E]/90 transition">
                     Add Item
                 </button>
                 <button type="button" @click="showForm=false" class="px-6 py-2 bg-gray-100 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-200 transition">
@@ -130,7 +130,7 @@
                 </div>
             </div>
             <div class="flex gap-3 mt-5">
-                <button type="submit" class="px-6 py-2 bg-[#C9A84C] text-[#0A1628] text-sm font-semibold rounded-lg hover:bg-[#E8C97A] transition">
+                <button type="submit" class="px-6 py-2 bg-[#27AE22] text-[#1A237E] text-sm font-semibold rounded-lg hover:bg-[#4ADE80] transition">
                     Save Changes
                 </button>
                 <button type="button" @click="showForm=false; editMode=false; editItem=null"

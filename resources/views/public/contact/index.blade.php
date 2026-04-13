@@ -6,14 +6,14 @@
 @section('content')
 
 {{-- Page Hero --}}
-<section class="bg-[#0A1628] py-20 relative overflow-hidden">
+<section class="bg-[#1A237E] py-20 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-[#C9A84C] rounded-full translate-x-1/2 -translate-y-1/2"></div>
-        <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#C9A84C] rounded-full -translate-x-1/3 translate-y-1/3"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-[#27AE22] rounded-full translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#27AE22] rounded-full -translate-x-1/3 translate-y-1/3"></div>
     </div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">We're Here to Help</span>
-        <h1 class="font-display text-5xl font-bold text-white mb-4">Contact <span class="text-[#C9A84C]">SHEFAHOMES</span></h1>
+        <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-3">We're Here to Help</span>
+        <h1 class="font-display text-5xl font-bold text-white mb-4">Contact <span class="text-[#27AE22]">SHEFAHOMES</span></h1>
         <p class="text-gray-300 text-lg max-w-xl mx-auto">Have questions about any of our properties? Our expert team is ready to guide you every step of the way.</p>
     </div>
 </section>
@@ -42,9 +42,9 @@
                          } catch(e) { this.error = 'Network error. Please try again.'; } finally { this.loading = false; }
                      }
                  }">
-                <div class="h-1 bg-gradient-to-r from-[#0A1628] via-[#C9A84C] to-[#0A1628]"></div>
+                <div class="h-1 bg-gradient-to-r from-[#1A237E] via-[#27AE22] to-[#1A237E]"></div>
                 <div class="p-8 lg:p-10">
-                    <h2 class="font-display text-2xl font-bold text-[#0A1628] mb-2">Send Us a Message</h2>
+                    <h2 class="font-display text-2xl font-bold text-[#1A237E] mb-2">Send Us a Message</h2>
                     <p class="text-gray-500 text-sm mb-8">We typically respond within 24 hours on business days.</p>
 
                     {{-- Success --}}
@@ -62,24 +62,24 @@
                             <div>
                                 <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Full Name *</label>
                                 <input type="text" x-model="name" placeholder="John Doe"
-                                       class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:border-[#C9A84C] text-[#0A1628] transition-all">
+                                       class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22] focus:border-[#27AE22] text-[#1A237E] transition-all">
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Email Address *</label>
                                 <input type="email" x-model="email" placeholder="john@example.com"
-                                       class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:border-[#C9A84C] text-[#0A1628] transition-all">
+                                       class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22] focus:border-[#27AE22] text-[#1A237E] transition-all">
                             </div>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             <div>
                                 <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Phone Number</label>
                                 <input type="tel" x-model="phone" placeholder="+234 800 000 0000"
-                                       class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:border-[#C9A84C] text-[#0A1628] transition-all">
+                                       class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22] focus:border-[#27AE22] text-[#1A237E] transition-all">
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Subject</label>
                                 <select x-model="subject"
-                                        class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:border-[#C9A84C] text-gray-700 bg-white transition-all">
+                                        class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22] focus:border-[#27AE22] text-gray-700 bg-white transition-all">
                                     <option value="">Select a subject</option>
                                     <option value="property-inquiry">Property Inquiry</option>
                                     <option value="payment-plan">Payment Plan</option>
@@ -93,10 +93,10 @@
                         <div>
                             <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Message *</label>
                             <textarea x-model="message" rows="5" placeholder="Tell us how we can help you..."
-                                      class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:border-[#C9A84C] text-[#0A1628] resize-none transition-all"></textarea>
+                                      class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22] focus:border-[#27AE22] text-[#1A237E] resize-none transition-all"></textarea>
                         </div>
                         <button @click="submit()" :disabled="loading"
-                                class="w-full bg-[#C9A84C] hover:bg-[#b8943d] text-[#0A1628] font-bold py-4 rounded-xl transition-all hover:scale-[1.01] hover:shadow-lg hover:shadow-[#C9A84C]/30 disabled:opacity-70 flex items-center justify-center gap-2 text-base">
+                                class="w-full bg-[#27AE22] hover:bg-[#1D9418] text-[#1A237E] font-bold py-4 rounded-xl transition-all hover:scale-[1.01] hover:shadow-lg hover:shadow-[#27AE22]/30 disabled:opacity-70 flex items-center justify-center gap-2 text-base">
                             <span x-show="!loading">Send Message</span>
                             <span x-show="loading" class="flex items-center gap-2">
                                 <svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
@@ -131,7 +131,7 @@
                         ['icon'=>'location','label'=>'Head Office','value'=>config('shefahomes.address', 'Lagos, Nigeria'),'color'=>'bg-orange-50 text-orange-600','link'=>'#'],
                     ] as $info)
                     <a href="{{ $info['link'] }}"
-                       class="flex items-start gap-4 bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-md hover:border-[#C9A84C]/30 transition-all group">
+                       class="flex items-start gap-4 bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-md hover:border-[#27AE22]/30 transition-all group">
                         <div class="w-11 h-11 {{ $info['color'] }} rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                             @if($info['icon']==='phone')
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
@@ -145,15 +145,15 @@
                         </div>
                         <div>
                             <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-0.5">{{ $info['label'] }}</p>
-                            <p class="text-[#0A1628] font-semibold text-sm leading-snug">{{ $info['value'] }}</p>
+                            <p class="text-[#1A237E] font-semibold text-sm leading-snug">{{ $info['value'] }}</p>
                         </div>
                     </a>
                     @endforeach
                 </div>
 
                 {{-- Office hours --}}
-                <div class="bg-[#0A1628] rounded-2xl p-6 text-white">
-                    <h4 class="font-bold text-[#C9A84C] mb-4 flex items-center gap-2">
+                <div class="bg-[#1A237E] rounded-2xl p-6 text-white">
+                    <h4 class="font-bold text-[#27AE22] mb-4 flex items-center gap-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         Office Hours
                     </h4>

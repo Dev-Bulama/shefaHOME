@@ -15,7 +15,7 @@
 tailwind.config = {
     theme: {
         extend: {
-            colors: { navy: '#0A1628', gold: '#C9A84C', 'gold-light': '#E8C97A' },
+            colors: { navy: '#1A237E', gold: '#27AE22', 'gold-light': '#4ADE80' },
             fontFamily: { display: ['"Playfair Display"','serif'], body: ['"DM Sans"','sans-serif'] }
         }
     }
@@ -25,12 +25,12 @@ tailwind.config = {
 <style>
 * { font-family: 'DM Sans', sans-serif; }
 h1,h2,h3,.font-display { font-family: 'Playfair Display', serif; }
-:root { --navy:#0A1628; --gold:#C9A84C; }
+:root { --navy:#1A237E; --gold:#27AE22; }
 [data-reveal] { opacity:0; transform:translateY(30px); transition:all 0.6s ease; }
 [data-reveal].revealed { opacity:1; transform:translateY(0); }
 [data-reveal="left"] { transform:translateX(-40px); }
 [data-reveal="right"] { transform:translateX(40px); }
-.page-loader { position:fixed; top:0; left:0; width:100%; height:3px; background:#C9A84C; z-index:9999; animation:loader 0.8s ease forwards; }
+.page-loader { position:fixed; top:0; left:0; width:100%; height:3px; background:#27AE22; z-index:9999; animation:loader 0.8s ease forwards; }
 @keyframes loader { from{width:0} to{width:100%} }
 </style>
 @stack('styles')
@@ -95,14 +95,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      x-transition:enter="transition ease-out duration-500"
      x-transition:enter-start="translate-y-full opacity-0"
      x-transition:enter-end="translate-y-0 opacity-100"
-     class="fixed bottom-0 left-0 right-0 z-40 bg-[#0A1628] text-white py-4 px-6 shadow-2xl"
+     class="fixed bottom-0 left-0 right-0 z-40 bg-[#1A237E] text-white py-4 px-6 shadow-2xl"
      style="display:none;">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <p class="text-sm text-gray-300">We use cookies to enhance your experience. By continuing, you agree to our
-            <a href="{{ route('privacy') }}" class="text-[#C9A84C] underline hover:text-[#E8C97A] transition-colors">Privacy Policy</a>.
+            <a href="{{ route('privacy') }}" class="text-[#27AE22] underline hover:text-[#4ADE80] transition-colors">Privacy Policy</a>.
         </p>
         <button @click="show=false; localStorage.setItem('cookieAccepted','1')"
-                class="shrink-0 bg-[#C9A84C] text-[#0A1628] font-semibold px-6 py-2 rounded-full text-sm hover:bg-[#E8C97A] transition-colors">
+                class="shrink-0 bg-[#27AE22] text-[#1A237E] font-semibold px-6 py-2 rounded-full text-sm hover:bg-[#4ADE80] transition-colors">
             Accept
         </button>
     </div>

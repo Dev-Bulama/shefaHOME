@@ -7,25 +7,25 @@
 <div class="space-y-6">
 
     {{-- Welcome Banner --}}
-    <div class="relative overflow-hidden bg-[#0A1628] rounded-2xl px-6 py-8 shadow-xl">
+    <div class="relative overflow-hidden bg-[#1A237E] rounded-2xl px-6 py-8 shadow-xl">
         <div class="absolute inset-0 opacity-10">
             <svg class="w-full h-full" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="350" cy="50" r="120" fill="#C9A84C"/>
-                <circle cx="50" cy="180" r="80" fill="#C9A84C"/>
+                <circle cx="350" cy="50" r="120" fill="#27AE22"/>
+                <circle cx="50" cy="180" r="80" fill="#27AE22"/>
             </svg>
         </div>
         <div class="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-                <p class="text-[#C9A84C] text-sm font-medium mb-1">Welcome back,</p>
+                <p class="text-[#27AE22] text-sm font-medium mb-1">Welcome back,</p>
                 <h2 class="text-white text-2xl lg:text-3xl font-bold font-['Playfair_Display']">
                     {{ auth()->user()->name }}
                 </h2>
                 <p class="text-gray-400 text-sm mt-1">Here's your property portfolio overview</p>
             </div>
             <div class="flex-shrink-0">
-                <div class="inline-flex flex-col items-center bg-white/10 border border-[#C9A84C]/30 rounded-xl px-5 py-3">
+                <div class="inline-flex flex-col items-center bg-white/10 border border-[#27AE22]/30 rounded-xl px-5 py-3">
                     <span class="text-gray-400 text-xs uppercase tracking-widest mb-1">Client ID</span>
-                    <span class="text-[#C9A84C] text-lg font-bold font-mono tracking-widest">
+                    <span class="text-[#27AE22] text-lg font-bold font-mono tracking-widest">
                         CLT-{{ str_pad(auth()->user()->id, 5, '0', STR_PAD_LEFT) }}
                     </span>
                 </div>
@@ -37,32 +37,32 @@
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
 
         {{-- My Properties --}}
-        <div class="bg-white rounded-xl border-t-4 border-[#0A1628] shadow-sm hover:shadow-md transition-shadow p-5">
+        <div class="bg-white rounded-xl border-t-4 border-[#1A237E] shadow-sm hover:shadow-md transition-shadow p-5">
             <div class="flex items-start justify-between mb-3">
                 <div>
                     <p class="text-gray-500 text-xs font-medium uppercase tracking-wide">My Properties</p>
-                    <p class="text-[#0A1628] text-3xl font-bold mt-1">{{ $profile->properties->count() }}</p>
+                    <p class="text-[#1A237E] text-3xl font-bold mt-1">{{ $profile->properties->count() }}</p>
                 </div>
-                <div class="w-10 h-10 bg-[#C9A84C]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg class="w-5 h-5 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="w-10 h-10 bg-[#27AE22]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-[#27AE22]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                     </svg>
                 </div>
             </div>
-            <a href="{{ route('client.properties.index') }}" class="text-xs text-[#C9A84C] hover:underline font-medium">View all &rarr;</a>
+            <a href="{{ route('client.properties.index') }}" class="text-xs text-[#27AE22] hover:underline font-medium">View all &rarr;</a>
         </div>
 
         {{-- Total Paid --}}
-        <div class="bg-white rounded-xl border-t-4 border-[#C9A84C] shadow-sm hover:shadow-md transition-shadow p-5">
+        <div class="bg-white rounded-xl border-t-4 border-[#27AE22] shadow-sm hover:shadow-md transition-shadow p-5">
             <div class="flex items-start justify-between mb-3">
                 <div>
                     <p class="text-gray-500 text-xs font-medium uppercase tracking-wide">Total Paid</p>
-                    <p class="text-[#0A1628] text-2xl font-bold mt-1">
+                    <p class="text-[#1A237E] text-2xl font-bold mt-1">
                         ₦{{ number_format($profile->payments->sum('amount_paid'), 0) }}
                     </p>
                 </div>
-                <div class="w-10 h-10 bg-[#C9A84C]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg class="w-5 h-5 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="w-10 h-10 bg-[#27AE22]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-[#27AE22]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                 </div>
@@ -75,7 +75,7 @@
             <div class="flex items-start justify-between mb-3">
                 <div>
                     <p class="text-gray-500 text-xs font-medium uppercase tracking-wide">Outstanding</p>
-                    <p class="text-[#0A1628] text-2xl font-bold mt-1">
+                    <p class="text-[#1A237E] text-2xl font-bold mt-1">
                         ₦{{ number_format($profile->payments->sum('balance'), 0) }}
                     </p>
                 </div>
@@ -93,7 +93,7 @@
             <div class="flex items-start justify-between mb-3">
                 <div>
                     <p class="text-gray-500 text-xs font-medium uppercase tracking-wide">Documents</p>
-                    <p class="text-[#0A1628] text-3xl font-bold mt-1">{{ $profile->documents->count() }}</p>
+                    <p class="text-[#1A237E] text-3xl font-bold mt-1">{{ $profile->documents->count() }}</p>
                 </div>
                 <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
                     <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -117,8 +117,8 @@
             @endphp
             <div class="bg-white rounded-xl shadow-sm p-5 h-full">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-[#0A1628] font-bold text-base font-['Playfair_Display']">Payment Progress</h3>
-                    <span class="text-xs bg-[#C9A84C]/10 text-[#C9A84C] font-semibold px-2.5 py-1 rounded-full">Active</span>
+                    <h3 class="text-[#1A237E] font-bold text-base font-['Playfair_Display']">Payment Progress</h3>
+                    <span class="text-xs bg-[#27AE22]/10 text-[#27AE22] font-semibold px-2.5 py-1 rounded-full">Active</span>
                 </div>
 
                 <p class="text-sm text-gray-700 font-medium mb-1 truncate">
@@ -132,10 +132,10 @@
                 <div class="mb-2">
                     <div class="flex justify-between text-xs text-gray-500 mb-1.5">
                         <span>₦{{ number_format($amountPaid, 0) }} paid</span>
-                        <span class="font-bold text-[#C9A84C]">{{ $progressPct }}%</span>
+                        <span class="font-bold text-[#27AE22]">{{ $progressPct }}%</span>
                     </div>
                     <div class="w-full bg-gray-100 rounded-full h-3">
-                        <div class="bg-[#C9A84C] h-3 rounded-full transition-all duration-700 ease-out"
+                        <div class="bg-[#27AE22] h-3 rounded-full transition-all duration-700 ease-out"
                              style="width: {{ $progressPct }}%"></div>
                     </div>
                     <div class="flex justify-between text-xs text-gray-400 mt-1.5">
@@ -157,7 +157,7 @@
                 @endif
 
                 <a href="{{ route('client.payments.make', $activePayment->id) }}"
-                   class="mt-4 w-full inline-flex items-center justify-center gap-2 bg-[#C9A84C] hover:bg-[#b8963e] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors">
+                   class="mt-4 w-full inline-flex items-center justify-center gap-2 bg-[#27AE22] hover:bg-[#b8963e] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
                     </svg>
@@ -173,7 +173,7 @@
                 </div>
                 <p class="text-gray-500 text-sm font-medium">No Active Payment</p>
                 <p class="text-gray-400 text-xs mt-1">You have no active payment plans at this time.</p>
-                <a href="{{ route('client.payments.index') }}" class="mt-3 text-[#C9A84C] text-xs font-semibold hover:underline">View Payment History</a>
+                <a href="{{ route('client.payments.index') }}" class="mt-3 text-[#27AE22] text-xs font-semibold hover:underline">View Payment History</a>
             </div>
             @endif
         </div>
@@ -181,8 +181,8 @@
         {{-- Recent Transactions --}}
         <div class="lg:col-span-2 bg-white rounded-xl shadow-sm overflow-hidden">
             <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
-                <h3 class="text-[#0A1628] font-bold text-base font-['Playfair_Display']">Recent Transactions</h3>
-                <a href="{{ route('client.payments.index') }}" class="text-xs text-[#C9A84C] font-semibold hover:underline">View All</a>
+                <h3 class="text-[#1A237E] font-bold text-base font-['Playfair_Display']">Recent Transactions</h3>
+                <a href="{{ route('client.payments.index') }}" class="text-xs text-[#27AE22] font-semibold hover:underline">View All</a>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-sm">
@@ -202,11 +202,11 @@
                                 {{ \Carbon\Carbon::parse($payment->payment_date ?? $payment->created_at)->format('M j, Y') }}
                             </td>
                             <td class="px-5 py-3.5 max-w-[160px]">
-                                <span class="text-[#0A1628] font-medium text-xs truncate block">
+                                <span class="text-[#1A237E] font-medium text-xs truncate block">
                                     {{ $payment->property->name ?? 'N/A' }}
                                 </span>
                             </td>
-                            <td class="px-5 py-3.5 text-[#0A1628] font-semibold text-xs whitespace-nowrap">
+                            <td class="px-5 py-3.5 text-[#1A237E] font-semibold text-xs whitespace-nowrap">
                                 ₦{{ number_format($payment->amount_paid, 0) }}
                             </td>
                             <td class="px-5 py-3.5 text-gray-500 text-xs font-mono hidden sm:table-cell">
@@ -244,11 +244,11 @@
 
     {{-- Quick Actions --}}
     <div class="bg-white rounded-xl shadow-sm p-5">
-        <h3 class="text-[#0A1628] font-bold text-base font-['Playfair_Display'] mb-4">Quick Actions</h3>
+        <h3 class="text-[#1A237E] font-bold text-base font-['Playfair_Display'] mb-4">Quick Actions</h3>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             @if($activePayment)
             <a href="{{ route('client.payments.make', $activePayment->id) }}"
-               class="flex items-center gap-3 bg-[#C9A84C] hover:bg-[#b8963e] text-white px-4 py-3.5 rounded-xl font-semibold text-sm transition-colors group">
+               class="flex items-center gap-3 bg-[#27AE22] hover:bg-[#b8963e] text-white px-4 py-3.5 rounded-xl font-semibold text-sm transition-colors group">
                 <div class="w-9 h-9 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
@@ -261,7 +261,7 @@
             </a>
             @else
             <a href="{{ route('client.payments.index') }}"
-               class="flex items-center gap-3 bg-[#C9A84C] hover:bg-[#b8963e] text-white px-4 py-3.5 rounded-xl font-semibold text-sm transition-colors">
+               class="flex items-center gap-3 bg-[#27AE22] hover:bg-[#b8963e] text-white px-4 py-3.5 rounded-xl font-semibold text-sm transition-colors">
                 <div class="w-9 h-9 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
@@ -275,8 +275,8 @@
             @endif
 
             <a href="{{ route('client.documents.index') }}"
-               class="flex items-center gap-3 border-2 border-[#0A1628] text-[#0A1628] hover:bg-[#0A1628] hover:text-white px-4 py-3.5 rounded-xl font-semibold text-sm transition-all group">
-                <div class="w-9 h-9 bg-[#0A1628]/10 group-hover:bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors">
+               class="flex items-center gap-3 border-2 border-[#1A237E] text-[#1A237E] hover:bg-[#1A237E] hover:text-white px-4 py-3.5 rounded-xl font-semibold text-sm transition-all group">
+                <div class="w-9 h-9 bg-[#1A237E]/10 group-hover:bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                     </svg>

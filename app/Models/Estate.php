@@ -10,5 +10,5 @@ class Estate extends Model {
     protected $casts = ['is_active'=>'boolean'];
     public function getSlugOptions(): SlugOptions { return SlugOptions::create()->generateSlugsFrom('name')->saveSlugsTo('slug'); }
     public function properties() { return $this->hasMany(Property::class); }
-    public function getCoverImageUrlAttribute() { return $this->cover_image ? asset('storage/'.$this->cover_image) : null; }
+    public function getCoverImageUrlAttribute() { return $this->cover_image ? asset('uploads/'.$this->cover_image) : null; }
 }

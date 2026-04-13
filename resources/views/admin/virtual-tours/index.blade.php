@@ -8,11 +8,11 @@
     {{-- Page Header --}}
     <div class="flex items-center justify-between">
         <div>
-            <h2 class="text-xl font-bold text-[#0A1628]">Virtual Tours</h2>
+            <h2 class="text-xl font-bold text-[#1A237E]">Virtual Tours</h2>
             <p class="text-sm text-gray-500 mt-0.5">Manage property virtual tours and embedded experiences.</p>
         </div>
         <a href="{{ route('admin.virtual-tours.create') }}"
-           class="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#b8963e] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors shadow-sm">
+           class="inline-flex items-center gap-2 bg-[#27AE22] hover:bg-[#b8963e] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors shadow-sm">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
             </svg>
@@ -78,7 +78,7 @@
                     <td class="px-6 py-4 text-right">
                         <div class="flex items-center justify-end gap-3">
                             <a href="{{ route('admin.virtual-tours.edit', $tour) }}"
-                               class="text-[#0A1628] hover:text-[#C9A84C] text-sm font-medium transition-colors">Edit</a>
+                               class="text-[#1A237E] hover:text-[#27AE22] text-sm font-medium transition-colors">Edit</a>
                             <form action="{{ route('admin.virtual-tours.destroy', $tour) }}" method="POST"
                                   x-data onsubmit="return confirm('Are you sure you want to delete this virtual tour?')">
                                 @csrf
@@ -97,7 +97,7 @@
                                       d="M15 10l4.553-2.069A1 1 0 0121 8.845v6.31a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
                             </svg>
                             <p class="text-gray-500 text-sm">No virtual tours yet.
-                                <a href="{{ route('admin.virtual-tours.create') }}" class="text-[#C9A84C] hover:underline">Add the first one.</a>
+                                <a href="{{ route('admin.virtual-tours.create') }}" class="text-[#27AE22] hover:underline">Add the first one.</a>
                             </p>
                         </div>
                     </td>

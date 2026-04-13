@@ -11,7 +11,7 @@
 tailwind.config = {
     theme: {
         extend: {
-            colors: { navy: '#0A1628', gold: '#C9A84C', 'gold-light': '#E8C97A' }
+            colors: { navy: '#1A237E', gold: '#27AE22', 'gold-light': '#4ADE80' }
         }
     }
 }
@@ -25,7 +25,7 @@ tailwind.config = {
     white-space: nowrap;
 }
 .sidebar-link:hover, .sidebar-link.active {
-    background: rgba(201, 168, 76, 0.15); color: #C9A84C;
+    background: rgba(201, 168, 76, 0.15); color: #27AE22;
 }
 .sidebar-link .icon { width: 1.25rem; height: 1.25rem; flex-shrink: 0; }
 .sidebar-section-label {
@@ -61,16 +61,16 @@ tailwind.config = {
 
     {{-- Desktop Sidebar --}}
     <aside :class="sidebarOpen ? 'w-64' : 'w-16'"
-           class="hidden lg:flex flex-col bg-[#0A1628] transition-all duration-300 overflow-y-auto overflow-x-hidden flex-shrink-0">
+           class="hidden lg:flex flex-col bg-[#1A237E] transition-all duration-300 overflow-y-auto overflow-x-hidden flex-shrink-0">
 
         {{-- Brand --}}
         <div class="flex items-center gap-3 px-4 py-5 border-b border-white/10 min-h-[72px]">
-            <div class="w-8 h-8 bg-[#C9A84C] rounded-lg flex items-center justify-center flex-shrink-0">
-                <span class="text-[#0A1628] font-bold text-sm">S</span>
+            <div class="w-8 h-8 bg-[#27AE22] rounded-lg flex items-center justify-center flex-shrink-0">
+                <span class="text-[#1A237E] font-bold text-sm">S</span>
             </div>
             <div x-show="sidebarOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
                 <span class="text-white font-bold text-base tracking-wide block">SHEFAHOMES</span>
-                <span class="text-[#C9A84C] text-xs">Admin Panel</span>
+                <span class="text-[#27AE22] text-xs">Admin Panel</span>
             </div>
         </div>
 
@@ -243,12 +243,12 @@ tailwind.config = {
            x-transition:leave="transition ease-in duration-200"
            x-transition:leave-start="translate-x-0"
            x-transition:leave-end="-translate-x-full"
-           class="fixed left-0 top-0 bottom-0 w-64 bg-[#0A1628] z-50 lg:hidden overflow-y-auto flex flex-col"
+           class="fixed left-0 top-0 bottom-0 w-64 bg-[#1A237E] z-50 lg:hidden overflow-y-auto flex flex-col"
            style="display:none;">
         <div class="flex items-center justify-between px-4 py-5 border-b border-white/10">
             <div>
                 <span class="text-white font-bold text-base block">SHEFAHOMES</span>
-                <span class="text-[#C9A84C] text-xs">Admin Panel</span>
+                <span class="text-[#27AE22] text-xs">Admin Panel</span>
             </div>
             <button @click="mobileOpen=false" class="text-gray-400 hover:text-white p-1 rounded">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -309,7 +309,7 @@ tailwind.config = {
 
             <div class="flex items-center gap-3" x-data="{ dropOpen: false }">
                 <a href="{{ route('home') }}" target="_blank"
-                   class="text-gray-500 hover:text-[#0A1628] text-xs hidden sm:flex items-center gap-1 transition-colors">
+                   class="text-gray-500 hover:text-[#1A237E] text-xs hidden sm:flex items-center gap-1 transition-colors">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                     </svg>
@@ -318,9 +318,9 @@ tailwind.config = {
 
                 <div class="relative">
                     <button @click="dropOpen=!dropOpen" class="flex items-center gap-2 text-sm focus:outline-none">
-                        <img src="{{ auth()->user()->avatar_url ?? 'https://ui-avatars.com/api/?name='.urlencode(auth()->user()->name ?? 'Admin').'&background=0A1628&color=C9A84C' }}"
+                        <img src="{{ auth()->user()->avatar_url ?? 'https://ui-avatars.com/api/?name='.urlencode(auth()->user()->name ?? 'Admin').'&background=1A237E&color=27AE22' }}"
                              alt="{{ auth()->user()->name ?? 'Admin' }}"
-                             class="w-8 h-8 rounded-full object-cover ring-2 ring-[#C9A84C]/30">
+                             class="w-8 h-8 rounded-full object-cover ring-2 ring-[#27AE22]/30">
                         <span class="hidden sm:block text-gray-700 font-medium truncate max-w-[120px]">{{ auth()->user()->name ?? 'Admin' }}</span>
                         <svg class="w-4 h-4 text-gray-400 transition-transform" :class="dropOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>

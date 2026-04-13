@@ -37,17 +37,17 @@
             <div @dragover.prevent="dragOver = true"
                  @dragleave.prevent="dragOver = false"
                  @drop.prevent="dragOver = false; fileName = $event.dataTransfer.files[0]?.name; $refs.fileInput.files = $event.dataTransfer.files"
-                 :class="dragOver ? 'border-[#C9A84C] bg-amber-50' : 'border-gray-300 bg-gray-50'"
+                 :class="dragOver ? 'border-[#27AE22] bg-amber-50' : 'border-gray-300 bg-gray-50'"
                  class="border-2 border-dashed rounded-xl p-10 text-center cursor-pointer transition-colors mb-4"
                  @click="$refs.fileInput.click()">
                 <svg class="w-12 h-12 text-gray-400 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
-                <p class="text-gray-600 text-sm" x-show="!fileName">Drop your <strong>.zip</strong> here or <span class="text-[#C9A84C] font-semibold">click to browse</span></p>
-                <p class="text-[#C9A84C] font-semibold text-sm" x-show="fileName" x-text="'Selected: ' + fileName"></p>
+                <p class="text-gray-600 text-sm" x-show="!fileName">Drop your <strong>.zip</strong> here or <span class="text-[#27AE22] font-semibold">click to browse</span></p>
+                <p class="text-[#27AE22] font-semibold text-sm" x-show="fileName" x-text="'Selected: ' + fileName"></p>
                 <p class="text-gray-400 text-xs mt-1">Maximum 100MB ZIP file</p>
                 <input type="file" name="update_zip" accept=".zip" class="hidden" x-ref="fileInput" @change="fileName = $event.target.files[0]?.name" required>
             </div>
             <button type="submit" :disabled="uploading"
-                    class="w-full bg-[#0A1628] text-white font-semibold py-3 rounded-xl hover:bg-[#1a2d4a] transition-colors disabled:opacity-50 flex items-center justify-center gap-2">
+                    class="w-full bg-[#1A237E] text-white font-semibold py-3 rounded-xl hover:bg-[#0D1566] transition-colors disabled:opacity-50 flex items-center justify-center gap-2">
                 <template x-if="!uploading">
                     <span class="flex items-center gap-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>

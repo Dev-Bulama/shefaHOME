@@ -8,11 +8,11 @@
     {{-- Page Header --}}
     <div class="flex items-center justify-between">
         <div>
-            <h2 class="text-xl font-bold text-[#0A1628]">Estates</h2>
+            <h2 class="text-xl font-bold text-[#1A237E]">Estates</h2>
             <p class="text-sm text-gray-500 mt-0.5">Manage residential and mixed-use estate developments.</p>
         </div>
         <a href="{{ route('admin.estates.create') }}"
-           class="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#b8963e] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors shadow-sm">
+           class="inline-flex items-center gap-2 bg-[#27AE22] hover:bg-[#b8963e] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors shadow-sm">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
             </svg>
@@ -59,7 +59,7 @@
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-600">{{ $estate->state }}</td>
                     <td class="px-6 py-4">
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#0A1628]/10 text-[#0A1628]">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#1A237E]/10 text-[#1A237E]">
                             {{ $estate->properties_count ?? $estate->properties()->count() }}
                         </span>
                     </td>
@@ -72,7 +72,7 @@
                     <td class="px-6 py-4 text-right">
                         <div class="flex items-center justify-end gap-3">
                             <a href="{{ route('admin.estates.edit', $estate) }}"
-                               class="text-[#0A1628] hover:text-[#C9A84C] text-sm font-medium transition-colors">Edit</a>
+                               class="text-[#1A237E] hover:text-[#27AE22] text-sm font-medium transition-colors">Edit</a>
                             <form action="{{ route('admin.estates.destroy', $estate) }}" method="POST"
                                   x-data onsubmit="return confirm('Delete {{ addslashes($estate->name) }}? This cannot be undone.')">
                                 @csrf
@@ -91,7 +91,7 @@
                                       d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                             </svg>
                             <p class="text-gray-500 text-sm">No estates found.
-                                <a href="{{ route('admin.estates.create') }}" class="text-[#C9A84C] hover:underline">Add the first one.</a>
+                                <a href="{{ route('admin.estates.create') }}" class="text-[#27AE22] hover:underline">Add the first one.</a>
                             </p>
                         </div>
                     </td>

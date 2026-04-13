@@ -9,11 +9,11 @@
     {{-- Page Header --}}
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-            <h2 class="text-[#0A1628] text-2xl font-bold font-['Playfair_Display']">My Properties</h2>
+            <h2 class="text-[#1A237E] text-2xl font-bold font-['Playfair_Display']">My Properties</h2>
             <p class="text-gray-500 text-sm mt-0.5">{{ $properties->count() }} {{ Str::plural('property', $properties->count()) }} in your portfolio</p>
         </div>
         <a href="{{ route('properties.index') }}"
-           class="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#b8963e] text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors">
+           class="inline-flex items-center gap-2 bg-[#27AE22] hover:bg-[#b8963e] text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
             </svg>
@@ -32,12 +32,12 @@
                           d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                 </svg>
             </div>
-            <h3 class="text-[#0A1628] text-xl font-bold font-['Playfair_Display'] mb-2">No Properties Yet</h3>
+            <h3 class="text-[#1A237E] text-xl font-bold font-['Playfair_Display'] mb-2">No Properties Yet</h3>
             <p class="text-gray-500 text-sm leading-relaxed mb-6">
                 You haven't acquired any properties yet. Explore our available estates and secure your dream investment today.
             </p>
             <a href="{{ route('properties.index') }}"
-               class="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#b8963e] text-white font-semibold px-6 py-3 rounded-xl transition-colors shadow-md shadow-[#C9A84C]/20">
+               class="inline-flex items-center gap-2 bg-[#27AE22] hover:bg-[#b8963e] text-white font-semibold px-6 py-3 rounded-xl transition-colors shadow-md shadow-[#27AE22]/20">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                 </svg>
@@ -63,7 +63,7 @@
         <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100 group">
 
             {{-- Cover Image --}}
-            <div class="relative h-48 bg-gradient-to-br from-[#0A1628] to-[#1a2d4a] overflow-hidden">
+            <div class="relative h-48 bg-gradient-to-br from-[#1A237E] to-[#0D1566] overflow-hidden">
                 @if($prop && $prop->cover_image_url)
                 <img src="{{ $prop->cover_image_url }}"
                      alt="{{ $prop->name ?? 'Property' }}"
@@ -90,13 +90,13 @@
             {{-- Card Content --}}
             <div class="p-5">
                 {{-- Property Name --}}
-                <h3 class="text-[#0A1628] font-bold text-base font-['Playfair_Display'] leading-snug mb-2 line-clamp-2">
+                <h3 class="text-[#1A237E] font-bold text-base font-['Playfair_Display'] leading-snug mb-2 line-clamp-2">
                     {{ $prop->name ?? 'Property Name' }}
                 </h3>
 
                 {{-- Location --}}
                 <div class="flex items-center gap-1.5 text-gray-500 text-xs mb-3">
-                    <svg class="w-3.5 h-3.5 text-[#C9A84C] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-3.5 h-3.5 text-[#27AE22] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                     </svg>
@@ -110,12 +110,12 @@
                     @if($prop && $prop->plot_size)
                     <div class="bg-gray-50 rounded-lg px-3 py-2">
                         <p class="text-gray-400 text-xs">Plot Size</p>
-                        <p class="text-[#0A1628] text-xs font-semibold">{{ $prop->plot_size }}</p>
+                        <p class="text-[#1A237E] text-xs font-semibold">{{ $prop->plot_size }}</p>
                     </div>
                     @endif
                     <div class="bg-gray-50 rounded-lg px-3 py-2">
                         <p class="text-gray-400 text-xs">Purchase Date</p>
-                        <p class="text-[#0A1628] text-xs font-semibold">
+                        <p class="text-[#1A237E] text-xs font-semibold">
                             {{ $clientProperty->created_at ? \Carbon\Carbon::parse($clientProperty->created_at)->format('M Y') : 'N/A' }}
                         </p>
                     </div>
@@ -127,7 +127,7 @@
                         {{ $statusConfig['label'] }}
                     </span>
                     <a href="{{ route('client.properties.show', $clientProperty->id) }}"
-                       class="inline-flex items-center gap-1.5 text-[#0A1628] hover:text-[#C9A84C] text-xs font-semibold transition-colors">
+                       class="inline-flex items-center gap-1.5 text-[#1A237E] hover:text-[#27AE22] text-xs font-semibold transition-colors">
                         View Details
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>

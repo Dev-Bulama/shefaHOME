@@ -8,11 +8,11 @@
     {{-- Page Header --}}
     <div class="flex items-center justify-between">
         <div>
-            <h2 class="text-xl font-bold text-[#0A1628]">Partners & Sponsors</h2>
+            <h2 class="text-xl font-bold text-[#1A237E]">Partners & Sponsors</h2>
             <p class="text-sm text-gray-500 mt-0.5">Manage company partners and sponsors displayed on the site.</p>
         </div>
         <a href="{{ route('admin.partners.create') }}"
-           class="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#b8963e] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors shadow-sm">
+           class="inline-flex items-center gap-2 bg-[#27AE22] hover:bg-[#b8963e] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors shadow-sm">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
             </svg>
@@ -49,7 +49,7 @@
                     <td class="px-6 py-4 text-sm">
                         @if($partner->website)
                             <a href="{{ $partner->website }}" target="_blank" rel="noopener noreferrer"
-                               class="text-[#C9A84C] hover:underline truncate max-w-[180px] block">
+                               class="text-[#27AE22] hover:underline truncate max-w-[180px] block">
                                 {{ $partner->website }}
                             </a>
                         @else
@@ -66,7 +66,7 @@
                     <td class="px-6 py-4 text-right">
                         <div class="flex items-center justify-end gap-3">
                             <a href="{{ route('admin.partners.edit', $partner) }}"
-                               class="text-[#0A1628] hover:text-[#C9A84C] text-sm font-medium transition-colors">Edit</a>
+                               class="text-[#1A237E] hover:text-[#27AE22] text-sm font-medium transition-colors">Edit</a>
                             <form action="{{ route('admin.partners.destroy', $partner) }}" method="POST"
                                   x-data onsubmit="return confirm('Are you sure you want to delete this partner?')">
                                 @csrf
@@ -83,7 +83,7 @@
                             <svg class="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5"/>
                             </svg>
-                            <p class="text-gray-500 text-sm">No partners found. <a href="{{ route('admin.partners.create') }}" class="text-[#C9A84C] hover:underline">Add the first one.</a></p>
+                            <p class="text-gray-500 text-sm">No partners found. <a href="{{ route('admin.partners.create') }}" class="text-[#27AE22] hover:underline">Add the first one.</a></p>
                         </div>
                     </td>
                 </tr>

@@ -8,7 +8,7 @@
 
     {{-- Header --}}
     <div class="mb-7">
-        <h1 class="font-display text-[#0A1628] text-3xl font-bold mb-2">Create Account</h1>
+        <h1 class="font-display text-[#1A237E] text-3xl font-bold mb-2">Create Account</h1>
         <p class="text-gray-500 text-sm">Join thousands of satisfied homeowners across Nigeria.</p>
     </div>
 
@@ -170,18 +170,18 @@
                    id="terms"
                    name="terms"
                    required
-                   class="mt-0.5 w-4 h-4 rounded border-gray-300 text-[#C9A84C] focus:ring-[#C9A84C] focus:ring-offset-0 cursor-pointer">
+                   class="mt-0.5 w-4 h-4 rounded border-gray-300 text-[#27AE22] focus:ring-[#27AE22] focus:ring-offset-0 cursor-pointer">
             <label for="terms" class="text-xs text-gray-500 leading-relaxed cursor-pointer">
                 I agree to the
-                <a href="{{ route('terms') }}" target="_blank" class="text-[#C9A84C] hover:text-[#E8C97A] transition-colors font-medium">Terms of Service</a>
+                <a href="{{ route('terms') }}" target="_blank" class="text-[#27AE22] hover:text-[#4ADE80] transition-colors font-medium">Terms of Service</a>
                 and
-                <a href="{{ route('privacy') }}" target="_blank" class="text-[#C9A84C] hover:text-[#E8C97A] transition-colors font-medium">Privacy Policy</a>
+                <a href="{{ route('privacy') }}" target="_blank" class="text-[#27AE22] hover:text-[#4ADE80] transition-colors font-medium">Privacy Policy</a>
             </label>
         </div>
 
         {{-- Submit Button --}}
         <button type="submit"
-                class="w-full bg-[#0A1628] hover:bg-[#0d1e3d] text-white font-bold py-3.5 px-6 rounded-xl transition-all duration-200 text-sm tracking-wide shadow-lg hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 mt-2">
+                class="w-full bg-[#1A237E] hover:bg-[#0d1e3d] text-white font-bold py-3.5 px-6 rounded-xl transition-all duration-200 text-sm tracking-wide shadow-lg hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 mt-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
             </svg>
@@ -192,7 +192,7 @@
         <div class="text-center pt-2">
             <p class="text-sm text-gray-500">
                 Already have an account?
-                <a href="{{ route('login') }}" class="text-[#C9A84C] hover:text-[#E8C97A] font-semibold transition-colors ml-1">Sign In</a>
+                <a href="{{ route('login') }}" class="text-[#27AE22] hover:text-[#4ADE80] font-semibold transition-colors ml-1">Sign In</a>
             </p>
         </div>
     </form>

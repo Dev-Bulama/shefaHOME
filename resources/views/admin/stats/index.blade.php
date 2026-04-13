@@ -8,11 +8,11 @@
     {{-- Page Header --}}
     <div class="flex items-center justify-between">
         <div>
-            <h2 class="text-xl font-bold text-[#0A1628]">Homepage Stats</h2>
+            <h2 class="text-xl font-bold text-[#1A237E]">Homepage Stats</h2>
             <p class="text-sm text-gray-500 mt-0.5">Manage the key statistics displayed on the homepage.</p>
         </div>
         <a href="{{ route('admin.stats.create') }}"
-           class="inline-flex items-center gap-2 bg-[#C9A84C] hover:bg-[#b8963e] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors shadow-sm">
+           class="inline-flex items-center gap-2 bg-[#27AE22] hover:bg-[#b8963e] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors shadow-sm">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
             </svg>
@@ -44,19 +44,19 @@
                 @forelse($stats as $stat)
                 <tr class="hover:bg-gray-50 transition-colors">
                     <td class="px-6 py-4">
-                        <div class="w-10 h-10 bg-[#0A1628]/5 rounded-lg flex items-center justify-center text-xl">
+                        <div class="w-10 h-10 bg-[#1A237E]/5 rounded-lg flex items-center justify-center text-xl">
                             {{ $stat->icon }}
                         </div>
                     </td>
                     <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ $stat->label }}</td>
                     <td class="px-6 py-4">
-                        <span class="text-base font-bold text-[#C9A84C]">{{ $stat->value }}</span>
+                        <span class="text-base font-bold text-[#27AE22]">{{ $stat->value }}</span>
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-600">{{ $stat->sort_order }}</td>
                     <td class="px-6 py-4 text-right">
                         <div class="flex items-center justify-end gap-3">
                             <a href="{{ route('admin.stats.edit', $stat) }}"
-                               class="text-[#0A1628] hover:text-[#C9A84C] text-sm font-medium transition-colors">Edit</a>
+                               class="text-[#1A237E] hover:text-[#27AE22] text-sm font-medium transition-colors">Edit</a>
                             <form action="{{ route('admin.stats.destroy', $stat) }}" method="POST"
                                   x-data onsubmit="return confirm('Are you sure you want to delete this stat?')">
                                 @csrf
@@ -73,7 +73,7 @@
                             <svg class="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                             </svg>
-                            <p class="text-gray-500 text-sm">No stats yet. <a href="{{ route('admin.stats.create') }}" class="text-[#C9A84C] hover:underline">Add the first one.</a></p>
+                            <p class="text-gray-500 text-sm">No stats yet. <a href="{{ route('admin.stats.create') }}" class="text-[#27AE22] hover:underline">Add the first one.</a></p>
                         </div>
                     </td>
                 </tr>

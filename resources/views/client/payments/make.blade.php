@@ -4,9 +4,9 @@
 @section('page-title', 'Make Payment')
 
 @section('breadcrumb')
-    <a href="{{ route('client.dashboard') }}" class="hover:text-[#C9A84C]">Dashboard</a>
+    <a href="{{ route('client.dashboard') }}" class="hover:text-[#27AE22]">Dashboard</a>
     <span class="mx-1">/</span>
-    <a href="{{ route('client.payments.index') }}" class="hover:text-[#C9A84C]">Payments</a>
+    <a href="{{ route('client.payments.index') }}" class="hover:text-[#27AE22]">Payments</a>
     <span class="mx-1">/</span> Make Payment
 @endsection
 
@@ -39,13 +39,13 @@
     {{-- Page Header --}}
     <div>
         <nav class="flex items-center gap-2 text-xs text-gray-400 mb-3">
-            <a href="{{ route('client.dashboard') }}" class="hover:text-[#C9A84C] transition-colors">Dashboard</a>
+            <a href="{{ route('client.dashboard') }}" class="hover:text-[#27AE22] transition-colors">Dashboard</a>
             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            <a href="{{ route('client.payments.index') }}" class="hover:text-[#C9A84C] transition-colors">Payments</a>
+            <a href="{{ route('client.payments.index') }}" class="hover:text-[#27AE22] transition-colors">Payments</a>
             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            <span class="text-[#0A1628] font-medium">Make Payment</span>
+            <span class="text-[#1A237E] font-medium">Make Payment</span>
         </nav>
-        <h2 class="text-[#0A1628] text-2xl font-bold font-['Playfair_Display']">Make Payment</h2>
+        <h2 class="text-[#1A237E] text-2xl font-bold font-['Playfair_Display']">Make Payment</h2>
         <p class="text-gray-500 text-sm mt-0.5">Complete your instalment payment for {{ $property->name ?? 'your property' }}</p>
     </div>
 
@@ -56,27 +56,27 @@
 
             {{-- Property Info Card --}}
             <div class="bg-white rounded-2xl shadow-sm p-5">
-                <h3 class="text-[#0A1628] font-bold text-sm mb-4 pb-3 border-b border-gray-100 font-['Playfair_Display']">Property Information</h3>
+                <h3 class="text-[#1A237E] font-bold text-sm mb-4 pb-3 border-b border-gray-100 font-['Playfair_Display']">Property Information</h3>
                 <div class="flex items-start gap-4">
                     @if($property && $property->cover_image_url)
                     <img src="{{ $property->cover_image_url }}" alt="{{ $property->name }}"
                          class="w-20 h-16 object-cover rounded-xl flex-shrink-0">
                     @else
-                    <div class="w-20 h-16 bg-[#0A1628]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <svg class="w-8 h-8 text-[#0A1628]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="w-20 h-16 bg-[#1A237E]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <svg class="w-8 h-8 text-[#1A237E]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                         </svg>
                     </div>
                     @endif
                     <div class="flex-1 min-w-0">
-                        <p class="text-[#0A1628] font-bold text-base leading-snug">{{ $property->name ?? 'Property' }}</p>
+                        <p class="text-[#1A237E] font-bold text-base leading-snug">{{ $property->name ?? 'Property' }}</p>
                         <p class="text-gray-500 text-xs mt-0.5">
                             {{ $property->lga ?? '' }}{{ ($property->lga && $property->state) ? ', ' : '' }}{{ $property->state ?? '' }}
                         </p>
                         <div class="flex items-center gap-4 mt-2 flex-wrap">
                             <div>
                                 <span class="text-gray-400 text-xs">Total Price</span>
-                                <p class="text-[#0A1628] font-bold text-sm">₦{{ number_format($totalPrice, 0) }}</p>
+                                <p class="text-[#1A237E] font-bold text-sm">₦{{ number_format($totalPrice, 0) }}</p>
                             </div>
                             <div>
                                 <span class="text-gray-400 text-xs">Balance Due</span>
@@ -84,7 +84,7 @@
                             </div>
                             <div>
                                 <span class="text-gray-400 text-xs">Plan</span>
-                                <p class="text-[#0A1628] font-semibold text-sm">{{ $payment->payment_plan ?? 'N/A' }}</p>
+                                <p class="text-[#1A237E] font-semibold text-sm">{{ $payment->payment_plan ?? 'N/A' }}</p>
                             </div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                                    max="{{ $balance }}"
                                    step="1000"
                                    required
-                                   class="w-full pl-8 pr-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C] outline-none text-[#0A1628] font-bold text-lg transition-all"
+                                   class="w-full pl-8 pr-4 py-3.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#27AE22]/30 focus:border-[#27AE22] outline-none text-[#1A237E] font-bold text-lg transition-all"
                                    placeholder="{{ number_format($installment, 0) }}">
                         </div>
                         <p class="text-xs text-gray-400 mt-1">
@@ -134,7 +134,7 @@
                             <button type="button"
                                     @click="paymentMethod = 'bank_transfer'"
                                     :class="paymentMethod === 'bank_transfer'
-                                        ? 'bg-white text-[#0A1628] shadow-sm font-semibold'
+                                        ? 'bg-white text-[#1A237E] shadow-sm font-semibold'
                                         : 'text-gray-400 hover:text-gray-600'"
                                     class="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-sm transition-all">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -145,7 +145,7 @@
                             <button type="button"
                                     @click="paymentMethod = 'paystack'"
                                     :class="paymentMethod === 'paystack'
-                                        ? 'bg-white text-[#0A1628] shadow-sm font-semibold'
+                                        ? 'bg-white text-[#1A237E] shadow-sm font-semibold'
                                         : 'text-gray-400 hover:text-gray-600'"
                                     class="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-sm transition-all">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -159,20 +159,20 @@
                     {{-- Bank Transfer Tab Content --}}
                     <div x-show="paymentMethod === 'bank_transfer'" x-transition>
                         {{-- Bank Details --}}
-                        <div class="bg-[#0A1628]/5 border border-[#0A1628]/10 rounded-xl p-4 mb-4">
-                            <p class="text-[#0A1628] font-bold text-xs uppercase tracking-wide mb-3">Bank Transfer Details</p>
+                        <div class="bg-[#1A237E]/5 border border-[#1A237E]/10 rounded-xl p-4 mb-4">
+                            <p class="text-[#1A237E] font-bold text-xs uppercase tracking-wide mb-3">Bank Transfer Details</p>
                             <div class="space-y-2">
                                 <div class="flex justify-between">
                                     <span class="text-gray-500 text-sm">Bank Name</span>
-                                    <span class="text-[#0A1628] font-semibold text-sm">GTBank (Guaranty Trust Bank)</span>
+                                    <span class="text-[#1A237E] font-semibold text-sm">GTBank (Guaranty Trust Bank)</span>
                                 </div>
                                 <div class="flex justify-between">
                                     <span class="text-gray-500 text-sm">Account Number</span>
                                     <div class="flex items-center gap-2">
-                                        <span class="text-[#0A1628] font-bold text-sm font-mono">0123456789</span>
+                                        <span class="text-[#1A237E] font-bold text-sm font-mono">0123456789</span>
                                         <button type="button"
                                                 @click="navigator.clipboard.writeText('0123456789'); $dispatch('show-toast', {message: 'Account number copied!', type: 'success'})"
-                                                class="text-[#C9A84C] hover:text-[#b8963e] transition-colors">
+                                                class="text-[#27AE22] hover:text-[#b8963e] transition-colors">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
                                             </svg>
@@ -181,11 +181,11 @@
                                 </div>
                                 <div class="flex justify-between">
                                     <span class="text-gray-500 text-sm">Account Name</span>
-                                    <span class="text-[#0A1628] font-semibold text-sm">SHEFAHOMES Ltd</span>
+                                    <span class="text-[#1A237E] font-semibold text-sm">SHEFAHOMES Ltd</span>
                                 </div>
-                                <div class="pt-2 border-t border-[#0A1628]/10">
+                                <div class="pt-2 border-t border-[#1A237E]/10">
                                     <span class="text-gray-500 text-sm">Payment Reference</span>
-                                    <p class="text-[#C9A84C] font-bold text-sm font-mono">{{ auth()->user()->id }}-{{ $payment->id }}-{{ date('Ymd') }}</p>
+                                    <p class="text-[#27AE22] font-bold text-sm font-mono">{{ auth()->user()->id }}-{{ $payment->id }}-{{ date('Ymd') }}</p>
                                     <p class="text-gray-400 text-xs mt-0.5">Use this as your transfer narration/description</p>
                                 </div>
                             </div>
@@ -196,13 +196,13 @@
                             <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">
                                 Upload Payment Proof <span class="text-red-500">*</span>
                             </label>
-                            <div class="border-2 border-dashed border-gray-200 hover:border-[#C9A84C] rounded-xl p-5 text-center transition-colors cursor-pointer"
+                            <div class="border-2 border-dashed border-gray-200 hover:border-[#27AE22] rounded-xl p-5 text-center transition-colors cursor-pointer"
                                  @click="$refs.proofInput.click()">
                                 <template x-if="proofPreview">
                                     <div class="space-y-2">
                                         <img :src="proofPreview" class="max-h-32 mx-auto rounded-lg object-contain">
                                         <p class="text-xs text-gray-400" x-text="proofFile ? proofFile.name : ''"></p>
-                                        <p class="text-xs text-[#C9A84C] font-semibold">Click to change</p>
+                                        <p class="text-xs text-[#27AE22] font-semibold">Click to change</p>
                                     </div>
                                 </template>
                                 <template x-if="!proofPreview">
@@ -230,7 +230,7 @@
                         <div class="mt-5">
                             <button type="submit"
                                     :disabled="isSubmitting"
-                                    class="w-full flex items-center justify-center gap-2 bg-[#C9A84C] hover:bg-[#b8963e] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3.5 px-4 rounded-xl transition-colors shadow-md shadow-[#C9A84C]/20 text-sm">
+                                    class="w-full flex items-center justify-center gap-2 bg-[#27AE22] hover:bg-[#b8963e] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3.5 px-4 rounded-xl transition-colors shadow-md shadow-[#27AE22]/20 text-sm">
                                 <svg x-show="!isSubmitting" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                 </svg>
@@ -266,7 +266,7 @@
                                 id="paystack-btn"
                                 @click="payWithPaystack()"
                                 :disabled="!amount || amount < 1000"
-                                class="w-full flex items-center justify-center gap-2 bg-[#0A1628] hover:bg-[#152238] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3.5 px-4 rounded-xl transition-colors text-sm">
+                                class="w-full flex items-center justify-center gap-2 bg-[#1A237E] hover:bg-[#152238] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3.5 px-4 rounded-xl transition-colors text-sm">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                             </svg>
@@ -284,7 +284,7 @@
         {{-- Right Panel: Payment Summary --}}
         <div class="lg:col-span-2">
             <div class="bg-white rounded-2xl shadow-sm p-5 lg:sticky lg:top-6">
-                <h3 class="text-[#0A1628] font-bold text-base font-['Playfair_Display'] mb-4 pb-3 border-b border-gray-100">
+                <h3 class="text-[#1A237E] font-bold text-base font-['Playfair_Display'] mb-4 pb-3 border-b border-gray-100">
                     Payment Summary
                 </h3>
 
@@ -292,15 +292,15 @@
                 <div class="space-y-3 mb-4">
                     <div class="flex justify-between items-center">
                         <span class="text-gray-500 text-sm">Property</span>
-                        <span class="text-[#0A1628] font-semibold text-sm text-right max-w-[160px] truncate">{{ $property->name ?? 'N/A' }}</span>
+                        <span class="text-[#1A237E] font-semibold text-sm text-right max-w-[160px] truncate">{{ $property->name ?? 'N/A' }}</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-gray-500 text-sm">Total Price</span>
-                        <span class="text-[#0A1628] font-bold text-sm">₦{{ number_format($totalPrice, 0) }}</span>
+                        <span class="text-[#1A237E] font-bold text-sm">₦{{ number_format($totalPrice, 0) }}</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-gray-500 text-sm">Previously Paid</span>
-                        <span class="text-[#C9A84C] font-bold text-sm">₦{{ number_format($amountPaid, 0) }}</span>
+                        <span class="text-[#27AE22] font-bold text-sm">₦{{ number_format($amountPaid, 0) }}</span>
                     </div>
                     <div class="flex justify-between items-center pb-3 border-b border-gray-100">
                         <span class="text-gray-500 text-sm">Outstanding Balance</span>
@@ -308,7 +308,7 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-gray-700 font-semibold text-sm">Amount to Pay</span>
-                        <span class="text-[#0A1628] font-bold text-lg" x-text="'₦' + parseFloat(amount || 0).toLocaleString('en-NG')">₦{{ number_format($installment, 0) }}</span>
+                        <span class="text-[#1A237E] font-bold text-lg" x-text="'₦' + parseFloat(amount || 0).toLocaleString('en-NG')">₦{{ number_format($installment, 0) }}</span>
                     </div>
                 </div>
 
@@ -316,10 +316,10 @@
                 <div class="mb-4">
                     <div class="flex justify-between text-xs text-gray-500 mb-1.5">
                         <span>Completion</span>
-                        <span class="text-[#C9A84C] font-bold">{{ $progressPct }}%</span>
+                        <span class="text-[#27AE22] font-bold">{{ $progressPct }}%</span>
                     </div>
                     <div class="w-full bg-gray-100 rounded-full h-2">
-                        <div class="bg-[#C9A84C] h-2 rounded-full" style="width: {{ $progressPct }}%"></div>
+                        <div class="bg-[#27AE22] h-2 rounded-full" style="width: {{ $progressPct }}%"></div>
                     </div>
                 </div>
 
@@ -337,7 +337,7 @@
                 {{-- Support Contact --}}
                 <div class="mt-4 pt-4 border-t border-gray-100 text-center">
                     <p class="text-xs text-gray-400">Having issues?</p>
-                    <a href="{{ route('contact') }}" class="text-[#C9A84C] text-xs font-semibold hover:underline">
+                    <a href="{{ route('contact') }}" class="text-[#27AE22] text-xs font-semibold hover:underline">
                         Contact Support &rarr;
                     </a>
                 </div>

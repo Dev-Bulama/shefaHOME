@@ -6,22 +6,22 @@
 @section('content')
 
 {{-- Hero --}}
-<section class="relative bg-[#0A1628] py-28 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-[#0A1628] via-[#0A1628]/95 to-[#1a2e50]"></div>
-    <div class="absolute bottom-0 right-0 w-96 h-96 opacity-10 rounded-full" style="background:radial-gradient(circle, #C9A84C, transparent 70%)"></div>
-    <div class="absolute top-20 left-0 w-64 h-64 opacity-5 rounded-full" style="background:radial-gradient(circle, #C9A84C, transparent 70%)"></div>
+<section class="relative bg-[#1A237E] py-28 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#1A237E] via-[#1A237E]/95 to-[#1a2e50]"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 opacity-10 rounded-full" style="background:radial-gradient(circle, #27AE22, transparent 70%)"></div>
+    <div class="absolute top-20 left-0 w-64 h-64 opacity-5 rounded-full" style="background:radial-gradient(circle, #27AE22, transparent 70%)"></div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl">
-            <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-4">Investor Invitation</span>
+            <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-4">Investor Invitation</span>
             <h1 class="font-display text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight">
-                Partner With Purpose.<br><span class="text-[#C9A84C]">Invest With Confidence.</span>
+                Partner With Purpose.<br><span class="text-[#27AE22]">Invest With Confidence.</span>
             </h1>
             <p class="text-gray-300 text-xl leading-relaxed mb-10 max-w-2xl">
                 At Shefa Homes and Properties Ltd, we offer more than property — we provide access to structured real estate opportunities designed for discerning investors and strategic partners.
             </p>
             <div class="flex flex-wrap gap-4">
                 <a href="{{ route('contact') }}"
-                   class="inline-flex items-center gap-2 bg-[#C9A84C] text-[#0A1628] font-bold px-8 py-4 rounded-full hover:bg-[#E8C97A] transition-all hover:scale-105 shadow-lg shadow-[#C9A84C]/20">
+                   class="inline-flex items-center gap-2 bg-[#27AE22] text-[#1A237E] font-bold px-8 py-4 rounded-full hover:bg-[#4ADE80] transition-all hover:scale-105 shadow-lg shadow-[#27AE22]/20">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                     </svg>
@@ -51,8 +51,8 @@
 <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-14" data-reveal>
-            <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">Why Choose Us</span>
-            <h2 class="font-display text-4xl font-bold text-[#0A1628] mb-4">Why Invest With Us?</h2>
+            <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-3">Why Choose Us</span>
+            <h2 class="font-display text-4xl font-bold text-[#1A237E] mb-4">Why Invest With Us?</h2>
             <p class="text-gray-500">Whether you are looking to preserve capital, generate returns, or participate in large-scale developments, our model is built to deliver clarity, security, and measurable value.</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -64,9 +64,9 @@
                 ['Opportunities for passive and active income', 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'],
                 ['Structured Joint Venture partnerships', 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0'],
             ] as [$text, $icon])
-            <div class="flex items-start gap-4 p-5 rounded-2xl border border-gray-100 hover:border-[#C9A84C]/40 hover:shadow-md transition-all" data-reveal>
-                <div class="w-10 h-10 bg-[#C9A84C]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <svg class="w-5 h-5 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="flex items-start gap-4 p-5 rounded-2xl border border-gray-100 hover:border-[#27AE22]/40 hover:shadow-md transition-all" data-reveal>
+                <div class="w-10 h-10 bg-[#27AE22]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-[#27AE22]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $icon }}"/>
                     </svg>
                 </div>
@@ -78,11 +78,11 @@
 </section>
 
 {{-- Who This Is For --}}
-<section class="py-20 bg-[#0A1628]">
+<section class="py-20 bg-[#1A237E]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div data-reveal>
-                <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">Who This Is For</span>
+                <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-3">Who This Is For</span>
                 <h2 class="font-display text-4xl font-bold text-white mb-8">Our investor profile</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     @foreach([
@@ -92,8 +92,8 @@
                         ['Private & Institutional Investors', 'Structured opportunities for capital deployment at scale', 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5'],
                     ] as [$type, $desc, $icon])
                     <div class="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/8 transition-all">
-                        <div class="w-9 h-9 bg-[#C9A84C]/20 rounded-xl flex items-center justify-center mb-3">
-                            <svg class="w-4 h-4 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="w-9 h-9 bg-[#27AE22]/20 rounded-xl flex items-center justify-center mb-3">
+                            <svg class="w-4 h-4 text-[#27AE22]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $icon }}"/>
                             </svg>
                         </div>
@@ -104,11 +104,11 @@
                 </div>
             </div>
             <div class="bg-white rounded-3xl p-8 lg:p-10" data-reveal style="transition-delay:200ms">
-                <h3 class="font-display text-2xl font-bold text-[#0A1628] mb-2">Start Your Investment Journey</h3>
+                <h3 class="font-display text-2xl font-bold text-[#1A237E] mb-2">Start Your Investment Journey</h3>
                 <p class="text-gray-500 text-sm mb-8 leading-relaxed">Take the next step toward strategic real estate investment. Our advisors are ready to walk you through the opportunities available.</p>
                 <div class="space-y-3">
                     <a href="{{ route('contact') }}"
-                       class="flex items-center gap-3 w-full bg-[#0A1628] text-white font-semibold px-6 py-3.5 rounded-xl hover:bg-[#0A1628]/90 transition-all text-sm">
+                       class="flex items-center gap-3 w-full bg-[#1A237E] text-white font-semibold px-6 py-3.5 rounded-xl hover:bg-[#1A237E]/90 transition-all text-sm">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                         </svg>
@@ -123,7 +123,7 @@
                         Chat on WhatsApp
                     </a>
                     <a href="{{ route('contact') }}"
-                       class="flex items-center gap-3 w-full border-2 border-[#0A1628] text-[#0A1628] font-semibold px-6 py-3.5 rounded-xl hover:bg-[#0A1628] hover:text-white transition-all text-sm">
+                       class="flex items-center gap-3 w-full border-2 border-[#1A237E] text-[#1A237E] font-semibold px-6 py-3.5 rounded-xl hover:bg-[#1A237E] hover:text-white transition-all text-sm">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
@@ -139,8 +139,8 @@
 <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-14" data-reveal>
-            <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">Our Commitment</span>
-            <h2 class="font-display text-4xl font-bold text-[#0A1628]">What Sets Us Apart</h2>
+            <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-3">Our Commitment</span>
+            <h2 class="font-display text-4xl font-bold text-[#1A237E]">What Sets Us Apart</h2>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 text-center">
             @foreach([
@@ -150,9 +150,9 @@
                 'Professional project management systems',
                 'Commitment to integrity and accountability',
             ] as $i => $point)
-            <div class="p-5 rounded-2xl border border-gray-100 hover:border-[#C9A84C]/30 hover:shadow-sm transition-all" data-reveal>
-                <div class="w-8 h-8 bg-[#C9A84C] rounded-full flex items-center justify-center mx-auto mb-3">
-                    <span class="text-[#0A1628] font-bold text-xs">{{ $i+1 }}</span>
+            <div class="p-5 rounded-2xl border border-gray-100 hover:border-[#27AE22]/30 hover:shadow-sm transition-all" data-reveal>
+                <div class="w-8 h-8 bg-[#27AE22] rounded-full flex items-center justify-center mx-auto mb-3">
+                    <span class="text-[#1A237E] font-bold text-xs">{{ $i+1 }}</span>
                 </div>
                 <p class="text-gray-700 font-medium text-sm leading-snug">{{ $point }}</p>
             </div>
@@ -169,15 +169,15 @@
 {{-- JV CTA --}}
 <section class="py-20 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-4">Interested in JV?</span>
-        <h2 class="font-display text-4xl font-bold text-[#0A1628] mb-5">
+        <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-4">Interested in JV?</span>
+        <h2 class="font-display text-4xl font-bold text-[#1A237E] mb-5">
             Looking to participate in a Joint Venture?
         </h2>
         <p class="text-gray-500 text-base leading-relaxed mb-10 max-w-2xl mx-auto">
             We structure JV partnerships that transform land and capital into high-value real estate developments. Explore how we can build together.
         </p>
         <a href="{{ route('joint-venture') }}"
-           class="inline-flex items-center gap-2 bg-[#C9A84C] text-[#0A1628] font-bold px-10 py-4 rounded-full hover:bg-[#E8C97A] transition-all hover:scale-105 shadow-lg">
+           class="inline-flex items-center gap-2 bg-[#27AE22] text-[#1A237E] font-bold px-10 py-4 rounded-full hover:bg-[#4ADE80] transition-all hover:scale-105 shadow-lg">
             Explore JV Partnership
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>

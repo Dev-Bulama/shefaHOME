@@ -6,11 +6,11 @@
 @section('content')
 
 {{-- Hero --}}
-<section class="bg-[#0A1628] py-20 relative overflow-hidden">
+<section class="bg-[#1A237E] py-20 relative overflow-hidden">
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <span class="inline-block text-[#C9A84C] font-semibold text-sm tracking-widest uppercase mb-3">Help Centre</span>
+        <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-3">Help Centre</span>
         <h1 class="font-display text-5xl font-bold text-white mb-4">
-            Frequently Asked <span class="text-[#C9A84C]">Questions</span>
+            Frequently Asked <span class="text-[#27AE22]">Questions</span>
         </h1>
         <p class="text-gray-300 text-lg max-w-xl mx-auto mb-10">
             Everything you need to know about buying land and property with SHEFAHOMES.
@@ -24,7 +24,7 @@
                        x-model="search"
                        @input="window.faqSearch = search; document.dispatchEvent(new CustomEvent('faq-search', {detail: search}))"
                        placeholder="Search questions..."
-                       class="w-full bg-white/10 backdrop-blur border border-white/20 text-white placeholder-gray-400 pl-14 pr-6 py-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:bg-white/15 text-base">
+                       class="w-full bg-white/10 backdrop-blur border border-white/20 text-white placeholder-gray-400 pl-14 pr-6 py-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#27AE22] focus:bg-white/15 text-base">
             </div>
         </div>
     </div>
@@ -45,13 +45,13 @@
         @if(isset($categories) && $categories->count())
         <div class="flex flex-wrap gap-2 mb-10 bg-white rounded-2xl p-2 shadow-sm border border-gray-100">
             <button @click="activeTab = 'all'"
-                    :class="activeTab === 'all' ? 'bg-[#0A1628] text-white' : 'text-gray-600 hover:text-[#0A1628]'"
+                    :class="activeTab === 'all' ? 'bg-[#1A237E] text-white' : 'text-gray-600 hover:text-[#1A237E]'"
                     class="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all">
                 All Questions
             </button>
             @foreach($categories as $cat)
             <button @click="activeTab = '{{ $cat->id }}'"
-                    :class="activeTab === '{{ $cat->id }}' ? 'bg-[#C9A84C] text-[#0A1628]' : 'text-gray-600 hover:text-[#0A1628]'"
+                    :class="activeTab === '{{ $cat->id }}' ? 'bg-[#27AE22] text-[#1A237E]' : 'text-gray-600 hover:text-[#1A237E]'"
                     class="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all">
                 {{ $cat->name }}
                 @if($cat->faqs_count ?? false)
@@ -68,9 +68,9 @@
             @if(isset($categories) && $categories->count())
             @foreach($categories as $cat)
             <div x-show="activeTab === 'all' || activeTab === '{{ $cat->id }}'" class="mb-10">
-                <h3 class="font-display text-xl font-bold text-[#0A1628] mb-5 flex items-center gap-3">
-                    <span class="w-8 h-8 bg-[#C9A84C]/15 rounded-xl flex items-center justify-center">
-                        <svg class="w-4 h-4 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <h3 class="font-display text-xl font-bold text-[#1A237E] mb-5 flex items-center gap-3">
+                    <span class="w-8 h-8 bg-[#27AE22]/15 rounded-xl flex items-center justify-center">
+                        <svg class="w-4 h-4 text-[#27AE22]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </span>
                     {{ $cat->name }}
                 </h3>
@@ -82,8 +82,8 @@
                          data-reveal style="transition-delay:{{ $i * 60 }}ms">
                         <button @click="open = !open"
                                 class="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors gap-4">
-                            <span class="font-semibold text-[#0A1628] text-sm sm:text-base leading-snug">{{ $faq->question }}</span>
-                            <svg :class="open ? 'rotate-180 text-[#C9A84C]' : 'text-gray-400'" class="w-5 h-5 flex-shrink-0 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                            <span class="font-semibold text-[#1A237E] text-sm sm:text-base leading-snug">{{ $faq->question }}</span>
+                            <svg :class="open ? 'rotate-180 text-[#27AE22]' : 'text-gray-400'" class="w-5 h-5 flex-shrink-0 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </button>
                         <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-1" x-transition:enter-end="opacity-100 translate-y-0" class="px-6 pb-6">
                             <div class="text-gray-500 text-sm leading-relaxed border-t border-gray-100 pt-4">
@@ -105,8 +105,8 @@
                      data-reveal style="transition-delay:{{ $i * 60 }}ms">
                     <button @click="open = !open"
                             class="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors gap-4">
-                        <span class="font-semibold text-[#0A1628]">{{ $faq->question }}</span>
-                        <svg :class="open ? 'rotate-180 text-[#C9A84C]' : 'text-gray-400'" class="w-5 h-5 flex-shrink-0 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        <span class="font-semibold text-[#1A237E]">{{ $faq->question }}</span>
+                        <svg :class="open ? 'rotate-180 text-[#27AE22]' : 'text-gray-400'" class="w-5 h-5 flex-shrink-0 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
                     <div x-show="open" x-transition class="px-6 pb-6">
                         <div class="text-gray-500 text-sm leading-relaxed border-t border-gray-100 pt-4">
@@ -134,8 +134,8 @@
                  x-show="searchQuery === '' || '{{ strtolower($faq[0]) }}'.includes(searchQuery) || '{{ strtolower(substr($faq[1], 0, 100)) }}'.includes(searchQuery)">
                 <button @click="open = !open"
                         class="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors gap-4">
-                    <span class="font-semibold text-[#0A1628]">{{ $faq[0] }}</span>
-                    <svg :class="open ? 'rotate-180 text-[#C9A84C]' : 'text-gray-400'" class="w-5 h-5 flex-shrink-0 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    <span class="font-semibold text-[#1A237E]">{{ $faq[0] }}</span>
+                    <svg :class="open ? 'rotate-180 text-[#27AE22]' : 'text-gray-400'" class="w-5 h-5 flex-shrink-0 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </button>
                 <div x-show="open" x-transition class="px-6 pb-6">
                     <p class="text-gray-500 text-sm leading-relaxed border-t border-gray-100 pt-4">{{ $faq[1] }}</p>
@@ -146,11 +146,11 @@
         @endif
 
         {{-- Still have questions CTA --}}
-        <div class="mt-12 bg-gradient-to-r from-[#0A1628] to-[#1a2d4a] rounded-2xl p-8 text-center">
+        <div class="mt-12 bg-gradient-to-r from-[#1A237E] to-[#0D1566] rounded-2xl p-8 text-center">
             <h3 class="font-display text-xl font-bold text-white mb-3">Still Have Questions?</h3>
             <p class="text-gray-300 text-sm mb-6">Our team is available Monday–Saturday to answer your questions.</p>
             <div class="flex flex-wrap gap-3 justify-center">
-                <a href="{{ route('contact') }}" class="bg-[#C9A84C] hover:bg-[#E8C97A] text-[#0A1628] font-bold px-8 py-3 rounded-full transition-all text-sm">
+                <a href="{{ route('contact') }}" class="bg-[#27AE22] hover:bg-[#4ADE80] text-[#1A237E] font-bold px-8 py-3 rounded-full transition-all text-sm">
                     Contact Us
                 </a>
                 <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', config('shefahomes.whatsapp', '2349000000000')) }}"

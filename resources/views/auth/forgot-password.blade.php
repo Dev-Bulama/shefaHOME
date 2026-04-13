@@ -8,12 +8,12 @@
 
     {{-- Header --}}
     <div class="mb-7">
-        <div class="w-14 h-14 bg-[#0A1628] rounded-2xl flex items-center justify-center mb-5 shadow-lg">
-            <svg class="w-7 h-7 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="w-14 h-14 bg-[#1A237E] rounded-2xl flex items-center justify-center mb-5 shadow-lg">
+            <svg class="w-7 h-7 text-[#27AE22]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
             </svg>
         </div>
-        <h1 class="font-display text-[#0A1628] text-3xl font-bold mb-2">Forgot Password?</h1>
+        <h1 class="font-display text-[#1A237E] text-3xl font-bold mb-2">Forgot Password?</h1>
         <p class="text-gray-500 text-sm leading-relaxed">
             No worries. Enter your registered email address and we'll send you a secure link to reset your password.
         </p>
@@ -84,7 +84,7 @@
 
         {{-- Submit Button --}}
         <button type="submit"
-                class="w-full bg-[#C9A84C] hover:bg-[#E8C97A] text-[#0A1628] font-bold py-3.5 px-6 rounded-xl transition-all duration-200 text-sm tracking-wide shadow-lg shadow-[#C9A84C]/25 hover:shadow-[#C9A84C]/40 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+                class="w-full bg-[#27AE22] hover:bg-[#4ADE80] text-[#1A237E] font-bold py-3.5 px-6 rounded-xl transition-all duration-200 text-sm tracking-wide shadow-lg shadow-[#27AE22]/25 hover:shadow-[#27AE22]/40 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
@@ -94,7 +94,7 @@
         {{-- Back to Login --}}
         <div class="text-center">
             <a href="{{ route('login') }}"
-               class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#0A1628] transition-colors font-medium">
+               class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#1A237E] transition-colors font-medium">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
                 </svg>

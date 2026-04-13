@@ -9,10 +9,10 @@
     <div class="flex items-center justify-between">
         <div class="flex items-center gap-3">
             <div>
-                <h2 class="text-xl font-bold text-[#0A1628]">Newsletter Subscribers</h2>
+                <h2 class="text-xl font-bold text-[#1A237E]">Newsletter Subscribers</h2>
                 <p class="text-sm text-gray-500 mt-0.5">Manage all newsletter subscriptions.</p>
             </div>
-            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-[#0A1628] text-[#C9A84C]">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-[#1A237E] text-[#27AE22]">
                 {{ $subscribers->total() ?? 0 }} total
             </span>
         </div>
@@ -47,16 +47,16 @@
                 </svg>
                 <input type="text" name="search" value="{{ request('search') }}"
                        placeholder="Search by email or name..."
-                       class="w-full pl-9 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/40 focus:border-[#C9A84C] transition">
+                       class="w-full pl-9 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22]/40 focus:border-[#27AE22] transition">
             </div>
             <select name="status"
-                    class="border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/40 focus:border-[#C9A84C] transition bg-white">
+                    class="border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22]/40 focus:border-[#27AE22] transition bg-white">
                 <option value="">All Statuses</option>
                 <option value="active" {{ request('status') === 'active' ? 'selected' : '' }}>Active</option>
                 <option value="inactive" {{ request('status') === 'inactive' ? 'selected' : '' }}>Inactive</option>
             </select>
             <button type="submit"
-                    class="bg-[#0A1628] hover:bg-[#0d1f38] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors">
+                    class="bg-[#1A237E] hover:bg-[#0d1f38] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors">
                 Filter
             </button>
             @if(request()->hasAny(['search', 'status']))
@@ -85,8 +85,8 @@
                 <tr class="hover:bg-gray-50 transition-colors">
                     <td class="px-6 py-4">
                         <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-[#0A1628]/10 flex items-center justify-center flex-shrink-0">
-                                <span class="text-xs font-bold text-[#0A1628]">
+                            <div class="w-8 h-8 rounded-full bg-[#1A237E]/10 flex items-center justify-center flex-shrink-0">
+                                <span class="text-xs font-bold text-[#1A237E]">
                                     {{ strtoupper(substr($subscriber->email, 0, 1)) }}
                                 </span>
                             </div>

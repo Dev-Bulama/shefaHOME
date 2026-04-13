@@ -19,7 +19,7 @@ class Property extends Model {
     public function clientProperties() { return $this->hasMany(ClientProperty::class); }
     public function investorReturns() { return $this->hasMany(InvestorReturn::class); }
 
-    public function getCoverImageUrlAttribute() { return asset('storage/'.$this->cover_image); }
+    public function getCoverImageUrlAttribute() { return asset('uploads/'.$this->cover_image); }
     public function getPlotSizesArrayAttribute() { return $this->plot_sizes ? json_decode($this->plot_sizes, true) : []; }
     public function getPaymentPlansArrayAttribute() { return $this->payment_plans ? json_decode($this->payment_plans, true) : []; }
     public function getFormattedPriceAttribute() { return '₦'.number_format($this->price_from); }

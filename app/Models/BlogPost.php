@@ -13,6 +13,6 @@ class BlogPost extends Model {
     public function getSlugOptions(): SlugOptions { return SlugOptions::create()->generateSlugsFrom('title')->saveSlugsTo('slug'); }
     public function category() { return $this->belongsTo(BlogCategory::class, 'blog_category_id'); }
     public function author() { return $this->belongsTo(User::class, 'author_id'); }
-    public function getFeaturedImageUrlAttribute() { return asset('storage/'.$this->featured_image); }
+    public function getFeaturedImageUrlAttribute() { return asset('uploads/'.$this->featured_image); }
     public function scopePublished($q) { return $q->where('is_published', true)->whereNotNull('published_at')->where('published_at','<=',now()); }
 }

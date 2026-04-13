@@ -23,15 +23,15 @@
 
     {{-- Header --}}
     <div class="mb-8">
-        <h1 class="font-display text-[#0A1628] text-3xl font-bold mb-2">Welcome Back</h1>
-        <p class="text-gray-500 text-sm">Sign in to your <span class="text-[#C9A84C] font-medium" x-text="portalLabel"></span></p>
+        <h1 class="font-display text-[#1A237E] text-3xl font-bold mb-2">Welcome Back</h1>
+        <p class="text-gray-500 text-sm">Sign in to your <span class="text-[#27AE22] font-medium" x-text="portalLabel"></span></p>
     </div>
 
     {{-- Portal Tabs --}}
     <div class="flex bg-gray-100 p-1 rounded-xl mb-6 gap-1">
         <button type="button"
                 @click="portal='client'"
-                :class="portal==='client' ? 'bg-white text-[#0A1628] shadow-sm' : 'text-gray-500 hover:text-gray-700'"
+                :class="portal==='client' ? 'bg-white text-[#1A237E] shadow-sm' : 'text-gray-500 hover:text-gray-700'"
                 class="flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all duration-200">
             <svg class="w-3.5 h-3.5 inline-block mr-1 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
@@ -40,7 +40,7 @@
         </button>
         <button type="button"
                 @click="portal='investor'"
-                :class="portal==='investor' ? 'bg-white text-[#0A1628] shadow-sm' : 'text-gray-500 hover:text-gray-700'"
+                :class="portal==='investor' ? 'bg-white text-[#1A237E] shadow-sm' : 'text-gray-500 hover:text-gray-700'"
                 class="flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all duration-200">
             <svg class="w-3.5 h-3.5 inline-block mr-1 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
@@ -49,7 +49,7 @@
         </button>
         <button type="button"
                 @click="portal='admin'"
-                :class="portal==='admin' ? 'bg-white text-[#0A1628] shadow-sm' : 'text-gray-500 hover:text-gray-700'"
+                :class="portal==='admin' ? 'bg-white text-[#1A237E] shadow-sm' : 'text-gray-500 hover:text-gray-700'"
                 class="flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all duration-200">
             <svg class="w-3.5 h-3.5 inline-block mr-1 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
@@ -59,7 +59,7 @@
     </div>
 
     {{-- Portal Hint --}}
-    <div class="mb-6 px-4 py-2.5 bg-[#0A1628]/5 border border-[#0A1628]/10 rounded-lg">
+    <div class="mb-6 px-4 py-2.5 bg-[#1A237E]/5 border border-[#1A237E]/10 rounded-lg">
         <p class="text-xs text-gray-500" x-text="redirectHint"></p>
     </div>
 
@@ -126,7 +126,7 @@
                     Password
                 </label>
                 <a href="{{ route('password.request') }}"
-                   class="text-xs text-[#C9A84C] hover:text-[#E8C97A] transition-colors font-medium">
+                   class="text-xs text-[#27AE22] hover:text-[#4ADE80] transition-colors font-medium">
                     Forgot password?
                 </a>
             </div>
@@ -169,7 +169,7 @@
                            id="remember"
                            class="sr-only peer"
                            {{ old('remember') ? 'checked' : '' }}>
-                    <div class="w-9 h-5 bg-gray-200 rounded-full peer-checked:bg-[#C9A84C] transition-colors duration-200"></div>
+                    <div class="w-9 h-5 bg-gray-200 rounded-full peer-checked:bg-[#27AE22] transition-colors duration-200"></div>
                     <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform duration-200 peer-checked:translate-x-4"></div>
                 </div>
                 <span class="text-sm text-gray-600 group-hover:text-gray-800 transition-colors">Keep me signed in</span>
@@ -178,7 +178,7 @@
 
         {{-- Submit Button --}}
         <button type="submit"
-                class="w-full bg-[#C9A84C] hover:bg-[#E8C97A] text-[#0A1628] font-bold py-3.5 px-6 rounded-xl transition-all duration-200 text-sm tracking-wide shadow-lg shadow-[#C9A84C]/25 hover:shadow-[#C9A84C]/40 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+                class="w-full bg-[#27AE22] hover:bg-[#4ADE80] text-[#1A237E] font-bold py-3.5 px-6 rounded-xl transition-all duration-200 text-sm tracking-wide shadow-lg shadow-[#27AE22]/25 hover:shadow-[#27AE22]/40 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
             </svg>
@@ -190,7 +190,7 @@
             <p class="text-sm text-gray-500">
                 Don't have an account?
                 <a href="{{ route('register') }}"
-                   class="text-[#0A1628] hover:text-[#C9A84C] font-semibold transition-colors ml-1">
+                   class="text-[#1A237E] hover:text-[#27AE22] font-semibold transition-colors ml-1">
                     Create Account
                 </a>
             </p>
@@ -213,7 +213,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
                 New investor? Contact us at
-                <a href="mailto:invest@shefahomes.com" class="text-[#C9A84C] hover:underline">invest@shefahomes.com</a>
+                <a href="mailto:invest@shefahomes.com" class="text-[#27AE22] hover:underline">invest@shefahomes.com</a>
             </p>
         </div>
     </form>
@@ -240,7 +240,7 @@
             256-bit Encryption
         </span>
         <span class="flex items-center gap-1">
-            <svg class="w-3.5 h-3.5 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-3.5 h-3.5 text-[#27AE22]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
             </svg>
             Verified Platform

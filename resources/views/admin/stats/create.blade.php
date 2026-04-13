@@ -8,13 +8,13 @@
     {{-- Page Header --}}
     <div class="flex items-center gap-3">
         <a href="{{ route('admin.stats.index') }}"
-           class="text-gray-400 hover:text-[#0A1628] transition-colors">
+           class="text-gray-400 hover:text-[#1A237E] transition-colors">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
             </svg>
         </a>
         <div>
-            <h2 class="text-xl font-bold text-[#0A1628]">Add Stat</h2>
+            <h2 class="text-xl font-bold text-[#1A237E]">Add Stat</h2>
             <p class="text-sm text-gray-500 mt-0.5">Create a new homepage statistic.</p>
         </div>
     </div>
@@ -31,7 +31,7 @@
                 </label>
                 <input type="text" id="label" name="label" value="{{ old('label') }}" required
                        placeholder="e.g. Families Housed"
-                       class="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/40 focus:border-[#C9A84C] transition @error('label') border-red-400 @enderror">
+                       class="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22]/40 focus:border-[#27AE22] transition @error('label') border-red-400 @enderror">
                 @error('label')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -44,7 +44,7 @@
                 </label>
                 <input type="text" id="value" name="value" value="{{ old('value') }}" required
                        placeholder="e.g. 5,000+"
-                       class="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/40 focus:border-[#C9A84C] transition @error('value') border-red-400 @enderror">
+                       class="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22]/40 focus:border-[#27AE22] transition @error('value') border-red-400 @enderror">
                 <p class="text-xs text-gray-400 mt-1">Include formatting like commas and symbols (e.g. "5,000+", "₦2B", "98%").</p>
                 @error('value')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -57,8 +57,8 @@
                 <div class="flex items-center gap-3">
                     <input type="text" id="icon" name="icon" value="{{ old('icon') }}"
                            placeholder="e.g. 🏠 or fa-home"
-                           class="flex-1 border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/40 focus:border-[#C9A84C] transition @error('icon') border-red-400 @enderror">
-                    <div id="iconPreviewBox" class="w-10 h-10 bg-[#0A1628]/5 rounded-lg flex items-center justify-center text-xl border border-gray-200 flex-shrink-0">
+                           class="flex-1 border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22]/40 focus:border-[#27AE22] transition @error('icon') border-red-400 @enderror">
+                    <div id="iconPreviewBox" class="w-10 h-10 bg-[#1A237E]/5 rounded-lg flex items-center justify-center text-xl border border-gray-200 flex-shrink-0">
                         ?
                     </div>
                 </div>
@@ -72,7 +72,7 @@
             <div>
                 <label for="sort_order" class="block text-sm font-semibold text-gray-700 mb-1.5">Sort Order</label>
                 <input type="number" id="sort_order" name="sort_order" value="{{ old('sort_order', 0) }}" min="0"
-                       class="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/40 focus:border-[#C9A84C] transition @error('sort_order') border-red-400 @enderror">
+                       class="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22]/40 focus:border-[#27AE22] transition @error('sort_order') border-red-400 @enderror">
                 <p class="text-xs text-gray-400 mt-1">Lower numbers appear first.</p>
                 @error('sort_order')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -82,7 +82,7 @@
             {{-- Action Buttons --}}
             <div class="flex items-center gap-3 pt-2">
                 <button type="submit"
-                        class="bg-[#C9A84C] hover:bg-[#b8963e] text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition-colors shadow-sm">
+                        class="bg-[#27AE22] hover:bg-[#b8963e] text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition-colors shadow-sm">
                     Save Stat
                 </button>
                 <a href="{{ route('admin.stats.index') }}"

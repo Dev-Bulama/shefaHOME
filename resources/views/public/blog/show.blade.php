@@ -6,27 +6,27 @@
 @section('content')
 
 {{-- Article Hero --}}
-<section class="relative bg-[#0A1628] py-24 overflow-hidden">
+<section class="relative bg-[#1A237E] py-24 overflow-hidden">
     @if($post->featured_image_url)
     <div class="absolute inset-0">
         <img src="{{ $post->featured_image_url }}" class="w-full h-full object-cover opacity-20" alt="">
-        <div class="absolute inset-0 bg-gradient-to-b from-[#0A1628]/80 to-[#0A1628]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#1A237E]/80 to-[#1A237E]"></div>
     </div>
     @endif
     <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {{-- Breadcrumb --}}
         <nav class="flex items-center justify-center gap-2 text-sm text-gray-400 mb-6 flex-wrap">
-            <a href="{{ route('home') }}" class="hover:text-[#C9A84C]">Home</a>
+            <a href="{{ route('home') }}" class="hover:text-[#27AE22]">Home</a>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            <a href="{{ route('blog.index') }}" class="hover:text-[#C9A84C]">Blog</a>
+            <a href="{{ route('blog.index') }}" class="hover:text-[#27AE22]">Blog</a>
             @if($post->category)
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            <a href="{{ route('blog.category', is_object($post->category) ? $post->category->slug : $post->category) }}" class="hover:text-[#C9A84C]">{{ is_object($post->category) ? $post->category->name : $post->category }}</a>
+            <a href="{{ route('blog.category', is_object($post->category) ? $post->category->slug : $post->category) }}" class="hover:text-[#27AE22]">{{ is_object($post->category) ? $post->category->name : $post->category }}</a>
             @endif
         </nav>
 
         @if($post->category)
-        <span class="inline-block bg-[#C9A84C] text-[#0A1628] text-xs font-bold px-4 py-1.5 rounded-full mb-4">
+        <span class="inline-block bg-[#27AE22] text-[#1A237E] text-xs font-bold px-4 py-1.5 rounded-full mb-4">
             {{ is_object($post->category) ? $post->category->name : $post->category }}
         </span>
         @endif
@@ -67,10 +67,10 @@
 
                 {{-- Content --}}
                 <div class="prose prose-lg prose-gray max-w-none
-                            prose-headings:font-display prose-headings:text-[#0A1628]
-                            prose-a:text-[#C9A84C] prose-a:no-underline hover:prose-a:underline
-                            prose-strong:text-[#0A1628]
-                            prose-blockquote:border-l-[#C9A84C] prose-blockquote:text-gray-500">
+                            prose-headings:font-display prose-headings:text-[#1A237E]
+                            prose-a:text-[#27AE22] prose-a:no-underline hover:prose-a:underline
+                            prose-strong:text-[#1A237E]
+                            prose-blockquote:border-l-[#27AE22] prose-blockquote:text-gray-500">
                     {!! $post->content !!}
                 </div>
 
@@ -79,7 +79,7 @@
                 <div class="mt-10 flex flex-wrap gap-2 pt-6 border-t border-gray-100">
                     <span class="text-sm text-gray-400 font-medium mr-2 self-center">Tags:</span>
                     @foreach($post->tags as $tag)
-                    <span class="bg-gray-100 text-gray-600 text-xs font-medium px-3 py-1.5 rounded-full hover:bg-[#C9A84C]/20 hover:text-[#0A1628] transition-colors cursor-default">
+                    <span class="bg-gray-100 text-gray-600 text-xs font-medium px-3 py-1.5 rounded-full hover:bg-[#27AE22]/20 hover:text-[#1A237E] transition-colors cursor-default">
                         #{{ $tag->name }}
                     </span>
                     @endforeach
@@ -95,7 +95,7 @@
                          }
                      }"
                      @link-copied.window="$dispatch('notify', { message: 'Link copied!' })">
-                    <p class="font-semibold text-[#0A1628] mb-4">Share this article</p>
+                    <p class="font-semibold text-[#1A237E] mb-4">Share this article</p>
                     <div class="flex flex-wrap gap-3">
                         {{-- WhatsApp --}}
                         <a href="https://wa.me/?text={{ urlencode($post->title . ' — ' . url()->current()) }}"
@@ -113,7 +113,7 @@
                         </a>
                         {{-- Copy Link --}}
                         <button @click="copyLink()"
-                                class="flex items-center gap-2 bg-gray-200 hover:bg-[#0A1628] hover:text-white text-gray-700 text-sm font-semibold px-5 py-2.5 rounded-xl transition-all">
+                                class="flex items-center gap-2 bg-gray-200 hover:bg-[#1A237E] hover:text-white text-gray-700 text-sm font-semibold px-5 py-2.5 rounded-xl transition-all">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                             Copy Link
                         </button>
@@ -126,13 +126,13 @@
                     @if($post->author->photo_url ?? false)
                     <img src="{{ $post->author->photo_url }}" alt="{{ $post->author->name }}" class="w-16 h-16 rounded-2xl object-cover flex-shrink-0">
                     @else
-                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0A1628] to-[#1a2d4a] flex items-center justify-center flex-shrink-0">
-                        <span class="text-2xl font-bold text-[#C9A84C]">{{ strtoupper(substr($post->author->name,0,1)) }}</span>
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#1A237E] to-[#0D1566] flex items-center justify-center flex-shrink-0">
+                        <span class="text-2xl font-bold text-[#27AE22]">{{ strtoupper(substr($post->author->name,0,1)) }}</span>
                     </div>
                     @endif
                     <div>
-                        <p class="text-xs text-[#C9A84C] font-semibold uppercase tracking-wider mb-1">About the Author</p>
-                        <h4 class="font-bold text-[#0A1628] text-lg mb-2">{{ $post->author->name }}</h4>
+                        <p class="text-xs text-[#27AE22] font-semibold uppercase tracking-wider mb-1">About the Author</p>
+                        <h4 class="font-bold text-[#1A237E] text-lg mb-2">{{ $post->author->name }}</h4>
                         @if($post->author->bio ?? false)
                         <p class="text-gray-500 text-sm leading-relaxed">{{ $post->author->bio }}</p>
                         @endif
@@ -146,13 +146,13 @@
                 {{-- Recent Posts --}}
                 @if(isset($recentPosts) && $recentPosts->count())
                 <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                    <h3 class="font-bold text-[#0A1628] text-base mb-4 pb-3 border-b border-gray-100">Recent Articles</h3>
+                    <h3 class="font-bold text-[#1A237E] text-base mb-4 pb-3 border-b border-gray-100">Recent Articles</h3>
                     <div class="space-y-4">
                         @foreach($recentPosts as $rp)
                         <a href="{{ route('blog.show', $rp->slug) }}" class="flex gap-3 group">
                             <img src="{{ $rp->featured_image_url ?? 'https://picsum.photos/seed/rp'.$rp->id.'/100/80' }}" alt="" class="w-16 h-14 rounded-xl object-cover flex-shrink-0">
                             <div>
-                                <p class="text-sm font-semibold text-[#0A1628] group-hover:text-[#C9A84C] transition-colors line-clamp-2 leading-snug">{{ $rp->title }}</p>
+                                <p class="text-sm font-semibold text-[#1A237E] group-hover:text-[#27AE22] transition-colors line-clamp-2 leading-snug">{{ $rp->title }}</p>
                                 <p class="text-xs text-gray-400 mt-1">{{ $rp->published_at?->format('M d, Y') }}</p>
                             </div>
                         </a>
@@ -162,14 +162,14 @@
                 @endif
 
                 {{-- CTA Box --}}
-                <div class="bg-[#0A1628] rounded-2xl p-6 text-white">
-                    <div class="w-10 h-10 bg-[#C9A84C]/20 rounded-xl flex items-center justify-center mb-4">
-                        <svg class="w-5 h-5 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                <div class="bg-[#1A237E] rounded-2xl p-6 text-white">
+                    <div class="w-10 h-10 bg-[#27AE22]/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5 text-[#27AE22]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
                     </div>
                     <h4 class="font-bold text-white mb-2">Ready to Invest?</h4>
                     <p class="text-gray-400 text-sm mb-4">Browse our premium estates with government-approved titles.</p>
                     <a href="{{ route('properties.index') }}"
-                       class="block text-center bg-[#C9A84C] hover:bg-[#E8C97A] text-[#0A1628] font-bold py-3 rounded-xl transition-all text-sm">
+                       class="block text-center bg-[#27AE22] hover:bg-[#4ADE80] text-[#1A237E] font-bold py-3 rounded-xl transition-all text-sm">
                         Browse Properties
                     </a>
                 </div>
@@ -179,7 +179,7 @@
         {{-- Related Posts --}}
         @if(isset($relatedPosts) && $relatedPosts->count())
         <div class="mt-16">
-            <h2 class="font-display text-2xl font-bold text-[#0A1628] mb-8">Related <span class="text-[#C9A84C]">Articles</span></h2>
+            <h2 class="font-display text-2xl font-bold text-[#1A237E] mb-8">Related <span class="text-[#27AE22]">Articles</span></h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedPosts as $rp)
                 <a href="{{ route('blog.show', $rp->slug) }}"
@@ -189,7 +189,7 @@
                     </div>
                     <div class="p-5">
                         <p class="text-xs text-gray-400 mb-2">{{ $rp->published_at?->format('M d, Y') }}</p>
-                        <h3 class="font-bold text-[#0A1628] group-hover:text-[#C9A84C] transition-colors line-clamp-2 leading-snug">{{ $rp->title }}</h3>
+                        <h3 class="font-bold text-[#1A237E] group-hover:text-[#27AE22] transition-colors line-clamp-2 leading-snug">{{ $rp->title }}</h3>
                     </div>
                 </a>
                 @endforeach

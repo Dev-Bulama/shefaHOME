@@ -125,7 +125,7 @@ class PropertyController extends Controller {
         foreach($request->file('images') as $i => $img) {
             $path = ImageService::upload($img, 'properties/gallery');
             $gallery = PropertyGallery::create(['property_id'=>$id,'image'=>$path,'sort_order'=>$lastOrder+$i+1]);
-            $uploaded[] = ['id'=>$gallery->id,'url'=>asset('storage/'.$path)];
+            $uploaded[] = ['id'=>$gallery->id,'url'=>asset('uploads/'.$path)];
         }
         return response()->json(['success'=>true,'images'=>$uploaded]);
     }

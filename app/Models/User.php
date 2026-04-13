@@ -19,6 +19,6 @@ class User extends Authenticatable {
     public function isInvestor() { return $this->hasRole('investor'); }
     public function isClient() { return $this->hasRole('client'); }
     public function getAvatarUrlAttribute() {
-        return $this->avatar ? asset('storage/'.$this->avatar) : 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&background=C9A84C&color=fff';
+        return $this->avatar ? asset('uploads/'.$this->avatar) : 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&background=27AE22&color=fff';
     }
 }

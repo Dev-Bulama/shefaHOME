@@ -16,7 +16,7 @@
     <div class="bg-white rounded-xl shadow-sm border border-gray-100">
         {{-- Tab Navigation --}}
         <div class="border-b border-gray-100 flex overflow-x-auto">
-            @foreach(['general' => 'General', 'social' => 'Social Media', 'seo' => 'SEO'] as $tab => $label)
+            @foreach(['general' => 'General', 'social' => 'Social Media', 'seo' => 'SEO', 'scripts' => 'Scripts & Integrations'] as $tab => $label)
             <button type="button" @click="activeTab = '{{ $tab }}'"
                 :class="activeTab === '{{ $tab }}' ? 'border-b-2 border-amber-500 text-amber-600' : 'text-gray-500 hover:text-gray-700'"
                 class="px-6 py-4 text-sm font-medium whitespace-nowrap transition focus:outline-none">
@@ -142,6 +142,61 @@
                         <input type="file" name="og_image" accept="image/*"
                             class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100"/>
                         <p class="text-xs text-gray-400 mt-1">Recommended: 1200 × 630px</p>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Scripts & Integrations Tab --}}
+            <div x-show="activeTab === 'scripts'" class="p-6 space-y-6">
+                <div class="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-800">
+                    <strong>Note:</strong> Scripts entered here are output as raw HTML. Only paste trusted code from Meta Pixel, Google Tag Manager, chatbots, live-chat widgets, etc.
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">
+                        &lt;head&gt; Scripts
+                        <span class="text-xs font-normal text-gray-400 ml-1">— inserted just before &lt;/head&gt;</span>
+                    </label>
+                    <p class="text-xs text-gray-400 mb-2">Use for Meta Pixel, Google Tag Manager, analytics, and verification tags.</p>
+                    <textarea name="head_scripts" rows="12" spellcheck="false"
+                        class="w-full border border-gray-200 rounded-lg px-3 py-2 text-xs font-mono focus:ring-2 focus:ring-amber-400 focus:outline-none bg-gray-50">{{ old('head_scripts', $settings['head_scripts'] ?? '') }}</textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">
+                        &lt;body&gt; Scripts
+                        <span class="text-xs font-normal text-gray-400 ml-1">— inserted just before &lt;/body&gt;</span>
+                    </label>
+                    <p class="text-xs text-gray-400 mb-2">Use for live chat widgets, chatbots, or any script that requires the DOM to be loaded.</p>
+                    <textarea name="body_scripts" rows="10" spellcheck="false"
+                        class="w-full border border-gray-200 rounded-lg px-3 py-2 text-xs font-mono focus:ring-2 focus:ring-amber-400 focus:outline-none bg-gray-50">{{ old('body_scripts', $settings['body_scripts'] ?? '') }}</textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Facebook Pixel ID</label>
+                        <input type="text" name="facebook_pixel_id" placeholder="2115240449426594"
+                            value="{{ old('facebook_pixel_id', $settings['facebook_pixel_id'] ?? '') }}"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none"/>
+                        <p class="text-xs text-gray-400 mt-1">Shortcut: paste just the Pixel ID and we auto-generate the snippet, <em>or</em> paste the full snippet above.</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Google Tag Manager ID</label>
+                        <input type="text" name="gtm_id" placeholder="GTM-XXXXXXX"
+                            value="{{ old('gtm_id', $settings['gtm_id'] ?? '') }}"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none"/>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Tawk.to / Chat Widget ID</label>
+                        <input type="text" name="chat_widget_id" placeholder="e.g. Tawk Property ID"
+                            value="{{ old('chat_widget_id', $settings['chat_widget_id'] ?? '') }}"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none"/>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Crisp Chat Website ID</label>
+                        <input type="text" name="crisp_website_id" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                            value="{{ old('crisp_website_id', $settings['crisp_website_id'] ?? '') }}"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none"/>
                     </div>
                 </div>
             </div>

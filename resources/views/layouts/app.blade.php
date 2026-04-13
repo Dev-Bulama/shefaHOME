@@ -34,6 +34,20 @@ h1,h2,h3,.font-display { font-family: 'Playfair Display', serif; }
 @keyframes loader { from{width:0} to{width:100%} }
 </style>
 @stack('styles')
+{{-- Google Tag Manager --}}
+@php $gtmId = \App\Helpers\Settings::get('gtm_id'); @endphp
+@if($gtmId)
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','{{ $gtmId }}');</script>
+<!-- End Google Tag Manager -->
+@endif
+{{-- Head Scripts (Meta Pixel, analytics, etc.) from admin settings --}}
+@php $headScripts = \App\Helpers\Settings::get('head_scripts'); @endphp
+@if($headScripts){!! $headScripts !!}@endif
 </head>
 <body class="bg-white text-gray-800" x-data="{ toast: null, toastType: 'success' }" @show-toast.window="toast = $event.detail.message; toastType = $event.detail.type || 'success'; setTimeout(() => toast = null, 4000)">
 
@@ -123,5 +137,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 @stack('scripts')
+{{-- Body Scripts (chatbots, live chat widgets, etc.) from admin settings --}}
+@php $bodyScripts = \App\Helpers\Settings::get('body_scripts'); @endphp
+@if($bodyScripts){!! $bodyScripts !!}@endif
+{{-- Google Tag Manager (noscript) --}}
+@if($gtmId ?? null)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ $gtmId }}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+@endif
 </body>
 </html>

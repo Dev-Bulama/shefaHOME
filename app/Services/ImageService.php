@@ -17,15 +17,15 @@ class ImageService
 
         try {
             $manager = new ImageManager(new Driver());
-            $image = $manager->read($file->getRealPath());
+            $image   = $manager->read($file->getRealPath());
 
             if ($image->width() > $maxWidth) {
                 $image->scaleDown(width: $maxWidth);
             }
 
             Storage::disk('public')->put($path, $image->toJpeg(85));
-        } catch (\Exception $e) {
-            // Fallback: store as-is
+        } catch (\Throwable $e) {
+            // Fallback: store as-is (handles missing GD driver or Intervention v2/v3 mismatch)
             Storage::disk('public')->putFileAs($folder, $file, $filename);
         }
 

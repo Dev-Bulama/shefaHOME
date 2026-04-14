@@ -12,11 +12,12 @@
          style="background:radial-gradient(circle, #27AE22, transparent)"></div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-4">What We Do</span>
-        <h1 class="font-display text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+        <h1 class="font-display text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
             Our <span class="text-[#27AE22]">Services</span>
         </h1>
-        <p class="text-gray-300 text-xl leading-relaxed max-w-3xl mx-auto">
-            Shefa Homes and Properties Ltd delivers strategic property solutions rooted in integrity, structure, and long-term value creation.
+        <p class="text-[#27AE22] font-semibold text-xl mb-5">Elite Real Estate Investment &amp; Development Solutions</p>
+        <p class="text-gray-300 text-lg leading-relaxed max-w-3xl mx-auto">
+            At Shefa Homes and Properties Ltd, we provide structured, high-value real estate solutions designed for serious investors, strategic partners, and forward-thinking property owners.
         </p>
     </div>
 </section>

@@ -14,6 +14,8 @@ use App\Http\Controllers\Public\InvestorInfoController;
 use App\Http\Controllers\Public\InquiryController as PublicInquiryController;
 use App\Http\Controllers\Public\NewsletterController;
 use App\Http\Controllers\Public\PageController;
+use App\Http\Controllers\Public\GalleryController as PublicGalleryController;
+use App\Http\Controllers\Public\TeamController as PublicTeamController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\Investor;
@@ -35,6 +37,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/properties', [PublicPropertyController::class, 'index'])->name('properties.index');
 Route::get('/properties/{slug}', [PublicPropertyController::class, 'show'])->name('properties.show');
 Route::get('/about-us', [AboutController::class, 'index'])->name('about');
+Route::get('/about', fn() => redirect()->route('about', [], 301)); // alias
 Route::get('/blog', [PublicBlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [PublicBlogController::class, 'show'])->name('blog.show');
 Route::get('/blog/category/{slug}', [PublicBlogController::class, 'category'])->name('blog.category');
@@ -56,6 +59,8 @@ Route::get('/joint-venture-partnership', [PageController::class, 'jointVenture']
 Route::get('/our-services', [PageController::class, 'services'])->name('services');
 Route::get('/csr', [PageController::class, 'csr'])->name('csr');
 Route::get('/invest-with-us', fn() => redirect()->route('investor-info'))->name('invest-with-us');
+Route::get('/gallery', [PublicGalleryController::class, 'index'])->name('gallery');
+Route::get('/our-team', [PublicTeamController::class, 'index'])->name('team');
 
 // /admin root redirect — prevents 404 when visiting /admin directly
 Route::get('/admin', function () {
@@ -127,6 +132,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::put('navigation/{id}', [Admin\NavigationController::class, 'update'])->name('navigation.update');
     Route::delete('navigation/{id}', [Admin\NavigationController::class, 'destroy'])->name('navigation.destroy');
     Route::post('navigation/reorder', [Admin\NavigationController::class, 'reorder'])->name('navigation.reorder');
+    // Media Library
+    Route::get('media', [Admin\MediaController::class, 'index'])->name('media.index');
+    Route::post('media', [Admin\MediaController::class, 'store'])->name('media.store');
+    Route::patch('media/{medium}', [Admin\MediaController::class, 'update'])->name('media.update');
+    Route::delete('media/{medium}', [Admin\MediaController::class, 'destroy'])->name('media.destroy');
+    Route::get('media/picker', [Admin\MediaController::class, 'picker'])->name('media.picker');
+    // Gallery
+    Route::resource('gallery', Admin\GalleryController::class);
     // Page Content Management
     Route::get('pages', [Admin\PageContentController::class, 'index'])->name('pages.index');
     Route::get('pages/{page}/edit', [Admin\PageContentController::class, 'edit'])->name('pages.edit');

@@ -59,13 +59,27 @@ class PageContentController extends Controller
 
         foreach ($fields as $section => $keys) {
             foreach ($keys as $key => $value) {
-                PageContent::updateOrCreate(
-                    ['page' => $page, 'section' => $section, 'key' => $key],
-                    ['value' => $value,
-                     'label' => ucwords(str_replace(['-','_'], ' ', $key)),
-                     'type'  => 'text',
-                     'sort_order' => 999]
-                );
+                $record = PageContent::where([
+                    'page'    => $page,
+                    'section' => $section,
+                    'key'     => $key,
+                ])->first();
+
+                if ($record) {
+                    // Only update the value — never touch type, label, or sort_order
+                    $record->update(['value' => $value]);
+                } else {
+                    // Brand-new field (added via "Add Field" but saved through main form)
+                    PageContent::create([
+                        'page'       => $page,
+                        'section'    => $section,
+                        'key'        => $key,
+                        'value'      => $value,
+                        'label'      => ucwords(str_replace(['-', '_'], ' ', $key)),
+                        'type'       => 'text',
+                        'sort_order' => 999,
+                    ]);
+                }
             }
         }
 

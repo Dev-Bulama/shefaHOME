@@ -89,6 +89,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('sliders', Admin\SliderController::class);
     Route::post('sliders/reorder', [Admin\SliderController::class, 'reorder'])->name('sliders.reorder');
     Route::resource('team', Admin\TeamController::class);
+    Route::post('team/reorder', [Admin\TeamController::class, 'reorder'])->name('team.reorder');
     Route::resource('testimonials', Admin\TestimonialController::class);
     Route::resource('blog', Admin\BlogController::class);
     Route::resource('blog-categories', Admin\BlogCategoryController::class);
@@ -139,6 +140,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::delete('media/{medium}', [Admin\MediaController::class, 'destroy'])->name('media.destroy');
     Route::get('media/picker', [Admin\MediaController::class, 'picker'])->name('media.picker');
     // Gallery
+    Route::post('gallery/reorder', [Admin\GalleryController::class, 'reorder'])->name('gallery.reorder');
     Route::resource('gallery', Admin\GalleryController::class);
     // Page Content Management
     Route::get('pages', [Admin\PageContentController::class, 'index'])->name('pages.index');

@@ -35,4 +35,13 @@ class TeamController extends Controller {
     }
 
     public function destroy($id) { $m = TeamMember::findOrFail($id); ImageService::delete($m->photo); $m->delete(); return redirect()->route('admin.team.index')->with('success','Deleted!'); }
+
+    public function reorder(Request $request)
+    {
+        $ids = $request->input('ids', []);
+        foreach ($ids as $order => $id) {
+            TeamMember::where('id', $id)->update(['sort_order' => $order]);
+        }
+        return response()->json(['success' => true]);
+    }
 }

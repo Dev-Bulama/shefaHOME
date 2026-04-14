@@ -101,4 +101,13 @@ class GalleryController extends Controller
         $galleryItem->delete();
         return back()->with('success', 'Gallery item deleted.');
     }
+
+    public function reorder(Request $request)
+    {
+        $ids = $request->input('ids', []);
+        foreach ($ids as $order => $id) {
+            GalleryItem::where('id', $id)->update(['sort_order' => $order]);
+        }
+        return response()->json(['success' => true]);
+    }
 }

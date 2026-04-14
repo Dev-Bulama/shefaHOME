@@ -62,6 +62,7 @@
                         <option value="textarea">Textarea (multi-line)</option>
                         <option value="html">HTML / Rich Text</option>
                         <option value="url">URL / Link</option>
+                        <option value="image">Image (media picker)</option>
                     </select>
                 </div>
                 <div class="flex items-end">
@@ -74,7 +75,7 @@
     </div>
 
     {{-- Content form --}}
-    <form method="POST" action="{{ route('admin.pages.update', $page) }}">
+    <form method="POST" action="{{ route('admin.pages.update', $page) }}" enctype="multipart/form-data">
         @csrf
 
         @if($rows->isEmpty())
@@ -132,6 +133,72 @@
                             <textarea name="content[{{ $field->section }}][{{ $field->key }}]"
                                       rows="6"
                                       class="w-full px-3 py-2 text-sm font-mono focus:outline-none resize-y focus:ring-2 focus:ring-[#27AE22]">{{ $field->value }}</textarea>
+                        </div>
+
+                        @elseif($field->type === 'image')
+                        @php $fieldId = 'img_'.preg_replace('/[^a-z0-9]/i','_', $field->section.'_'.$field->key); @endphp
+                        <div x-data="{
+                            url: '{{ $field->value }}',
+                            showPicker: false,
+                            pickerImages: [],
+                            async openPicker() {
+                                this.showPicker = true;
+                                if (this.pickerImages.length) return;
+                                const res = await fetch('{{ route('admin.media.picker') }}?type=image');
+                                this.pickerImages = await res.json();
+                            },
+                            pick(imgUrl) { this.url = imgUrl; this.showPicker = false; }
+                        }">
+                            {{-- Preview + URL bar --}}
+                            <div class="flex gap-3 items-start">
+                                <div class="w-24 h-24 rounded-lg border-2 border-gray-200 overflow-hidden flex-shrink-0 bg-gray-50">
+                                    <img :src="url || ''" x-show="url"
+                                         class="w-full h-full object-cover">
+                                    <div x-show="!url" class="w-full h-full flex items-center justify-center">
+                                        <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="flex-1 space-y-2">
+                                    <input type="text" :value="url" @input="url = $event.target.value"
+                                           name="content[{{ $field->section }}][{{ $field->key }}]"
+                                           placeholder="Image URL or pick from library"
+                                           class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono focus:ring-2 focus:ring-[#27AE22] focus:outline-none"/>
+                                    <button type="button" @click="openPicker()"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#1A237E]/5 hover:bg-[#1A237E]/10 text-[#1A237E] text-xs font-semibold rounded-lg transition border border-[#1A237E]/20">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                        </svg>
+                                        Browse Media Library
+                                    </button>
+                                </div>
+                            </div>
+
+                            {{-- Media Picker Overlay --}}
+                            <div x-show="showPicker" @click.self="showPicker=false"
+                                 class="fixed inset-0 z-50 bg-black/60 flex items-end sm:items-center justify-center p-4"
+                                 style="display:none;">
+                                <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[80vh] flex flex-col" @click.stop>
+                                    <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100 flex-shrink-0">
+                                        <h3 class="font-semibold text-gray-800">Media Library — Pick an Image</h3>
+                                        <button @click="showPicker=false" class="text-gray-400 hover:text-gray-600">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                        </button>
+                                    </div>
+                                    <div class="overflow-y-auto p-4">
+                                        <div x-show="!pickerImages.length" class="text-center py-10 text-gray-400 text-sm">No images found. Upload some in the Media Library first.</div>
+                                        <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
+                                            <template x-for="img in pickerImages" :key="img.id">
+                                                <button type="button" @click="pick(img.url)"
+                                                        class="aspect-square rounded-xl overflow-hidden border-2 border-transparent hover:border-[#27AE22] transition-all focus:outline-none focus:border-[#27AE22]">
+                                                    <img :src="img.url" :alt="img.name" class="w-full h-full object-cover">
+                                                </button>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         @endif
                     </div>

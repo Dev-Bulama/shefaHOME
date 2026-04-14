@@ -8,7 +8,8 @@
             <div class="relative" data-reveal>
                 {{-- Main image --}}
                 <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-[#1A237E]/20">
-                    <img src="https://picsum.photos/seed/luxury2/800/600"
+                    @php $whyUsImage = \App\Helpers\PageContent::get('home', 'why_us.image', 'https://picsum.photos/seed/luxury2/800/600'); @endphp
+                    <img src="{{ $whyUsImage }}"
                          alt="Luxury Real Estate"
                          class="w-full h-[500px] object-cover">
                     <div class="absolute inset-0 bg-gradient-to-tr from-[#1A237E]/40 via-transparent to-transparent"></div>

@@ -48,6 +48,8 @@ src="https://www.facebook.com/tr?id=2115240449426594&ev=PageView&noscript=1"
             ['key'=>'google_analytics_id',   'value'=>'',                                                      'group'=>'seo'],
             ['key'=>'google_site_verification','value'=>'',                                                    'group'=>'seo'],
             ['key'=>'facebook_pixel_id',     'value'=>'2115240449426594',                                     'group'=>'seo'],
+            // General (extra)
+            ['key'=>'logo_height',           'value'=>'48',                                                     'group'=>'general'],
             // Payments
             ['key'=>'paystack_public_key',   'value'=>'',                                                      'group'=>'payments'],
             ['key'=>'paystack_secret_key',   'value'=>'',                                                      'group'=>'payments'],
@@ -55,6 +57,12 @@ src="https://www.facebook.com/tr?id=2115240449426594&ev=PageView&noscript=1"
             ['key'=>'payment_currency',      'value'=>'NGN',                                                    'group'=>'payments'],
             ['key'=>'payment_page_title',    'value'=>'Complete Your Payment',                                  'group'=>'payments'],
             ['key'=>'receipt_support_email', 'value'=>'info@shefahomesng.com',                                  'group'=>'payments'],
+            ['key'=>'payment_method',        'value'=>'paystack',                                               'group'=>'payments'],
+            ['key'=>'bank_name',             'value'=>'',                                                       'group'=>'payments'],
+            ['key'=>'bank_account_name',     'value'=>'',                                                       'group'=>'payments'],
+            ['key'=>'bank_account_number',   'value'=>'',                                                       'group'=>'payments'],
+            ['key'=>'bank_sort_code',        'value'=>'',                                                       'group'=>'payments'],
+            ['key'=>'bank_transfer_instructions', 'value'=>'Please transfer the exact amount and email proof of payment to payments@shefahomes.com within 24 hours.', 'group'=>'payments'],
             // Scripts & Integrations
             ['key'=>'head_scripts',          'value'=>$metaPixel,                                              'group'=>'scripts'],
             ['key'=>'body_scripts',          'value'=>'',                                                      'group'=>'scripts'],

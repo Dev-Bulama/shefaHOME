@@ -49,13 +49,22 @@
     },
     uploadNext() {
         if (this.queueIndex >= this.queueTotal) {
-            /* All done — auto-reload after short delay */
             setTimeout(() => window.location.reload(), 1800);
             return;
         }
         const file = this.queue[this.queueIndex];
         this.currentName = file.name;
         this.currentProgress = 0;
+
+        /* Client-side size guard: warn but still attempt (server is the authority) */
+        const MAX_MB = 50;
+        if (file.size > MAX_MB * 1024 * 1024) {
+            this.failCount++;
+            this.uploadErrors.push({ name: file.name, reason: `File is ${(file.size/1048576).toFixed(1)} MB — exceeds the ${MAX_MB} MB limit.` });
+            this.queueIndex++;
+            this.uploadNext();
+            return;
+        }
 
         const form = new FormData();
         form.append('files[]', file);
@@ -71,11 +80,30 @@
         xhr.addEventListener('load', () => {
             try {
                 const data = JSON.parse(xhr.responseText);
-                if (data.success) { this.doneCount++; } else { this.failCount++; this.uploadErrors.push(file.name); }
-            } catch { this.failCount++; this.uploadErrors.push(file.name); }
+                if (data.success || data.uploaded > 0) {
+                    this.doneCount++;
+                    /* Server may have returned partial errors alongside success */
+                    if (data.errors && data.errors.length) {
+                        data.errors.forEach(e => this.uploadErrors.push({ name: file.name, reason: e }));
+                    }
+                } else {
+                    this.failCount++;
+                    const reason = data.error
+                        || (data.errors ? (Array.isArray(data.errors) ? data.errors.join(' ') : Object.values(data.errors).flat().join(' ')) : null)
+                        || (data.message || `Server rejected (HTTP ${xhr.status})`);
+                    this.uploadErrors.push({ name: file.name, reason });
+                }
+            } catch {
+                this.failCount++;
+                this.uploadErrors.push({ name: file.name, reason: `Unexpected server response (HTTP ${xhr.status}). File may exceed the server upload limit.` });
+            }
             next();
         });
-        xhr.addEventListener('error', () => { this.failCount++; this.uploadErrors.push(file.name); next(); });
+        xhr.addEventListener('error', () => {
+            this.failCount++;
+            this.uploadErrors.push({ name: file.name, reason: 'Network error — check your connection.' });
+            next();
+        });
         xhr.open('POST', '{{ route('admin.media.store') }}');
         xhr.send(form);
     }
@@ -177,8 +205,8 @@
                 <template x-for="(f, i) in queue" :key="i">
                     <div class="relative w-10 h-10 rounded-lg overflow-hidden border-2 flex-shrink-0 transition-all"
                          :class="{
-                             'border-[#27AE22]': i < doneCount,
-                             'border-red-400':   uploadErrors.includes(f.name) && i < queueIndex,
+                             'border-[#27AE22]': i < queueIndex && !uploadErrors.some(e => (e.name||e) === f.name),
+                             'border-red-400':   uploadErrors.some(e => (e.name||e) === f.name) && i < queueIndex,
                              'border-[#1A237E] animate-pulse': i === queueIndex && !allDone,
                              'border-gray-200 opacity-40': i > queueIndex
                          }">
@@ -188,14 +216,14 @@
                             </svg>
                         </div>
                         {{-- tick overlay for done --}}
-                        <div x-show="i < doneCount && !uploadErrors.includes(f.name)"
+                        <div x-show="i < queueIndex && !uploadErrors.some(e => (e.name||e) === f.name)"
                              class="absolute inset-0 bg-[#27AE22]/80 flex items-center justify-center">
                             <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
                             </svg>
                         </div>
                         {{-- x overlay for failed --}}
-                        <div x-show="uploadErrors.includes(f.name) && i < queueIndex"
+                        <div x-show="uploadErrors.some(e => (e.name||e) === f.name) && i < queueIndex"
                              class="absolute inset-0 bg-red-500/80 flex items-center justify-center">
                             <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
@@ -206,10 +234,14 @@
             </div>
 
             {{-- Error list --}}
-            <div x-show="uploadErrors.length > 0" class="bg-red-50 border border-red-200 rounded-lg p-3">
-                <p class="text-xs font-semibold text-red-700 mb-1">Failed to upload:</p>
-                <template x-for="err in uploadErrors" :key="err">
-                    <p class="text-xs text-red-600 truncate" x-text="err"></p>
+            <div x-show="uploadErrors.length > 0" class="bg-red-50 border border-red-200 rounded-lg p-3 space-y-1.5 max-h-40 overflow-y-auto">
+                <p class="text-xs font-semibold text-red-700">Failed to upload:</p>
+                <template x-for="(err, i) in uploadErrors" :key="i">
+                    <div class="text-xs text-red-600">
+                        <span class="font-medium" x-text="err.name || err"></span>
+                        <span class="text-red-400" x-show="err.reason"> — </span>
+                        <span class="text-red-500" x-text="err.reason"></span>
+                    </div>
                 </template>
             </div>
         </div>

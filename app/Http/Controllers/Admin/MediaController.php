@@ -29,37 +29,92 @@ class MediaController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'files'   => 'required|array|min:1|max:20',
-            'files.*' => 'required|file|max:51200|mimes:jpg,jpeg,png,gif,webp,svg,mp4,mov,avi,webm',
-        ]);
+        // Raise limits at runtime for environments where .htaccess doesn't apply
+        @ini_set('upload_max_filesize', '50M');
+        @ini_set('post_max_size', '55M');
+
+        // Validate each file individually so one bad file doesn't kill the batch
+        $files = $request->file('files', []);
+
+        if (empty($files)) {
+            return response()->json([
+                'success' => false,
+                'error'   => 'No files received. The file may exceed the server upload limit (max 50 MB per file).',
+            ], 422);
+        }
+
+        $allowedMimes = ['image/jpeg','image/png','image/gif','image/webp','image/svg+xml','video/mp4','video/quicktime','video/x-msvideo','video/webm'];
+        $maxBytes     = 50 * 1024 * 1024; // 50 MB
 
         $uploaded = 0;
-        foreach ($request->file('files') as $file) {
-            $mime     = $file->getMimeType();
-            $type     = str_starts_with($mime, 'video/') ? 'video' : 'image';
-            $folder   = 'media/' . date('Y/m');
-            $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
-            $path     = $folder . '/' . $filename;
+        $errors   = [];
 
-            Storage::disk('public')->putFileAs($folder, $file, $filename);
+        foreach ($files as $file) {
+            // PHP-level upload error (e.g. file too large for php.ini)
+            if ($file->getError() !== UPLOAD_ERR_OK) {
+                $phpErrors = [
+                    UPLOAD_ERR_INI_SIZE   => 'File exceeds server upload_max_filesize limit.',
+                    UPLOAD_ERR_FORM_SIZE  => 'File exceeds form MAX_FILE_SIZE.',
+                    UPLOAD_ERR_PARTIAL    => 'File was only partially uploaded.',
+                    UPLOAD_ERR_NO_FILE    => 'No file was uploaded.',
+                    UPLOAD_ERR_NO_TMP_DIR => 'Missing temporary folder.',
+                    UPLOAD_ERR_CANT_WRITE => 'Failed to write file to disk.',
+                    UPLOAD_ERR_EXTENSION  => 'Upload blocked by a PHP extension.',
+                ];
+                $errors[] = ($phpErrors[$file->getError()] ?? 'Unknown upload error (code '.$file->getError().')');
+                continue;
+            }
 
-            MediaFile::create([
-                'filename'      => $path,
-                'original_name' => $file->getClientOriginalName(),
-                'mime_type'     => $mime,
-                'type'          => $type,
-                'size'          => $file->getSize(),
-                'folder'        => $folder,
-            ]);
-            $uploaded++;
+            // Size check
+            if ($file->getSize() > $maxBytes) {
+                $errors[] = $file->getClientOriginalName() . ' is too large (' . round($file->getSize() / 1048576, 1) . ' MB). Max is 50 MB.';
+                continue;
+            }
+
+            // MIME check
+            $mime = $file->getMimeType();
+            if (!in_array($mime, $allowedMimes, true)) {
+                $errors[] = $file->getClientOriginalName() . ' has an unsupported type (' . $mime . ').';
+                continue;
+            }
+
+            try {
+                $type     = str_starts_with($mime, 'video/') ? 'video' : 'image';
+                $folder   = 'media/' . date('Y/m');
+                $ext      = strtolower($file->getClientOriginalExtension());
+                // Handle double extensions like IMG.JPG.jpeg → keep last part
+                $ext      = $ext ?: pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+                $filename = Str::uuid() . '.' . $ext;
+                $path     = $folder . '/' . $filename;
+
+                Storage::disk('public')->putFileAs($folder, $file, $filename);
+
+                MediaFile::create([
+                    'filename'      => $path,
+                    'original_name' => $file->getClientOriginalName(),
+                    'mime_type'     => $mime,
+                    'type'          => $type,
+                    'size'          => $file->getSize(),
+                    'folder'        => $folder,
+                ]);
+                $uploaded++;
+            } catch (\Throwable $e) {
+                $errors[] = $file->getClientOriginalName() . ': storage error — ' . $e->getMessage();
+            }
         }
 
         if ($request->expectsJson()) {
-            return response()->json(['success' => true, 'uploaded' => $uploaded]);
+            return response()->json([
+                'success'  => $uploaded > 0,
+                'uploaded' => $uploaded,
+                'errors'   => $errors,
+                'error'    => $errors ? implode(' | ', $errors) : null,
+            ]);
         }
 
-        return back()->with('success', "{$uploaded} file(s) uploaded successfully.");
+        $msg = "{$uploaded} file(s) uploaded.";
+        if ($errors) $msg .= ' Errors: ' . implode(', ', $errors);
+        return back()->with('success', $msg);
     }
 
     public function update(Request $request, MediaFile $medium)

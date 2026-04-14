@@ -103,16 +103,13 @@
                             <label class="block text-sm font-medium text-gray-700">{{ $field->label }}</label>
                             <div class="flex items-center gap-2">
                                 <span class="text-xs text-gray-400 font-mono">{{ $field->section }}.{{ $field->key }}</span>
-                                <form method="POST" action="{{ route('admin.pages.deleteField', $field->id) }}"
-                                      onsubmit="return confirm('Remove this field?')" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-400 hover:text-red-600 transition p-0.5" title="Remove field">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                                        </svg>
-                                    </button>
-                                </form>
+                                <button type="button"
+                                        onclick="deleteField({{ $field->id }}, this)"
+                                        class="text-red-400 hover:text-red-600 transition p-0.5" title="Remove field">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
 
@@ -235,4 +232,23 @@
     </form>
 
 </div>
+@push('scripts')
+<script>
+function deleteField(id, btn) {
+    if (!confirm('Remove this field?')) return;
+    btn.disabled = true;
+    fetch('/admin/pages/fields/' + id, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ _method: 'DELETE' })
+    }).then(r => {
+        if (r.ok || r.redirected) location.reload();
+        else { alert('Delete failed.'); btn.disabled = false; }
+    }).catch(() => { alert('Delete failed.'); btn.disabled = false; });
+}
+</script>
+@endpush
 @endsection

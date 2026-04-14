@@ -24,8 +24,8 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             try {
                 $siteName = Settings::get('site_name', 'SHEFAHOMES');
-                $whatsapp = Settings::get('whatsapp_number', '2348000000000');
-                $phone1   = Settings::get('phone_1', '+234 800 000 0000');
+                $whatsapp = Settings::get('whatsapp_number', '2349122388541');
+                $phone1   = Settings::get('phone_1', '08105494713');
                 $email    = Settings::get('contact_email', 'info@shefahomes.com');
 
                 // Full header navigation tree (used by navbar)
@@ -49,8 +49,8 @@ class AppServiceProvider extends ServiceProvider
             } catch (\Throwable $e) {
                 $view->with([
                     'siteName'      => 'SHEFAHOMES',
-                    'whatsapp'      => '2348000000000',
-                    'phone1'        => '+234 800 000 0000',
+                    'whatsapp'      => '2349122388541',
+                    'phone1'        => '08105494713',
                     'email'         => 'info@shefahomes.com',
                     'navHeaderItems'=> collect(),
                     'navMenuItems'  => collect(),

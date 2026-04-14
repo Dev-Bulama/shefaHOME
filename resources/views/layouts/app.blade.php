@@ -81,7 +81,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 {{-- WhatsApp Floating Button --}}
 @if(\App\Helpers\Settings::get('whatsapp_bubble', '1') === '1')
-<a href="https://wa.me/{{ $whatsapp ?? '2348000000000' }}?text=Hello%2C%20I'm%20interested%20in%20a%20property"
+<a href="https://wa.me/{{ $whatsapp ?? '2349122388541' }}?text=Hello%2C%20I'm%20interested%20in%20a%20property"
    target="_blank" rel="noopener"
    class="fixed bottom-6 right-6 z-50 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:bg-green-600 transition-all hover:scale-110"
    title="Chat on WhatsApp">

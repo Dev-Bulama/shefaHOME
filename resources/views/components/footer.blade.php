@@ -203,7 +203,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                             </svg>
                         </div>
-                        <span class="text-gray-400 text-sm leading-relaxed">{{ $settings['address'] ?? '5 Admiralty Way, Lekki Phase 1, Lagos, Nigeria' }}</span>
+                        <span class="text-gray-400 text-sm leading-relaxed">{{ $settings['address'] ?? '5, Charity Road, Opposite UBA Oko/Oba Ifako-Ijaye Ijaiye Lagos' }}</span>
                     </li>
                     <li class="flex items-center gap-3">
                         <div class="w-7 h-7 bg-[#27AE22]/10 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -211,9 +211,9 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                             </svg>
                         </div>
-                        <a href="tel:{{ $settings['phone'] ?? '+2348000000000' }}"
+                        <a href="tel:{{ $settings['phone'] ?? '08105494713' }}"
                            class="text-gray-400 hover:text-[#27AE22] text-sm transition-colors">
-                            {{ $settings['phone'] ?? '+234 800 000 0000' }}
+                            {{ $settings['phone'] ?? '08105494713' }}
                         </a>
                     </li>
                     <li class="flex items-center gap-3">

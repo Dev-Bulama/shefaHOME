@@ -29,7 +29,7 @@
 
     {{-- Contact links --}}
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        @php $wa = \App\Helpers\Settings::get('whatsapp', '2348000000000'); @endphp
+        @php $wa = \App\Helpers\Settings::get('whatsapp_number', '2349122388541'); @endphp
         <a href="https://wa.me/{{ $wa }}"
            target="_blank" rel="noopener"
            class="inline-flex items-center justify-center gap-2 bg-green-500 text-white font-semibold px-8 py-4 rounded-full hover:bg-green-400 transition-all">

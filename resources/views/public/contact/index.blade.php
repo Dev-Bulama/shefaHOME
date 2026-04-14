@@ -125,10 +125,10 @@
                 {{-- Contact Info Cards --}}
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     @foreach([
-                        ['icon'=>'phone','label'=>'Call Us','value'=>config('shefahomes.phone', '+234 800 SHEFA (74332)'),'color'=>'bg-blue-50 text-blue-600','link'=>'tel:+2348004743325'],
-                        ['icon'=>'email','label'=>'Email Us','value'=>config('shefahomes.email', 'hello@shefahomes.com'),'color'=>'bg-emerald-50 text-emerald-600','link'=>'mailto:hello@shefahomes.com'],
-                        ['icon'=>'whatsapp','label'=>'WhatsApp','value'=>config('shefahomes.whatsapp', '+234 900 000 0000'),'color'=>'bg-green-50 text-green-600','link'=>'https://wa.me/2349000000000'],
-                        ['icon'=>'location','label'=>'Head Office','value'=>config('shefahomes.address', 'Lagos, Nigeria'),'color'=>'bg-orange-50 text-orange-600','link'=>'#'],
+                        ['icon'=>'phone','label'=>'Call Us','value'=>config('shefahomes.phone', '08105494713'),'color'=>'bg-blue-50 text-blue-600','link'=>'tel:'.config('shefahomes.phone','08105494713')],
+                        ['icon'=>'email','label'=>'Email Us','value'=>config('shefahomes.email', 'info@shefahomesng.com'),'color'=>'bg-emerald-50 text-emerald-600','link'=>'mailto:'.config('shefahomes.email','info@shefahomesng.com')],
+                        ['icon'=>'whatsapp','label'=>'WhatsApp','value'=>'09122388541','color'=>'bg-green-50 text-green-600','link'=>'https://wa.me/'.config('shefahomes.whatsapp','2349122388541')],
+                        ['icon'=>'location','label'=>'Head Office','value'=>config('shefahomes.address', '5, Charity Road, Opposite UBA Oko/Oba Ifako-Ijaye Ijaiye Lagos'),'color'=>'bg-orange-50 text-orange-600','link'=>'#'],
                     ] as $info)
                     <a href="{{ $info['link'] }}"
                        class="flex items-start gap-4 bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-md hover:border-[#27AE22]/30 transition-all group">

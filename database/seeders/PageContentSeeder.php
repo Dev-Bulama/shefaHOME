@@ -212,7 +212,7 @@ class PageContentSeeder extends Seeder
             'contact' => [
                 ['section'=>'hero',  'key'=>'title',    'label'=>'Hero – Title',    'type'=>'text',     'value'=>'Get In Touch',  'sort_order'=>1],
                 ['section'=>'hero',  'key'=>'subtitle', 'label'=>'Hero – Subtitle', 'type'=>'textarea', 'value'=>'We are here to help. Reach out to our team for property inquiries, investment questions, or partnership discussions.',  'sort_order'=>2],
-                ['section'=>'info',  'key'=>'address',  'label'=>'Office Address',  'type'=>'textarea', 'value'=>'5, Charity Road, Opposite UBA Oko/Oba Ifako-Ijaye Ijaiye, Lagos', 'sort_order'=>10],
+                ['section'=>'info',  'key'=>'address',  'label'=>'Office Address',  'type'=>'textarea', 'value'=>'5, Charity Road, Opposite UBA Oko/Oba Ifako-Ijaye Ijaiye Lagos', 'sort_order'=>10],
                 ['section'=>'info',  'key'=>'phone',    'label'=>'Phone Number',    'type'=>'text',     'value'=>'08105494713',  'sort_order'=>11],
                 ['section'=>'info',  'key'=>'whatsapp', 'label'=>'WhatsApp Number', 'type'=>'text',     'value'=>'09122388541',  'sort_order'=>12],
                 ['section'=>'info',  'key'=>'email',    'label'=>'Email Address',   'type'=>'text',     'value'=>'info@shefahomesng.com',  'sort_order'=>13],

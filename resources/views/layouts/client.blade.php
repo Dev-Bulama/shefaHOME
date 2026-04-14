@@ -251,7 +251,7 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
 
             <div class="flex items-center gap-3" x-data="{ dropOpen: false }">
                 {{-- WhatsApp Quick Contact --}}
-                <a href="https://wa.me/{{ $settings['whatsapp'] ?? '2348000000000' }}"
+                <a href="https://wa.me/{{ $settings['whatsapp'] ?? '2349122388541' }}"
                    target="_blank"
                    class="hidden sm:flex items-center gap-1.5 text-xs text-green-600 hover:text-green-700 transition-colors bg-green-50 hover:bg-green-100 px-3 py-1.5 rounded-full">
                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">

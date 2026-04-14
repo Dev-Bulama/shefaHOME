@@ -20,6 +20,7 @@ class PageContentSeeder extends Seeder
                 ['section'=>'hero',     'key'=>'cta_secondary_url',  'label'=>'Hero – Secondary Button URL',   'type'=>'url',      'value'=>'/contact',              'sort_order'=>6],
                 ['section'=>'why_us',   'key'=>'title',              'label'=>'Why Us – Section Title',        'type'=>'text',     'value'=>'Why Choose Shefa Homes?','sort_order'=>10],
                 ['section'=>'why_us',   'key'=>'subtitle',           'label'=>'Why Us – Section Subtitle',     'type'=>'textarea', 'value'=>'We deliver transparency, value, and results in every transaction.',  'sort_order'=>11],
+                ['section'=>'why_us',   'key'=>'image',              'label'=>'Why Us – Section Image',        'type'=>'image',    'value'=>'',                        'sort_order'=>12],
                 ['section'=>'cta',      'key'=>'title',              'label'=>'CTA Banner – Heading',          'type'=>'text',     'value'=>'Ready to Start Your Real Estate Journey?', 'sort_order'=>20],
                 ['section'=>'cta',      'key'=>'subtitle',           'label'=>'CTA Banner – Subtext',          'type'=>'textarea', 'value'=>'Join thousands of Nigerians building wealth through strategic real estate.', 'sort_order'=>21],
             ],

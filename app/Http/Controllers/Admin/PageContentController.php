@@ -59,10 +59,13 @@ class PageContentController extends Controller
 
         foreach ($fields as $section => $keys) {
             foreach ($keys as $key => $value) {
-                PageContent::where('page', $page)
-                    ->where('section', $section)
-                    ->where('key', $key)
-                    ->update(['value' => $value]);
+                PageContent::updateOrCreate(
+                    ['page' => $page, 'section' => $section, 'key' => $key],
+                    ['value' => $value,
+                     'label' => ucwords(str_replace(['-','_'], ' ', $key)),
+                     'type'  => 'text',
+                     'sort_order' => 999]
+                );
             }
         }
 
@@ -80,7 +83,7 @@ class PageContentController extends Controller
             'section'  => 'required|string|max:80|regex:/^[a-z0-9_-]+$/',
             'key'      => 'required|string|max:80|regex:/^[a-z0-9_-]+$/',
             'label'    => 'required|string|max:120',
-            'type'     => 'required|in:text,textarea,html,image,url',
+            'type'     => 'required|in:text,textarea,html,image,url,boolean',
             'value'    => 'nullable|string',
         ]);
 

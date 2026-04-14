@@ -76,6 +76,12 @@
                             class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100"/>
                     </div>
                     <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Logo Height (px)</label>
+                        <input type="number" name="logo_height" value="{{ old('logo_height', $settings['logo_height'] ?? '48') }}" min="20" max="120"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none"/>
+                        <p class="text-xs text-gray-400 mt-1">Recommended: 40–80px. Default is 48px.</p>
+                    </div>
+                    <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Favicon</label>
                         @if(!empty($settings['favicon']))
                         <img src="{{ Storage::url($settings['favicon']) }}" class="h-8 w-8 mb-2 object-contain"/>
@@ -197,6 +203,58 @@
                             <input type="email" name="receipt_support_email" placeholder="support@shefahomesng.com"
                                 value="{{ old('receipt_support_email', $settings['receipt_support_email'] ?? $settings['contact_email'] ?? '') }}"
                                 class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#27AE22] focus:outline-none"/>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Payment Method --}}
+                <div class="md:col-span-2 border-t border-gray-100 pt-5">
+                    <h4 class="font-semibold text-gray-700 mb-4">Active Payment Method</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        @foreach(['paystack' => 'Paystack Only', 'bank_transfer' => 'Bank Transfer Only', 'both' => 'Both Methods'] as $val => $lbl)
+                        <label class="flex items-center gap-3 cursor-pointer border rounded-xl p-4 {{ ($settings['payment_method'] ?? 'paystack') === $val ? 'border-[#27AE22] bg-[#27AE22]/5' : 'border-gray-200 hover:border-gray-300' }} transition">
+                            <input type="radio" name="payment_method" value="{{ $val }}"
+                                   {{ ($settings['payment_method'] ?? 'paystack') === $val ? 'checked' : '' }}
+                                   class="text-[#27AE22]">
+                            <span class="text-sm font-medium text-gray-700">{{ $lbl }}</span>
+                        </label>
+                        @endforeach
+                    </div>
+                </div>
+
+                {{-- Bank Transfer Details --}}
+                <div class="md:col-span-2 border-t border-gray-100 pt-5">
+                    <h4 class="font-semibold text-gray-700 mb-4">Bank Transfer Details</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Bank Name</label>
+                            <input type="text" name="bank_name" value="{{ old('bank_name', $settings['bank_name'] ?? '') }}"
+                                   placeholder="e.g. Zenith Bank"
+                                   class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none"/>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Account Name</label>
+                            <input type="text" name="bank_account_name" value="{{ old('bank_account_name', $settings['bank_account_name'] ?? '') }}"
+                                   placeholder="e.g. Shefa Homes and Properties Ltd"
+                                   class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none"/>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Account Number</label>
+                            <input type="text" name="bank_account_number" value="{{ old('bank_account_number', $settings['bank_account_number'] ?? '') }}"
+                                   placeholder="e.g. 1234567890"
+                                   class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono focus:ring-2 focus:ring-amber-400 focus:outline-none"/>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Sort Code / SWIFT (optional)</label>
+                            <input type="text" name="bank_sort_code" value="{{ old('bank_sort_code', $settings['bank_sort_code'] ?? '') }}"
+                                   placeholder="e.g. 057 or ZEIBNGLA"
+                                   class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono focus:ring-2 focus:ring-amber-400 focus:outline-none"/>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Payment Instructions (shown to customer)</label>
+                            <textarea name="bank_transfer_instructions" rows="3"
+                                      class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none resize-none"
+                                      placeholder="e.g. Please transfer the exact amount and send proof of payment to payments@shefahomes.com">{{ old('bank_transfer_instructions', $settings['bank_transfer_instructions'] ?? '') }}</textarea>
                         </div>
                     </div>
                 </div>

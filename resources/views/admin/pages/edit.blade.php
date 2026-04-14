@@ -63,6 +63,7 @@
                         <option value="html">HTML / Rich Text</option>
                         <option value="url">URL / Link</option>
                         <option value="image">Image (media picker)</option>
+                        <option value="boolean">Visible toggle (on/off)</option>
                     </select>
                 </div>
                 <div class="flex items-end">
@@ -133,6 +134,18 @@
                             <textarea name="content[{{ $field->section }}][{{ $field->key }}]"
                                       rows="6"
                                       class="w-full px-3 py-2 text-sm font-mono focus:outline-none resize-y focus:ring-2 focus:ring-[#27AE22]">{{ $field->value }}</textarea>
+                        </div>
+
+                        @elseif($field->type === 'boolean')
+                        <div class="flex items-center gap-3">
+                            <input type="hidden" name="content[{{ $field->section }}][{{ $field->key }}]" value="0">
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="content[{{ $field->section }}][{{ $field->key }}]" value="1"
+                                       {{ $field->value == '1' ? 'checked' : '' }}
+                                       class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#27AE22]"></div>
+                            </label>
+                            <span class="text-sm text-gray-600">{{ $field->value == '1' ? 'Visible (on)' : 'Hidden (off)' }}</span>
                         </div>
 
                         @elseif($field->type === 'image')

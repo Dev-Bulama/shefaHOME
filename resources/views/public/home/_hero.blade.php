@@ -26,7 +26,7 @@
     <template x-if="slides.length > 0">
         <div class="relative h-full">
             <template x-for="(slide, index) in slides" :key="slide.id">
-                <div :class="current === index ? 'opacity-100' : 'opacity-0'" class="absolute inset-0 transition-opacity duration-1000">
+                <div :class="current === index ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'" class="absolute inset-0 transition-opacity duration-1000">
                     <img :src="slide.image" class="w-full h-full object-cover" alt="" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-r from-[#1A237E]/80 via-[#1A237E]/50 to-transparent"></div>
                     <div class="absolute inset-0 flex items-center">

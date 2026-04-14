@@ -32,7 +32,7 @@ src="https://www.facebook.com/tr?id=2115240449426594&ev=PageView&noscript=1"
             ['key'=>'phone_1',               'value'=>'08105494713',                                           'group'=>'general'],
             ['key'=>'phone_2',               'value'=>'09122388541',                                           'group'=>'general'],
             ['key'=>'contact_email',         'value'=>'info@shefahomesng.com',                                 'group'=>'general'],
-            ['key'=>'address',               'value'=>'5, Charity Road, Opposite UBA Oko/Oba Ifako-Ijaye Ijaiye, Lagos', 'group'=>'general'],
+            ['key'=>'address',               'value'=>'5, Charity Road, Opposite UBA Oko/Oba Ifako-Ijaye Ijaiye Lagos', 'group'=>'general'],
             ['key'=>'whatsapp_number',       'value'=>'2349122388541',                                        'group'=>'general'],
             ['key'=>'google_maps_embed',     'value'=>'',                                                      'group'=>'general'],
             // Social

@@ -191,7 +191,7 @@
             <div class="space-y-4" data-reveal style="transition-delay:200ms">
                 <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
                     <h4 class="text-[#27AE22] font-semibold mb-2">Office Address</h4>
-                    <p class="text-gray-300 text-sm">5, Charity Road, Opposite UBA Oko/Oba<br>Ifako-Ijaye Ijaiye, Lagos</p>
+                    <p class="text-gray-300 text-sm">5, Charity Road, Opposite UBA Oko/Oba Ifako-Ijaye Ijaiye Lagos</p>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="bg-white/5 border border-white/10 rounded-2xl p-5">

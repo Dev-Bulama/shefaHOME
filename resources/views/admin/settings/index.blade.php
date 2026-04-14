@@ -96,36 +96,46 @@
                     <h4 class="font-semibold text-gray-700 mb-4 text-sm">Site Controls</h4>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {{-- Maintenance Mode --}}
-                        <label class="flex items-center justify-between gap-4 p-4 rounded-xl border {{ ($settings['maintenance_mode'] ?? '0') === '1' ? 'border-red-300 bg-red-50' : 'border-gray-200 bg-gray-50' }} cursor-pointer transition hover:border-gray-300">
+                        <div class="flex items-center justify-between gap-4 p-4 rounded-xl border border-gray-200 bg-gray-50 hover:border-gray-300 transition">
                             <div>
                                 <p class="text-sm font-semibold text-gray-800">Maintenance Mode</p>
                                 <p class="text-xs text-gray-500 mt-0.5">Public visitors see a "coming back soon" page. Admins are unaffected.</p>
                             </div>
                             <div class="flex-shrink-0">
                                 <input type="hidden" name="maintenance_mode" value="0">
-                                <input type="checkbox" name="maintenance_mode" value="1" {{ ($settings['maintenance_mode'] ?? '0') === '1' ? 'checked' : '' }}
-                                       class="sr-only peer" id="maintenanceToggle">
-                                <label for="maintenanceToggle" class="relative inline-flex w-11 h-6 cursor-pointer">
-                                    <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-red-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" name="maintenance_mode" value="1"
+                                           {{ ($settings['maintenance_mode'] ?? '0') === '1' ? 'checked' : '' }}
+                                           class="sr-only peer">
+                                    <div class="w-11 h-6 bg-gray-200 rounded-full
+                                                peer-checked:bg-red-500
+                                                after:content-[''] after:absolute after:top-[2px] after:left-[2px]
+                                                after:bg-white after:rounded-full after:h-5 after:w-5
+                                                after:transition-all peer-checked:after:translate-x-full"></div>
                                 </label>
                             </div>
-                        </label>
+                        </div>
 
                         {{-- WhatsApp Bubble --}}
-                        <label class="flex items-center justify-between gap-4 p-4 rounded-xl border {{ ($settings['whatsapp_bubble'] ?? '1') === '1' ? 'border-green-300 bg-green-50' : 'border-gray-200 bg-gray-50' }} cursor-pointer transition hover:border-gray-300">
+                        <div class="flex items-center justify-between gap-4 p-4 rounded-xl border border-gray-200 bg-gray-50 hover:border-gray-300 transition">
                             <div>
                                 <p class="text-sm font-semibold text-gray-800">WhatsApp Bubble</p>
                                 <p class="text-xs text-gray-500 mt-0.5">Show or hide the floating WhatsApp chat button on all public pages.</p>
                             </div>
                             <div class="flex-shrink-0">
                                 <input type="hidden" name="whatsapp_bubble" value="0">
-                                <input type="checkbox" name="whatsapp_bubble" value="1" {{ ($settings['whatsapp_bubble'] ?? '1') === '1' ? 'checked' : '' }}
-                                       class="sr-only peer" id="waBubbleToggle">
-                                <label for="waBubbleToggle" class="relative inline-flex w-11 h-6 cursor-pointer">
-                                    <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-green-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" name="whatsapp_bubble" value="1"
+                                           {{ ($settings['whatsapp_bubble'] ?? '1') === '1' ? 'checked' : '' }}
+                                           class="sr-only peer">
+                                    <div class="w-11 h-6 bg-gray-200 rounded-full
+                                                peer-checked:bg-green-500
+                                                after:content-[''] after:absolute after:top-[2px] after:left-[2px]
+                                                after:bg-white after:rounded-full after:h-5 after:w-5
+                                                after:transition-all peer-checked:after:translate-x-full"></div>
                                 </label>
                             </div>
-                        </label>
+                        </div>
                     </div>
                 </div>
             </div>

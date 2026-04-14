@@ -166,6 +166,151 @@
     </div>
 </section>
 
+{{-- Investment Plans --}}
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-14" data-reveal>
+            <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-3">Investment Plans</span>
+            <h2 class="font-display text-4xl font-bold text-[#1A237E] mb-4">Choose Your Investment Path</h2>
+            <p class="text-gray-500">Flexible entry points designed for different capital levels and investment goals. All plans include professional oversight and transparent reporting.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            {{-- Starter Plan --}}
+            <div class="relative bg-white rounded-3xl border border-gray-200 p-8 hover:shadow-xl transition-all hover:-translate-y-1" data-reveal>
+                <div class="mb-6">
+                    <span class="inline-block bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide mb-4">Starter</span>
+                    <div class="flex items-end gap-1 mb-1">
+                        <span class="text-3xl font-bold text-[#1A237E]">₦2M</span>
+                        <span class="text-gray-400 text-sm mb-1">minimum</span>
+                    </div>
+                    <p class="text-gray-500 text-sm">Entry-level real estate participation with structured returns and low risk exposure.</p>
+                </div>
+                <ul class="space-y-3 mb-8">
+                    @foreach([
+                        'Minimum: ₦2,000,000',
+                        'Tenure: 12 – 18 months',
+                        'Expected ROI: 18% – 25% p.a.',
+                        'Quarterly progress reports',
+                        'Certificate of participation',
+                        'Dedicated account officer',
+                    ] as $feature)
+                    <li class="flex items-start gap-2.5 text-sm text-gray-600">
+                        <svg class="w-4 h-4 text-[#27AE22] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        {{ $feature }}
+                    </li>
+                    @endforeach
+                </ul>
+                <a href="{{ route('contact') }}" class="block w-full text-center border-2 border-[#1A237E] text-[#1A237E] font-semibold py-3 rounded-xl hover:bg-[#1A237E] hover:text-white transition-all text-sm">
+                    Get Started
+                </a>
+            </div>
+
+            {{-- Growth Plan (Featured) --}}
+            <div class="relative bg-[#1A237E] rounded-3xl p-8 shadow-2xl shadow-[#1A237E]/30 hover:shadow-[#1A237E]/40 transition-all hover:-translate-y-2" data-reveal>
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+                    <span class="inline-block bg-[#27AE22] text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide shadow-md">Most Popular</span>
+                </div>
+                <div class="mb-6">
+                    <span class="inline-block bg-white/10 text-[#27AE22] text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide mb-4">Growth</span>
+                    <div class="flex items-end gap-1 mb-1">
+                        <span class="text-3xl font-bold text-white">₦10M</span>
+                        <span class="text-gray-300 text-sm mb-1">minimum</span>
+                    </div>
+                    <p class="text-gray-300 text-sm">Mid-tier investment with access to priority project allocation and enhanced returns.</p>
+                </div>
+                <ul class="space-y-3 mb-8">
+                    @foreach([
+                        'Minimum: ₦10,000,000',
+                        'Tenure: 18 – 24 months',
+                        'Expected ROI: 28% – 35% p.a.',
+                        'Monthly progress reports',
+                        'Site visit access',
+                        'Priority project allocation',
+                        'Legal documentation included',
+                        'Dedicated relationship manager',
+                    ] as $feature)
+                    <li class="flex items-start gap-2.5 text-sm text-gray-200">
+                        <svg class="w-4 h-4 text-[#27AE22] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        {{ $feature }}
+                    </li>
+                    @endforeach
+                </ul>
+                <a href="{{ route('contact') }}" class="block w-full text-center bg-[#27AE22] text-white font-bold py-3 rounded-xl hover:bg-[#1D9418] transition-all text-sm shadow-lg shadow-[#27AE22]/30">
+                    Invest Now
+                </a>
+            </div>
+
+            {{-- Premium / Institutional Plan --}}
+            <div class="relative bg-white rounded-3xl border border-gray-200 p-8 hover:shadow-xl transition-all hover:-translate-y-1" data-reveal>
+                <div class="mb-6">
+                    <span class="inline-block bg-[#27AE22]/10 text-[#27AE22] text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide mb-4">Premium</span>
+                    <div class="flex items-end gap-1 mb-1">
+                        <span class="text-3xl font-bold text-[#1A237E]">₦50M+</span>
+                        <span class="text-gray-400 text-sm mb-1">minimum</span>
+                    </div>
+                    <p class="text-gray-500 text-sm">Institutional-grade access for high-net-worth individuals and serious capital partners.</p>
+                </div>
+                <ul class="space-y-3 mb-8">
+                    @foreach([
+                        'Minimum: ₦50,000,000',
+                        'Tenure: Flexible (12–36 months)',
+                        'Negotiated ROI (35%+ p.a.)',
+                        'Full project co-ownership option',
+                        'Bespoke legal & financial structuring',
+                        'Executive-level reporting',
+                        'Early access to new developments',
+                        'JV partnership eligibility',
+                    ] as $feature)
+                    <li class="flex items-start gap-2.5 text-sm text-gray-600">
+                        <svg class="w-4 h-4 text-[#27AE22] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        {{ $feature }}
+                    </li>
+                    @endforeach
+                </ul>
+                <a href="{{ route('contact') }}" class="block w-full text-center border-2 border-[#27AE22] text-[#27AE22] font-semibold py-3 rounded-xl hover:bg-[#27AE22] hover:text-white transition-all text-sm">
+                    Request Proposal
+                </a>
+            </div>
+        </div>
+
+        <p class="text-center text-gray-400 text-xs mt-8">* All investment figures are indicative. Returns depend on project type, market conditions, and tenure. Speak with an advisor for a tailored proposal.</p>
+    </div>
+</section>
+
+{{-- How It Works --}}
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-14" data-reveal>
+            <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-3">Process</span>
+            <h2 class="font-display text-4xl font-bold text-[#1A237E]">How It Works</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            @foreach([
+                ['01', 'Initial Consultation', 'Schedule a call with our investment advisors to discuss your goals, risk appetite, and preferred tenure.'],
+                ['02', 'Plan Selection & Documentation', 'Choose the right investment plan and complete the onboarding documentation and KYC process.'],
+                ['03', 'Capital Deployment', 'Funds are deployed into curated real estate projects with full transparency and legal backing.'],
+                ['04', 'Returns & Exit', 'Receive your returns as agreed — monthly, quarterly, or at project completion — with a clear exit pathway.'],
+            ] as [$step, $title, $desc])
+            <div class="text-center" data-reveal>
+                <div class="w-14 h-14 bg-[#1A237E] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-[#1A237E]/20">
+                    <span class="text-[#27AE22] font-bold text-lg">{{ $step }}</span>
+                </div>
+                <h3 class="font-bold text-[#1A237E] text-lg mb-2">{{ $title }}</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">{{ $desc }}</p>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
 {{-- JV CTA --}}
 <section class="py-20 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

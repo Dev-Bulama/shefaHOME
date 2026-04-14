@@ -48,6 +48,13 @@ src="https://www.facebook.com/tr?id=2115240449426594&ev=PageView&noscript=1"
             ['key'=>'google_analytics_id',   'value'=>'',                                                      'group'=>'seo'],
             ['key'=>'google_site_verification','value'=>'',                                                    'group'=>'seo'],
             ['key'=>'facebook_pixel_id',     'value'=>'2115240449426594',                                     'group'=>'seo'],
+            // Payments
+            ['key'=>'paystack_public_key',   'value'=>'',                                                      'group'=>'payments'],
+            ['key'=>'paystack_secret_key',   'value'=>'',                                                      'group'=>'payments'],
+            ['key'=>'paystack_mode',         'value'=>'live',                                                   'group'=>'payments'],
+            ['key'=>'payment_currency',      'value'=>'NGN',                                                    'group'=>'payments'],
+            ['key'=>'payment_page_title',    'value'=>'Complete Your Payment',                                  'group'=>'payments'],
+            ['key'=>'receipt_support_email', 'value'=>'info@shefahomesng.com',                                  'group'=>'payments'],
             // Scripts & Integrations
             ['key'=>'head_scripts',          'value'=>$metaPixel,                                              'group'=>'scripts'],
             ['key'=>'body_scripts',          'value'=>'',                                                      'group'=>'scripts'],

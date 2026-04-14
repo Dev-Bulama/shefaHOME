@@ -16,7 +16,7 @@
     <div class="bg-white rounded-xl shadow-sm border border-gray-100">
         {{-- Tab Navigation --}}
         <div class="border-b border-gray-100 flex overflow-x-auto">
-            @foreach(['general' => 'General', 'social' => 'Social Media', 'seo' => 'SEO', 'scripts' => 'Scripts & Integrations'] as $tab => $label)
+            @foreach(['general' => 'General', 'social' => 'Social Media', 'seo' => 'SEO', 'payments' => 'Payments', 'scripts' => 'Scripts & Integrations'] as $tab => $label)
             <button type="button" @click="activeTab = '{{ $tab }}'"
                 :class="activeTab === '{{ $tab }}' ? 'border-b-2 border-amber-500 text-amber-600' : 'text-gray-500 hover:text-gray-700'"
                 class="px-6 py-4 text-sm font-medium whitespace-nowrap transition focus:outline-none">
@@ -141,6 +141,63 @@
                         <input type="file" name="og_image" accept="image/*"
                             class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100"/>
                         <p class="text-xs text-gray-400 mt-1">Recommended: 1200 × 630px</p>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Payments Tab --}}
+            <div x-show="activeTab === 'payments'" class="p-6 space-y-6">
+                <div class="bg-blue-50 border border-blue-200 rounded-lg px-4 py-3 text-sm text-blue-800">
+                    <strong>Paystack Integration:</strong> Enter your Paystack API keys below. Get them from your <a href="https://dashboard.paystack.com/#/settings/developer" target="_blank" class="underline">Paystack Dashboard → Settings → API Keys</a>.
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Paystack Public Key</label>
+                        <input type="text" name="paystack_public_key" placeholder="pk_live_xxxxxxxxxxxxxxxxxxxx"
+                            value="{{ old('paystack_public_key', $settings['paystack_public_key'] ?? '') }}"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono focus:ring-2 focus:ring-[#27AE22] focus:outline-none"/>
+                        <p class="text-xs text-gray-400 mt-1">Used on the payment form (client-visible). Use <code>pk_test_</code> for test mode.</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Paystack Secret Key</label>
+                        <input type="password" name="paystack_secret_key" placeholder="sk_live_xxxxxxxxxxxxxxxxxxxx"
+                            value="{{ old('paystack_secret_key', $settings['paystack_secret_key'] ?? '') }}"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono focus:ring-2 focus:ring-[#27AE22] focus:outline-none"/>
+                        <p class="text-xs text-gray-400 mt-1">Used server-side only for verification. Never expose this publicly.</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Payment Mode</label>
+                        <select name="paystack_mode" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#27AE22] focus:outline-none">
+                            <option value="live" {{ ($settings['paystack_mode'] ?? 'live') === 'live' ? 'selected' : '' }}>Live (Production)</option>
+                            <option value="test" {{ ($settings['paystack_mode'] ?? '') === 'test' ? 'selected' : '' }}>Test (Sandbox)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Currency</label>
+                        <select name="payment_currency" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#27AE22] focus:outline-none">
+                            <option value="NGN" {{ ($settings['payment_currency'] ?? 'NGN') === 'NGN' ? 'selected' : '' }}>NGN — Nigerian Naira</option>
+                            <option value="USD" {{ ($settings['payment_currency'] ?? '') === 'USD' ? 'selected' : '' }}>USD — US Dollar</option>
+                            <option value="GHS" {{ ($settings['payment_currency'] ?? '') === 'GHS' ? 'selected' : '' }}>GHS — Ghanaian Cedi</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-100 pt-5">
+                    <h3 class="text-sm font-semibold text-gray-700 mb-4">Payment Display Settings</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Payment Page Title</label>
+                            <input type="text" name="payment_page_title" placeholder="Complete Your Payment"
+                                value="{{ old('payment_page_title', $settings['payment_page_title'] ?? 'Complete Your Payment') }}"
+                                class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#27AE22] focus:outline-none"/>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Support Email (on receipts)</label>
+                            <input type="email" name="receipt_support_email" placeholder="support@shefahomesng.com"
+                                value="{{ old('receipt_support_email', $settings['receipt_support_email'] ?? $settings['contact_email'] ?? '') }}"
+                                class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#27AE22] focus:outline-none"/>
+                        </div>
                     </div>
                 </div>
             </div>

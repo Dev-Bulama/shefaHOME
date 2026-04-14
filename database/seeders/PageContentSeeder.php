@@ -23,6 +23,50 @@ class PageContentSeeder extends Seeder
                 ['section'=>'why_us',   'key'=>'image',              'label'=>'Why Us – Section Image',        'type'=>'image',    'value'=>'',                        'sort_order'=>12],
                 ['section'=>'cta',      'key'=>'title',              'label'=>'CTA Banner – Heading',          'type'=>'text',     'value'=>'Ready to Start Your Real Estate Journey?', 'sort_order'=>20],
                 ['section'=>'cta',      'key'=>'subtitle',           'label'=>'CTA Banner – Subtext',          'type'=>'textarea', 'value'=>'Join thousands of Nigerians building wealth through strategic real estate.', 'sort_order'=>21],
+
+                // Section 1
+                ['section'=>'section_1','key'=>'visible',     'label'=>'Section 1 – Visible',       'type'=>'boolean',  'value'=>'1', 'sort_order'=>30],
+                ['section'=>'section_1','key'=>'title',       'label'=>'Section 1 – Title',         'type'=>'text',     'value'=>'Why Real Estate Is the Smartest Investment', 'sort_order'=>31],
+                ['section'=>'section_1','key'=>'subtitle',    'label'=>'Section 1 – Subtitle Tag',  'type'=>'text',     'value'=>'Smart Investment',  'sort_order'=>32],
+                ['section'=>'section_1','key'=>'description', 'label'=>'Section 1 – Description',   'type'=>'textarea', 'value'=>"Real estate in Nigeria has consistently outperformed other asset classes over the past decade. With a growing population, rapid urbanisation, and constrained land supply in key corridors, property values continue to appreciate — making land acquisition one of the most reliable stores of value available.\n\nWhether you are preserving capital, generating rental income, or building equity for the next generation, strategic real estate ownership remains the cornerstone of lasting wealth.", 'sort_order'=>33],
+                ['section'=>'section_1','key'=>'image',       'label'=>'Section 1 – Image',         'type'=>'image',    'value'=>'',  'sort_order'=>34],
+                ['section'=>'section_1','key'=>'image_side',  'label'=>'Section 1 – Image Side',    'type'=>'text',     'value'=>'right', 'sort_order'=>35],
+                ['section'=>'section_1','key'=>'button_text', 'label'=>'Section 1 – Button Text',   'type'=>'text',     'value'=>'Explore Properties', 'sort_order'=>36],
+                ['section'=>'section_1','key'=>'button_url',  'label'=>'Section 1 – Button URL',    'type'=>'url',      'value'=>'/properties', 'sort_order'=>37],
+                ['section'=>'section_1','key'=>'bg',          'label'=>'Section 1 – Background',    'type'=>'text',     'value'=>'white', 'sort_order'=>38],
+
+                // Section 2
+                ['section'=>'section_2','key'=>'visible',     'label'=>'Section 2 – Visible',       'type'=>'boolean',  'value'=>'1', 'sort_order'=>40],
+                ['section'=>'section_2','key'=>'title',       'label'=>'Section 2 – Title',         'type'=>'text',     'value'=>'Strategic Locations Across Nigeria', 'sort_order'=>41],
+                ['section'=>'section_2','key'=>'subtitle',    'label'=>'Section 2 – Subtitle Tag',  'type'=>'text',     'value'=>'Prime Locations',  'sort_order'=>42],
+                ['section'=>'section_2','key'=>'description', 'label'=>'Section 2 – Description',   'type'=>'textarea', 'value'=>"Our estates and land banks are carefully sited in the fastest-appreciating corridors across Nigeria — from Lagos (Ibeju-Lekki, Epe, Mowe) to Abuja (Kuje, Gwagwalada, Kubwa), Ogun State, Enugu, and Delta State.\n\nWe identify emerging growth zones before they peak, giving our investors early-mover advantages that translate into exceptional appreciation over 3–10 year horizons.", 'sort_order'=>43],
+                ['section'=>'section_2','key'=>'image',       'label'=>'Section 2 – Image',         'type'=>'image',    'value'=>'',  'sort_order'=>44],
+                ['section'=>'section_2','key'=>'image_side',  'label'=>'Section 2 – Image Side',    'type'=>'text',     'value'=>'left', 'sort_order'=>45],
+                ['section'=>'section_2','key'=>'button_text', 'label'=>'Section 2 – Button Text',   'type'=>'text',     'value'=>'View Estate Locations', 'sort_order'=>46],
+                ['section'=>'section_2','key'=>'button_url',  'label'=>'Section 2 – Button URL',    'type'=>'url',      'value'=>'/properties', 'sort_order'=>47],
+                ['section'=>'section_2','key'=>'bg',          'label'=>'Section 2 – Background',    'type'=>'text',     'value'=>'gray', 'sort_order'=>48],
+
+                // Section 3
+                ['section'=>'section_3','key'=>'visible',     'label'=>'Section 3 – Visible',       'type'=>'boolean',  'value'=>'1', 'sort_order'=>50],
+                ['section'=>'section_3','key'=>'title',       'label'=>'Section 3 – Title',         'type'=>'text',     'value'=>'Flexible Payment Plans Built for You', 'sort_order'=>51],
+                ['section'=>'section_3','key'=>'subtitle',    'label'=>'Section 3 – Subtitle Tag',  'type'=>'text',     'value'=>'Payment Plans',  'sort_order'=>52],
+                ['section'=>'section_3','key'=>'description', 'label'=>'Section 3 – Description',   'type'=>'textarea', 'value'=>"We believe that property ownership should be accessible to every Nigerian — not just those with large capital reserves. That's why we offer payment plans spanning 6 to 36 months with zero interest, making it possible for salaried workers, entrepreneurs, and diaspora investors alike to secure their piece of Nigeria's most valuable land.\n\nAll plans come with a written Deed of Subscription, full legal documentation, and a dedicated account officer to guide you through every stage.", 'sort_order'=>53],
+                ['section'=>'section_3','key'=>'image',       'label'=>'Section 3 – Image',         'type'=>'image',    'value'=>'',  'sort_order'=>54],
+                ['section'=>'section_3','key'=>'image_side',  'label'=>'Section 3 – Image Side',    'type'=>'text',     'value'=>'right', 'sort_order'=>55],
+                ['section'=>'section_3','key'=>'button_text', 'label'=>'Section 3 – Button Text',   'type'=>'text',     'value'=>'See Payment Options', 'sort_order'=>56],
+                ['section'=>'section_3','key'=>'button_url',  'label'=>'Section 3 – Button URL',    'type'=>'url',      'value'=>'/contact', 'sort_order'=>57],
+                ['section'=>'section_3','key'=>'bg',          'label'=>'Section 3 – Background',    'type'=>'text',     'value'=>'white', 'sort_order'=>58],
+
+                // Section 4
+                ['section'=>'section_4','key'=>'visible',     'label'=>'Section 4 – Visible',       'type'=>'boolean',  'value'=>'1', 'sort_order'=>60],
+                ['section'=>'section_4','key'=>'title',       'label'=>'Section 4 – Title',         'type'=>'text',     'value'=>'Trusted by Over 5,000 Satisfied Investors', 'sort_order'=>61],
+                ['section'=>'section_4','key'=>'subtitle',    'label'=>'Section 4 – Subtitle Tag',  'type'=>'text',     'value'=>'Our Track Record',  'sort_order'=>62],
+                ['section'=>'section_4','key'=>'description', 'label'=>'Section 4 – Description',   'type'=>'textarea', 'value'=>"Since our founding, we have helped thousands of Nigerians and diaspora investors secure government-approved land and property titles across Nigeria's highest-growth corridors. Our portfolio spans residential plots, mixed-use developments, and large-scale estate projects.\n\nEvery subscriber receives full legal documentation, a dedicated relationship manager, and lifetime after-sales support — because our commitment doesn't end at the point of sale.", 'sort_order'=>63],
+                ['section'=>'section_4','key'=>'image',       'label'=>'Section 4 – Image',         'type'=>'image',    'value'=>'',  'sort_order'=>64],
+                ['section'=>'section_4','key'=>'image_side',  'label'=>'Section 4 – Image Side',    'type'=>'text',     'value'=>'left', 'sort_order'=>65],
+                ['section'=>'section_4','key'=>'button_text', 'label'=>'Section 4 – Button Text',   'type'=>'text',     'value'=>'Read Client Stories', 'sort_order'=>66],
+                ['section'=>'section_4','key'=>'button_url',  'label'=>'Section 4 – Button URL',    'type'=>'url',      'value'=>'/testimonials', 'sort_order'=>67],
+                ['section'=>'section_4','key'=>'bg',          'label'=>'Section 4 – Background',    'type'=>'text',     'value'=>'gray', 'sort_order'=>68],
             ],
 
             /* ─── ABOUT ───────────────────────────────────── */

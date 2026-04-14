@@ -19,29 +19,7 @@
         </div>
 
         {{-- Stats Grid --}}
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12"
-             x-data="{
-                 animated: false,
-                 animateCounters() {
-                     if (this.animated) return;
-                     this.animated = true;
-                     this.$el.querySelectorAll('[data-count]').forEach(el => {
-                         const target = parseInt(el.dataset.count);
-                         const duration = 2000;
-                         const step = target / (duration / 16);
-                         let current = 0;
-                         const timer = setInterval(() => {
-                             current += step;
-                             if (current >= target) {
-                                 current = target;
-                                 clearInterval(timer);
-                             }
-                             el.textContent = Math.floor(current).toLocaleString();
-                         }, 16);
-                     });
-                 }
-             }"
-             x-intersect.once="animateCounters()">
+        <div data-counter-section class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
 
             @php
                 $defaultStats = [
@@ -116,3 +94,27 @@
         </div>
     </div>
 </section>
+<script>
+(function(){
+    var el = document.querySelector('[data-counter-section]');
+    if(!el) return;
+    var done = false;
+    var obs = new IntersectionObserver(function(entries){
+        if(entries[0].isIntersecting && !done){
+            done = true;
+            el.querySelectorAll('[data-count]').forEach(function(counter){
+                var target = parseInt(counter.dataset.count);
+                var duration = 2000;
+                var step = target / (duration / 16);
+                var current = 0;
+                var timer = setInterval(function(){
+                    current += step;
+                    if(current >= target){ current = target; clearInterval(timer); }
+                    counter.textContent = Math.floor(current).toLocaleString();
+                }, 16);
+            });
+        }
+    }, { threshold: 0.3 });
+    obs.observe(el);
+})();
+</script>

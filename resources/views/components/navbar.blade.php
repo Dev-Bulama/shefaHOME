@@ -11,9 +11,13 @@
 
             {{-- Brand Logo --}}
             <a href="{{ route('home') }}" class="flex items-center gap-2.5 group flex-shrink-0">
-                @php $logo = \App\Helpers\Settings::get('logo'); @endphp
+                @php
+                    $logo = \App\Helpers\Settings::get('logo');
+                    $logoHeight = \App\Helpers\Settings::get('logo_height', '48');
+                @endphp
                 @if($logo)
-                    <img src="{{ Storage::url($logo) }}" alt="{{ $siteName }}" class="h-10 object-contain">
+                    <img src="{{ Storage::url($logo) }}" alt="{{ $siteName ?? 'SHEFAHOMES' }}"
+                         style="height: {{ intval($logoHeight) }}px;" class="w-auto object-contain">
                 @else
                 <div class="w-9 h-9 bg-[#27AE22] rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-200">
                     <svg class="w-5 h-5 text-[#1A237E]" fill="currentColor" viewBox="0 0 20 20">

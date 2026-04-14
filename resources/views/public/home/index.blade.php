@@ -6,6 +6,7 @@
 @include('public.home._featured', ['featuredProperties' => $featuredProperties])
 @include('public.home._stats', ['stats' => $stats])
 @include('public.home._why-us')
+@include('public.home._home-sections')
 @include('public.home._how-it-works')
 @include('public.home._team', ['featuredTeam' => $featuredTeam])
 @include('public.home._testimonials', ['testimonials' => $testimonials])

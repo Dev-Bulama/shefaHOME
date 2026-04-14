@@ -27,9 +27,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div data-reveal>
-                <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-3">Our Story</span>
+                <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-3">Who We Are</span>
                 <h2 class="font-display text-4xl font-bold text-[#1A237E] mb-6 leading-tight">
-                    More than property — strategic real estate opportunities
+                    Building Strategic Assets. Creating Lasting Value.
                 </h2>
                 <div class="space-y-4 text-gray-500 leading-relaxed text-base">
                     <p>
@@ -73,9 +73,24 @@
                     @endforeach
                 </div>
                 <div class="bg-[#1A237E] rounded-2xl p-6 text-white">
-                    <p class="text-gray-300 text-sm leading-relaxed">
-                        We operate with discipline, precision, and a deep understanding of emerging real estate markets. Every property we present is selected with growth potential, security, and long-term investor value in mind.
-                    </p>
+                    <h4 class="text-[#27AE22] font-semibold mb-3 text-sm uppercase tracking-widest">What Sets Us Apart</h4>
+                    <div class="space-y-2">
+                        @foreach([
+                            'Investment-focused model',
+                            'Carefully selected high-growth locations',
+                            'Structured Joint Venture partnerships',
+                            'Professional project management systems',
+                            'Commitment to integrity and accountability',
+                        ] as $point)
+                        <div class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-[#27AE22] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <p class="text-gray-300 text-sm font-medium">{{ $point }}</p>
+                        </div>
+                        @endforeach
+                    </div>
+                    <p class="text-gray-400 text-xs mt-4 leading-relaxed">We operate with discipline, precision, and a deep understanding of emerging real estate markets.</p>
                 </div>
             </div>
         </div>
@@ -99,7 +114,7 @@
                 </div>
                 <h3 class="font-display text-2xl font-bold text-[#27AE22] mb-4">Vision Statement</h3>
                 <p class="text-gray-300 leading-relaxed text-base">
-                    To contribute to the creation of thriving communities and ecosystems by building long-term relationships with our clients founded on trust and integrity.
+                    To Contribute to the creation of thriving communities and ecosystems by building long-term relationships with our clients founded on trust and integrity.
                 </p>
             </div>
             <div class="bg-[#27AE22] rounded-3xl p-10 text-[#1A237E] relative overflow-hidden" data-reveal style="transition-delay:200ms">
@@ -111,7 +126,7 @@
                 </div>
                 <h3 class="font-display text-2xl font-bold text-[#1A237E] mb-4">Mission Statement</h3>
                 <p class="text-[#1A237E]/80 leading-relaxed text-base">
-                    To deliver exceptional service and transparent communication to our investors, partners, and stakeholders.
+                    To deliver exceptional service and transparent communication to our investors, Partners and Stakeholders.
                 </p>
             </div>
         </div>
@@ -127,12 +142,11 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach([
-                ['Portfolio Diversification', 'Acquire and manage a diverse portfolio of high-potential land assets for maximum long-term value.', 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'],
-                ['Integrity & Ethics', 'Conduct business with honesty, transparency and the highest ethical standards in every transaction.', 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'],
-                ['Open Communication', 'Provide clear and regular communication to investors and stakeholders at every stage of engagement.', 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'],
-                ['Long-term Growth', 'Prioritise sustainable growth and long-term returns over short-term gains for all stakeholders.', 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'],
-                ['Community Engagement', 'Engage positively with local communities and contribute meaningfully to their growth and development.', 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5'],
-                ['Professional Excellence', 'We operate with discipline, precision, and a deep understanding of emerging real estate markets.', 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z'],
+                ['Portfolio', 'To acquire and manage a diverse portfolio of high-potential land assets.', 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'],
+                ['Integrity & Ethics', 'Conduct business with honesty, transparency and ethical standards.', 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'],
+                ['Open Communication', 'Provide clear and regular communication to investors and stakeholders.', 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'],
+                ['Long-term Growth', 'Prioritize sustainable growth and long-term returns over short-term gain.', 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'],
+                ['Community Engagement', 'Engage positively with local communities and contributes to their growth.', 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5'],
             ] as [$title, $desc, $icon])
             <div class="group bg-white border border-gray-100 rounded-2xl p-6 hover:border-[#27AE22]/40 hover:shadow-lg transition-all duration-300" data-reveal>
                 <div class="w-11 h-11 bg-[#27AE22]/10 group-hover:bg-[#27AE22]/20 rounded-xl flex items-center justify-center mb-4 transition-colors">
@@ -157,7 +171,7 @@
                 <h2 class="font-display text-4xl font-bold text-white mb-8">What Sets Us Apart</h2>
                 <div class="space-y-4">
                     @foreach([
-                        'Investment-focused model built for serious investors',
+                        'Investment-focused model',
                         'Carefully selected high-growth locations',
                         'Structured Joint Venture partnerships',
                         'Professional project management systems',

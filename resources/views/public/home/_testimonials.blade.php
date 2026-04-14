@@ -109,7 +109,7 @@
         {{-- Placeholder testimonials --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @foreach([
-                ['name'=>'Adebayo Okafor','role'=>'Lagos Investor','text'=>'SHEFAHOMES made my dream of owning land in Lagos a reality. The process was transparent and the team was incredibly supportive throughout.','property'=>'Green Valley Estate, Ibeju-Lekki'],
+                ['name'=>'Verified Client','role'=>'Property Buyer','text'=>'Shefa Homes made my land purchase smooth and stress-free. Documentation was fast and transparent.','property'=>'Shefa Homes Estate'],
                 ['name'=>'Chidinma Eze','role'=>'Abuja Client','text'=>'I was skeptical at first, but after visiting the site and seeing the documentation, I was convinced. Now I own two plots!','property'=>'Royal Gardens, Kuje'],
                 ['name'=>'Emeka Nwachukwu','role'=>'Diaspora Investor','text'=>'As a Nigerian in the UK, I needed a trustworthy company. SHEFAHOMES delivered beyond expectations — title deeds in hand within 12 months.','property'=>'Heritage Court, Sangotedo'],
             ] as $pt)

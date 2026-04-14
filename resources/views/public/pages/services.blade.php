@@ -208,6 +208,9 @@
     </div>
 </section>
 
+{{-- Admin-controlled dynamic sections --}}
+@include('public.shared._page-sections', ['pageSlug' => 'services'])
+
 {{-- CTA --}}
 <section class="py-20 bg-gray-50">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

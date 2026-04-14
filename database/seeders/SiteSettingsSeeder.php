@@ -50,6 +50,8 @@ src="https://www.facebook.com/tr?id=2115240449426594&ev=PageView&noscript=1"
             ['key'=>'facebook_pixel_id',     'value'=>'2115240449426594',                                     'group'=>'seo'],
             // General (extra)
             ['key'=>'logo_height',           'value'=>'48',                                                     'group'=>'general'],
+            ['key'=>'maintenance_mode',      'value'=>'0',                                                      'group'=>'general'],
+            ['key'=>'whatsapp_bubble',       'value'=>'1',                                                      'group'=>'general'],
             // Payments
             ['key'=>'paystack_public_key',   'value'=>'',                                                      'group'=>'payments'],
             ['key'=>'paystack_secret_key',   'value'=>'',                                                      'group'=>'payments'],

@@ -12,11 +12,15 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'admin'    => \App\Http\Middleware\AdminMiddleware::class,
-            'investor' => \App\Http\Middleware\InvestorMiddleware::class,
-            'client'   => \App\Http\Middleware\ClientMiddleware::class,
-            'role'     => \Spatie\Permission\Middleware\RoleMiddleware::class,
-            'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+            'admin'       => \App\Http\Middleware\AdminMiddleware::class,
+            'investor'    => \App\Http\Middleware\InvestorMiddleware::class,
+            'client'      => \App\Http\Middleware\ClientMiddleware::class,
+            'role'        => \Spatie\Permission\Middleware\RoleMiddleware::class,
+            'permission'  => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+            'maintenance' => \App\Http\Middleware\MaintenanceModeMiddleware::class,
+        ]);
+        $middleware->web(append: [
+            \App\Http\Middleware\MaintenanceModeMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

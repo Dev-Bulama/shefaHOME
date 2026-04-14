@@ -203,6 +203,9 @@
 </section>
 
 {{-- Team --}}
+{{-- Admin-controlled dynamic sections --}}
+@include('public.shared._page-sections', ['pageSlug' => 'about'])
+
 @if(isset($team) && $team->count())
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

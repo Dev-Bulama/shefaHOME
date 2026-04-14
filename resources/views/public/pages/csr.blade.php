@@ -110,6 +110,9 @@
     </div>
 </section>
 
+{{-- Admin-controlled dynamic sections --}}
+@include('public.shared._page-sections', ['pageSlug' => 'csr'])
+
 {{-- CTA --}}
 <section class="py-20 bg-gray-50">
     <div class="max-w-3xl mx-auto px-4 text-center">

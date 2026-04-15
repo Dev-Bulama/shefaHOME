@@ -42,9 +42,9 @@
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Job Role / Title <span class="text-red-500">*</span></label>
-                    <input type="text" name="role" value="{{ old('role') }}" required
-                        class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none @error('role') border-red-400 @enderror"/>
-                    @error('role')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                    <input type="text" name="position" value="{{ old('position') }}" required
+                        class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none @error('position') border-red-400 @enderror"/>
+                    @error('position')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Department</label>
@@ -84,6 +84,12 @@
                     <input type="checkbox" name="is_active" id="is_active" value="1" {{ old('is_active', true) ? 'checked' : '' }}
                         class="w-4 h-4 text-amber-500 rounded border-gray-300 focus:ring-amber-400"/>
                     <label for="is_active" class="text-sm font-medium text-gray-700">Visible on website</label>
+                </div>
+                <div class="flex items-center gap-3">
+                    <input type="hidden" name="is_featured" value="0"/>
+                    <input type="checkbox" name="is_featured" id="is_featured" value="1" {{ old('is_featured') ? 'checked' : '' }}
+                        class="w-4 h-4 text-amber-500 rounded border-gray-300 focus:ring-amber-400"/>
+                    <label for="is_featured" class="text-sm font-medium text-gray-700">Featured on homepage</label>
                 </div>
             </div>
         </div>

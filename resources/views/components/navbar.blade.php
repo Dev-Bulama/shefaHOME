@@ -1,12 +1,37 @@
-@php $navbarBg = \App\Helpers\Settings::get('navbar_bg_color', '#1A237E'); @endphp
+@php
+    $navbarBg = \App\Helpers\Settings::get('navbar_bg_color', '#1A237E');
+    // Auto-detect luminance so text is readable on any background colour
+    $hex = ltrim($navbarBg, '#');
+    if (strlen($hex) === 6) {
+        $r   = hexdec(substr($hex, 0, 2)) / 255;
+        $g   = hexdec(substr($hex, 2, 2)) / 255;
+        $b   = hexdec(substr($hex, 4, 2)) / 255;
+        $lum = 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
+    } else {
+        $lum = 0; // default dark
+    }
+    $isLightBg      = $lum > 0.45;
+    $navTextColor   = $isLightBg ? '#111827' : '#ffffff'; // gray-900 or white
+    $navTextMuted   = $isLightBg ? '#374151' : '#d1d5db'; // gray-700 or gray-300
+    $navTextActive  = '#27AE22'; // green always
+@endphp
+<style>
+  .shefa-nav.is-scrolled .shefa-link { color: {{ $navTextMuted }} !important; }
+  .shefa-nav.is-scrolled .shefa-link:hover,
+  .shefa-nav.is-scrolled .shefa-link.active-link { color: {{ $navTextColor }} !important; }
+  .shefa-nav.is-scrolled .shefa-link-active { color: {{ $navTextActive }} !important; }
+  .shefa-nav.is-mobile-open .shefa-link { color: {{ $navTextMuted }} !important; }
+  .shefa-nav.is-mobile-open .shefa-link:hover { color: {{ $navTextColor }} !important; }
+  .shefa-nav.is-mobile-open .shefa-link-active { color: {{ $navTextActive }} !important; }
+</style>
 <nav x-data="{
         scrolled: false,
         mobileOpen: false,
         init() { window.addEventListener('scroll', () => { this.scrolled = window.scrollY > 50; }); }
     }"
-    :class="scrolled ? 'shadow-xl shadow-black/20' : 'bg-transparent'"
+    :class="{ 'is-scrolled shadow-xl shadow-black/20': scrolled, 'bg-transparent': !scrolled, 'is-mobile-open': mobileOpen }"
     :style="scrolled ? 'background-color: {{ $navbarBg }}' : ''"
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-400">
+    class="shefa-nav fixed top-0 left-0 right-0 z-50 transition-all duration-400">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
@@ -39,8 +64,8 @@
                     @if($item->children->isNotEmpty())
                     {{-- Dropdown --}}
                     <div class="relative" x-data="{ open: false }" @mouseenter="open=true" @mouseleave="open=false">
-                        <button class="flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200
-                            {{ request()->is(ltrim($item->url,'/')) || request()->is(ltrim($item->url,'/').'/*') ? 'text-[#27AE22]' : 'text-gray-200 hover:text-white hover:bg-white/10' }}">
+                        <button class="shefa-link flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200
+                            {{ request()->is(ltrim($item->url,'/')) || request()->is(ltrim($item->url,'/').'/*') ? 'shefa-link-active text-[#27AE22]' : 'text-gray-200 hover:text-white hover:bg-white/10' }}">
                             {{ $item->label }}
                             <svg class="w-4 h-4 transition-transform duration-200" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -71,8 +96,8 @@
                     @else
                     {{-- Simple link --}}
                     <a href="{{ $item->url }}" {{ $item->opens_new_tab ? 'target="_blank" rel="noopener"' : '' }}
-                       class="px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200
-                              {{ $item->url !== '#' && request()->is(ltrim($item->url,'/')) ? 'text-[#27AE22]' : 'text-gray-200 hover:text-white hover:bg-white/10' }}">
+                       class="shefa-link px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200
+                              {{ $item->url !== '#' && request()->is(ltrim($item->url,'/')) ? 'shefa-link-active text-[#27AE22]' : 'text-gray-200 hover:text-white hover:bg-white/10' }}">
                         {{ $item->label }}
                     </a>
                     @endif
@@ -80,9 +105,9 @@
 
                 {{-- Fallback if DB is empty --}}
                 @if($navHeaderItems->isEmpty())
-                <a href="{{ route('home') }}" class="px-4 py-2 text-sm font-medium rounded-lg text-gray-200 hover:text-white hover:bg-white/10 transition-colors duration-200">Home</a>
-                <a href="{{ route('properties.index') }}" class="px-4 py-2 text-sm font-medium rounded-lg text-gray-200 hover:text-white hover:bg-white/10 transition-colors duration-200">Properties</a>
-                <a href="{{ route('contact') }}" class="px-4 py-2 text-sm font-medium rounded-lg text-gray-200 hover:text-white hover:bg-white/10 transition-colors duration-200">Contact</a>
+                <a href="{{ route('home') }}" class="shefa-link px-4 py-2 text-sm font-medium rounded-lg text-gray-200 hover:text-white hover:bg-white/10 transition-colors duration-200">Home</a>
+                <a href="{{ route('properties.index') }}" class="shefa-link px-4 py-2 text-sm font-medium rounded-lg text-gray-200 hover:text-white hover:bg-white/10 transition-colors duration-200">Properties</a>
+                <a href="{{ route('contact') }}" class="shefa-link px-4 py-2 text-sm font-medium rounded-lg text-gray-200 hover:text-white hover:bg-white/10 transition-colors duration-200">Contact</a>
                 @endif
             </div>
 
@@ -130,7 +155,7 @@
                 {{-- Expandable section --}}
                 <div x-data="{ open: false }">
                     <button @click="open=!open"
-                            class="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors text-gray-200 hover:text-white hover:bg-white/10">
+                            class="shefa-link w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors text-gray-200 hover:text-white hover:bg-white/10">
                         <span>{{ $item->label }}</span>
                         <svg class="w-4 h-4 transition-transform flex-shrink-0" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -139,7 +164,7 @@
                     <div x-show="open" x-transition class="mt-1 ml-4 pl-4 border-l border-white/10 space-y-1">
                         @foreach($item->children as $child)
                         <a href="{{ $child->url }}" @click="mobileOpen=false" {{ $child->opens_new_tab ? 'target="_blank" rel="noopener"' : '' }}
-                           class="block px-3 py-2 text-sm text-gray-300 hover:text-[#27AE22] rounded-lg transition-colors">
+                           class="shefa-link block px-3 py-2 text-sm text-gray-300 hover:text-[#27AE22] rounded-lg transition-colors">
                             {{ $child->label }}
                         </a>
                         @endforeach
@@ -147,8 +172,8 @@
                 </div>
                 @else
                 <a href="{{ $item->url }}" @click="mobileOpen=false" {{ $item->opens_new_tab ? 'target="_blank" rel="noopener"' : '' }}
-                   class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors
-                          {{ $item->url !== '#' && request()->is(ltrim($item->url,'/')) ? 'text-[#27AE22] bg-[#27AE22]/10' : 'text-gray-200 hover:text-white hover:bg-white/10' }}">
+                   class="shefa-link flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors
+                          {{ $item->url !== '#' && request()->is(ltrim($item->url,'/')) ? 'shefa-link-active text-[#27AE22] bg-[#27AE22]/10' : 'text-gray-200 hover:text-white hover:bg-white/10' }}">
                     {{ $item->label }}
                 </a>
                 @endif
@@ -156,9 +181,9 @@
 
             {{-- Fallback --}}
             @if($navHeaderItems->isEmpty())
-            <a href="{{ route('home') }}" @click="mobileOpen=false" class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-200 hover:text-white hover:bg-white/10 transition-colors">Home</a>
-            <a href="{{ route('properties.index') }}" @click="mobileOpen=false" class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-200 hover:text-white hover:bg-white/10 transition-colors">Properties</a>
-            <a href="{{ route('contact') }}" @click="mobileOpen=false" class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-200 hover:text-white hover:bg-white/10 transition-colors">Contact</a>
+            <a href="{{ route('home') }}" @click="mobileOpen=false" class="shefa-link block px-4 py-3 rounded-xl text-sm font-medium text-gray-200 hover:text-white hover:bg-white/10 transition-colors">Home</a>
+            <a href="{{ route('properties.index') }}" @click="mobileOpen=false" class="shefa-link block px-4 py-3 rounded-xl text-sm font-medium text-gray-200 hover:text-white hover:bg-white/10 transition-colors">Properties</a>
+            <a href="{{ route('contact') }}" @click="mobileOpen=false" class="shefa-link block px-4 py-3 rounded-xl text-sm font-medium text-gray-200 hover:text-white hover:bg-white/10 transition-colors">Contact</a>
             @endif
 
             {{-- Mobile CTA Buttons --}}

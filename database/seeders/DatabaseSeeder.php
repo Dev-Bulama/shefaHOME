@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder {
             CareerSeeder::class,
             NavigationMenuSeeder::class,
             PageContentSeeder::class,
+            ShefaEstateSeeder::class,
+            ShefaPropertySeeder::class,
         ]);
     }
 }

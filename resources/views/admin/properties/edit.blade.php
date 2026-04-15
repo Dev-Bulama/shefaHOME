@@ -44,15 +44,27 @@
                         @error('state')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">City / LGA</label>
-                        <input type="text" name="city" value="{{ old('city', $property->city) }}"
-                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none"/>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">City / LGA <span class="text-red-500">*</span></label>
+                        <input type="text" name="lga" value="{{ old('lga', $property->lga) }}" required
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none @error('lga') border-red-400 @enderror"/>
+                        @error('lga')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Property Type <span class="text-red-500">*</span></label>
-                        <select name="type" required class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none">
-                            @foreach(['residential' => 'Residential', 'commercial' => 'Commercial', 'mixed' => 'Mixed Use', 'land' => 'Land'] as $val => $lbl)
-                            <option value="{{ $val }}" {{ old('type', $property->type) == $val ? 'selected' : '' }}>{{ $lbl }}</option>
+                        <select name="property_type_id" required class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none">
+                            <option value="">Select type…</option>
+                            @foreach($propertyTypes as $pt)
+                            <option value="{{ $pt->id }}" {{ old('property_type_id', $property->property_type_id) == $pt->id ? 'selected' : '' }}>{{ $pt->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('property_type_id')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Estate</label>
+                        <select name="estate_id" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none">
+                            <option value="">No estate</option>
+                            @foreach($estates as $estate)
+                            <option value="{{ $estate->id }}" {{ old('estate_id', $property->estate_id) == $estate->id ? 'selected' : '' }}>{{ $estate->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -63,8 +75,10 @@
                             class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none"/>
                     </div>
                     <div class="md:col-span-2">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Short Summary</label>
-                        <textarea name="summary" rows="2" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none">{{ old('summary', $property->summary) }}</textarea>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Short Summary <span class="text-red-500">*</span></label>
+                        <textarea name="short_description" rows="2" required maxlength="500"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none @error('short_description') border-red-400 @enderror">{{ old('short_description', $property->short_description) }}</textarea>
+                        @error('short_description')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                     </div>
                     <div class="md:col-span-2">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
@@ -93,14 +107,14 @@
             <div x-show="activeTab === 'pricing'" class="p-6 space-y-5">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Price (₦) <span class="text-red-500">*</span></label>
-                        <input type="number" name="price" value="{{ old('price', $property->price) }}" step="0.01" min="0" required
-                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none @error('price') border-red-400 @enderror"/>
-                        @error('price')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Price From (₦) <span class="text-red-500">*</span></label>
+                        <input type="number" name="price_from" value="{{ old('price_from', $property->price_from) }}" step="0.01" min="0" required
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none @error('price_from') border-red-400 @enderror"/>
+                        @error('price_from')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Discount Price (₦)</label>
-                        <input type="number" name="discount_price" value="{{ old('discount_price', $property->discount_price) }}" step="0.01" min="0"
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Price To (₦) <span class="text-xs text-gray-400">optional</span></label>
+                        <input type="number" name="price_to" value="{{ old('price_to', $property->price_to) }}" step="0.01" min="0"
                             class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none"/>
                     </div>
                     <div>
@@ -154,7 +168,7 @@
                             No payment plans added.
                         </p>
                     </div>
-                    <input type="hidden" name="payment_plans" :value="JSON.stringify(plans)"/>
+                    <input type="hidden" name="payment_plans_json" :value="JSON.stringify(plans)"/>
                 </div>
             </div>
 
@@ -273,7 +287,7 @@
 function propertyForm() {
     return {
         activeTab: 'basic',
-        plans: @json(old('payment_plans') ? json_decode(old('payment_plans'), true) : ($property->payment_plans ?? [])),
+        plans: @json(old('payment_plans_json') ? json_decode(old('payment_plans_json'), true) : json_decode($property->payment_plans ?? '[]', true)),
         addPlan() { this.plans.push({ name: '', duration: '', monthly_amount: '' }); },
         removePlan(i) { this.plans.splice(i, 1); }
     };

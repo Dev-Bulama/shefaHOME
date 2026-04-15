@@ -18,6 +18,9 @@ class SettingsController extends Controller {
             if(in_array($key, $skip)) continue;
             if($request->hasFile($key)) {
                 $value = ImageService::upload($request->file($key), 'settings');
+            } elseif($value === null) {
+                // Empty file input — do not overwrite existing value
+                continue;
             }
             Settings::set($key, $value, $group);
         }

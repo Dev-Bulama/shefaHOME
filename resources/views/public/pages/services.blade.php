@@ -23,6 +23,13 @@
 </section>
 
 {{-- Services --}}
+@php
+    $svcImg1 = \App\Helpers\Settings::get('svc_land_banking_image');
+    $svcImg2 = \App\Helpers\Settings::get('svc_project_mgmt_image');
+    $svcImg3 = \App\Helpers\Settings::get('svc_flipping_image');
+    $svcImg4 = \App\Helpers\Settings::get('svc_jv_image');
+    $svcImg5 = \App\Helpers\Settings::get('svc_development_image');
+@endphp
 <section class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="space-y-24">
@@ -53,22 +60,34 @@
                     </div>
                     <p class="text-[#27AE22] font-semibold italic">Secure today. Multiply tomorrow.</p>
                 </div>
+                @if($svcImg1)
+                <div class="rounded-3xl overflow-hidden min-h-[280px]">
+                    <img src="{{ Storage::url($svcImg1) }}" alt="Land Banking Investment" class="w-full h-full object-cover" style="min-height:280px;">
+                </div>
+                @else
                 <div class="bg-gradient-to-br from-[#1A237E] to-[#1a2e50] rounded-3xl p-10 text-white flex flex-col justify-center min-h-[280px]">
                     <p class="text-4xl font-bold text-[#27AE22] mb-2">Prime</p>
                     <p class="text-xl font-semibold mb-3">High-Growth Corridors</p>
                     <p class="text-gray-400 text-sm leading-relaxed">We identify locations ahead of urban expansion curves, securing assets before market saturation drives prices upward.</p>
                 </div>
+                @endif
             </div>
 
             <div class="border-t border-gray-100"></div>
 
             {{-- Project Management --}}
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center" data-reveal>
+                @if($svcImg2)
+                <div class="rounded-3xl overflow-hidden order-2 lg:order-1 min-h-[280px]">
+                    <img src="{{ Storage::url($svcImg2) }}" alt="Project Management" class="w-full h-full object-cover" style="min-height:280px;">
+                </div>
+                @else
                 <div class="bg-[#27AE22] rounded-3xl p-10 text-[#1A237E] order-2 lg:order-1 flex flex-col justify-center min-h-[280px]">
                     <p class="text-4xl font-bold mb-2">End-to-End</p>
                     <p class="text-xl font-semibold mb-3">Project Oversight</p>
                     <p class="text-[#1A237E]/70 text-sm leading-relaxed">From acquisition to final handover, every project under our management meets professional standards on time and within budget.</p>
                 </div>
+                @endif
                 <div class="order-1 lg:order-2">
                     <div class="w-14 h-14 bg-[#1A237E]/8 rounded-2xl flex items-center justify-center mb-6">
                         <svg class="w-7 h-7 text-[#1A237E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -123,22 +142,34 @@
                     </div>
                     <p class="text-[#27AE22] font-semibold italic">Designed for investors seeking high-yield returns.</p>
                 </div>
+                @if($svcImg3)
+                <div class="rounded-3xl overflow-hidden min-h-[280px]">
+                    <img src="{{ Storage::url($svcImg3) }}" alt="Property Flipping" class="w-full h-full object-cover" style="min-height:280px;">
+                </div>
+                @else
                 <div class="bg-gradient-to-br from-[#1A237E] to-[#1a2e50] rounded-3xl p-10 text-white flex flex-col justify-center min-h-[280px]">
                     <p class="text-4xl font-bold text-[#27AE22] mb-2">Maximise</p>
                     <p class="text-xl font-semibold mb-3">Resale Value</p>
                     <p class="text-gray-400 text-sm leading-relaxed">Strategic repositioning of undervalued properties to deliver superior investor returns.</p>
                 </div>
+                @endif
             </div>
 
             <div class="border-t border-gray-100"></div>
 
             {{-- JV Partnerships --}}
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center" data-reveal>
+                @if($svcImg4)
+                <div class="rounded-3xl overflow-hidden order-2 lg:order-1 min-h-[280px]">
+                    <img src="{{ Storage::url($svcImg4) }}" alt="Joint Venture Partnerships" class="w-full h-full object-cover" style="min-height:280px;">
+                </div>
+                @else
                 <div class="bg-[#27AE22] rounded-3xl p-10 text-[#1A237E] order-2 lg:order-1 flex flex-col justify-center min-h-[280px]">
                     <p class="text-4xl font-bold mb-2">Strategic</p>
                     <p class="text-xl font-semibold mb-3">Alliances. Shared Success.</p>
                     <p class="text-[#1A237E]/70 text-sm leading-relaxed">We collaborate with landowners and investors through structured, transparent JV agreements designed for mutual growth.</p>
                 </div>
+                @endif
                 <div class="order-1 lg:order-2">
                     <div class="w-14 h-14 bg-[#1A237E]/8 rounded-2xl flex items-center justify-center mb-6">
                         <svg class="w-7 h-7 text-[#1A237E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -198,11 +229,17 @@
                     </div>
                     <p class="text-[#27AE22] font-semibold italic">We build assets that appreciate.</p>
                 </div>
+                @if($svcImg5)
+                <div class="rounded-3xl overflow-hidden min-h-[280px]">
+                    <img src="{{ Storage::url($svcImg5) }}" alt="Property Development" class="w-full h-full object-cover" style="min-height:280px;">
+                </div>
+                @else
                 <div class="bg-gradient-to-br from-[#1A237E] to-[#1a2e50] rounded-3xl p-10 text-white flex flex-col justify-center min-h-[280px]">
                     <p class="text-4xl font-bold text-[#27AE22] mb-2">Investment-Ready</p>
                     <p class="text-xl font-semibold mb-3">Developments</p>
                     <p class="text-gray-400 text-sm leading-relaxed">Raw land transformed into structured estates and residential projects built for lasting value.</p>
                 </div>
+                @endif
             </div>
 
         </div>

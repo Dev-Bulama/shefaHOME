@@ -82,6 +82,37 @@
                         <p class="text-xs text-gray-400 mt-1">Recommended: 40–80px. Default is 48px.</p>
                     </div>
                     <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Footer Logo</label>
+                        <p class="text-xs text-gray-400 mb-2">Shown in the footer. Leave blank to use the main logo above.</p>
+                        @if(!empty($settings['footer_logo']))
+                        <img src="{{ Storage::url($settings['footer_logo']) }}" class="h-10 mb-2 object-contain"/>
+                        @endif
+                        <input type="file" name="footer_logo" accept="image/*"
+                            class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100"/>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Footer Logo Height (px)</label>
+                        <input type="number" name="footer_logo_height" value="{{ old('footer_logo_height', $settings['footer_logo_height'] ?? '40') }}" min="20" max="120"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none"/>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Navbar Background Color</label>
+                        <p class="text-xs text-gray-400 mb-2">Color of the navbar when the page is scrolled or the mobile menu is open.</p>
+                        <div class="flex items-center gap-3">
+                            <input type="color" id="navbarBgColorPicker"
+                                value="{{ old('navbar_bg_color', $settings['navbar_bg_color'] ?? '#1A237E') }}"
+                                class="h-10 w-16 border border-gray-200 rounded-lg cursor-pointer p-1"
+                                oninput="document.getElementById('navbarBgColor').value=this.value"/>
+                            <input type="text" name="navbar_bg_color"
+                                id="navbarBgColor"
+                                value="{{ old('navbar_bg_color', $settings['navbar_bg_color'] ?? '#1A237E') }}"
+                                placeholder="#1A237E"
+                                class="w-32 border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono focus:ring-2 focus:ring-amber-400 focus:outline-none"
+                                oninput="(function(v){if(/^#[0-9a-f]{6}$/i.test(v))document.getElementById('navbarBgColorPicker').value=v})(this.value)"/>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Default: #1A237E (navy). You can also type a hex code directly.</p>
+                    </div>
+                    <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Favicon</label>
                         @if(!empty($settings['favicon']))
                         <img src="{{ Storage::url($settings['favicon']) }}" class="h-8 w-8 mb-2 object-contain"/>
@@ -136,6 +167,30 @@
                                 </label>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                {{-- Services Page Images --}}
+                <div class="border-t border-gray-100 pt-5">
+                    <h4 class="font-semibold text-gray-700 mb-1 text-sm">Services Page Images</h4>
+                    <p class="text-xs text-gray-400 mb-4">Upload images for each service section. If left blank, the default coloured block is shown.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        @foreach([
+                            ['Land Banking Investment', 'svc_land_banking_image'],
+                            ['Project Management', 'svc_project_mgmt_image'],
+                            ['Property Flipping', 'svc_flipping_image'],
+                            ['JV Partnerships', 'svc_jv_image'],
+                            ['Property Development', 'svc_development_image'],
+                        ] as [$label, $key])
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">{{ $label }}</label>
+                            @if(!empty($settings[$key]))
+                            <img src="{{ Storage::url($settings[$key]) }}" class="h-20 w-full object-cover rounded-lg border mb-2"/>
+                            @endif
+                            <input type="file" name="{{ $key }}" accept="image/*"
+                                class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100"/>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

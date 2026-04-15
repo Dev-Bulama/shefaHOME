@@ -50,8 +50,16 @@ src="https://www.facebook.com/tr?id=2115240449426594&ev=PageView&noscript=1"
             ['key'=>'facebook_pixel_id',     'value'=>'2115240449426594',                                     'group'=>'seo'],
             // General (extra)
             ['key'=>'logo_height',           'value'=>'48',                                                     'group'=>'general'],
+            ['key'=>'footer_logo',           'value'=>'',                                                       'group'=>'general'],
+            ['key'=>'footer_logo_height',    'value'=>'40',                                                     'group'=>'general'],
+            ['key'=>'navbar_bg_color',       'value'=>'#1A237E',                                                'group'=>'general'],
             ['key'=>'maintenance_mode',      'value'=>'0',                                                      'group'=>'general'],
             ['key'=>'whatsapp_bubble',       'value'=>'1',                                                      'group'=>'general'],
+            ['key'=>'svc_land_banking_image','value'=>'',                                                       'group'=>'general'],
+            ['key'=>'svc_project_mgmt_image','value'=>'',                                                       'group'=>'general'],
+            ['key'=>'svc_flipping_image',    'value'=>'',                                                       'group'=>'general'],
+            ['key'=>'svc_jv_image',          'value'=>'',                                                       'group'=>'general'],
+            ['key'=>'svc_development_image', 'value'=>'',                                                       'group'=>'general'],
             // Payments
             ['key'=>'paystack_public_key',   'value'=>'',                                                      'group'=>'payments'],
             ['key'=>'paystack_secret_key',   'value'=>'',                                                      'group'=>'payments'],

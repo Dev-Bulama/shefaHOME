@@ -32,8 +32,8 @@
                     <div class="absolute inset-0 flex items-center">
                         <div class="max-w-7xl mx-auto px-10 sm:px-14 lg:px-8 w-full">
                             <div class="max-w-2xl" :class="current === index ? 'animate-[fadeInUp_0.8s_ease_forwards]' : ''">
-                                <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-3 sm:mb-4" x-text="slide.title"></h1>
-                                <p class="text-gray-200 text-base sm:text-xl mb-6 sm:mb-8" x-text="slide.subtitle"></p>
+                                <h1 x-show="slide.title" class="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-3 sm:mb-4" x-text="slide.title"></h1>
+                                <p x-show="slide.subtitle" class="text-gray-200 text-base sm:text-xl mb-6 sm:mb-8" x-text="slide.subtitle"></p>
                                 <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
                                     <a :href="slide.cta_url || '/properties'" class="bg-[#27AE22] text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-[#1D9418] transition-all hover:scale-105 text-sm sm:text-base text-center" x-text="slide.cta_text || 'Explore Properties'"></a>
                                     <a x-show="slide.cta_text_2" :href="slide.cta_url_2 || '/contact'" class="border-2 border-white text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-white hover:text-[#1A237E] transition-all text-sm sm:text-base text-center" x-text="slide.cta_text_2"></a>

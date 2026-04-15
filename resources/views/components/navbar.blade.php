@@ -1,9 +1,11 @@
+@php $navbarBg = \App\Helpers\Settings::get('navbar_bg_color', '#1A237E'); @endphp
 <nav x-data="{
         scrolled: false,
         mobileOpen: false,
         init() { window.addEventListener('scroll', () => { this.scrolled = window.scrollY > 50; }); }
     }"
-    :class="scrolled ? 'bg-[#1A237E] shadow-xl shadow-black/20' : 'bg-transparent'"
+    :class="scrolled ? 'shadow-xl shadow-black/20' : 'bg-transparent'"
+    :style="scrolled ? 'background-color: {{ $navbarBg }}' : ''"
     class="fixed top-0 left-0 right-0 z-50 transition-all duration-400">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -118,8 +120,8 @@
          x-transition:leave="transition ease-in duration-200"
          x-transition:leave-start="opacity-100 translate-y-0"
          x-transition:leave-end="opacity-0 -translate-y-4"
-         class="lg:hidden bg-[#1A237E] border-t border-white/10 shadow-2xl"
-         style="display:none;">
+         class="lg:hidden border-t border-white/10 shadow-2xl"
+         style="background-color: {{ $navbarBg }}; display:none;">
 
         <div class="max-w-7xl mx-auto px-4 py-4 space-y-1">
 

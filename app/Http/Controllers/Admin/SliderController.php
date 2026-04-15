@@ -10,7 +10,7 @@ class SliderController extends Controller {
     public function create() { return view('admin.sliders.create'); }
 
     public function store(Request $request) {
-        $data = $request->validate(['title'=>'required|string|max:255','image'=>'required|image|max:5120','text_position'=>'in:left,center,right']);
+        $data = $request->validate(['title'=>'nullable|string|max:255','image'=>'required|image|max:5120','text_position'=>'in:left,center,right']);
         $data['image'] = ImageService::upload($request->file('image'), 'sliders');
         $data['is_active'] = $request->boolean('is_active', true);
         $data['subtitle'] = $request->subtitle; $data['cta_text'] = $request->cta_text;
@@ -24,7 +24,7 @@ class SliderController extends Controller {
 
     public function update(Request $request, $id) {
         $slider = Slider::findOrFail($id);
-        $data = $request->validate(['title'=>'required|string|max:255','image'=>'nullable|image|max:5120']);
+        $data = $request->validate(['title'=>'nullable|string|max:255','image'=>'nullable|image|max:5120']);
         if($request->hasFile('image')) { ImageService::delete($slider->image); $data['image'] = ImageService::upload($request->file('image'), 'sliders'); } else { unset($data['image']); }
         $data['is_active'] = $request->boolean('is_active', true);
         $data['subtitle'] = $request->subtitle; $data['cta_text'] = $request->cta_text;

@@ -124,11 +124,18 @@
 
                 {{-- Contact Info Cards --}}
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    @foreach([
-                        ['icon'=>'phone','label'=>'Call Us','value'=>config('shefahomes.phone', '08105494713'),'color'=>'bg-blue-50 text-blue-600','link'=>'tel:'.config('shefahomes.phone','08105494713')],
-                        ['icon'=>'email','label'=>'Email Us','value'=>config('shefahomes.email', 'info@shefahomesng.com'),'color'=>'bg-emerald-50 text-emerald-600','link'=>'mailto:'.config('shefahomes.email','info@shefahomesng.com')],
-                        ['icon'=>'whatsapp','label'=>'WhatsApp','value'=>'09122388541','color'=>'bg-green-50 text-green-600','link'=>'https://wa.me/'.config('shefahomes.whatsapp','2349122388541')],
-                        ['icon'=>'location','label'=>'Head Office','value'=>config('shefahomes.address', '5, Charity Road, Opposite UBA Oko/Oba Ifako-Ijaye Ijaiye Lagos'),'color'=>'bg-orange-50 text-orange-600','link'=>'#'],
+                    @php
+                    $cPhone   = \App\Helpers\Settings::get('phone_1', '08105494713');
+                    $cEmail   = \App\Helpers\Settings::get('email', 'info@shefahomesng.com');
+                    $cWa      = \App\Helpers\Settings::get('whatsapp', '09122388541');
+                    $cWaIntl  = preg_replace('/^0/', '234', $cWa);
+                    $cAddress = \App\Helpers\Settings::get('address', '5, Charity Road, Opposite UBA Oko/Oba Ifako-Ijaye Ijaiye Lagos');
+                @endphp
+                @foreach([
+                        ['icon'=>'phone','label'=>'Call Us','value'=>$cPhone,'color'=>'bg-blue-50 text-blue-600','link'=>'tel:'.$cPhone],
+                        ['icon'=>'email','label'=>'Email Us','value'=>$cEmail,'color'=>'bg-emerald-50 text-emerald-600','link'=>'mailto:'.$cEmail],
+                        ['icon'=>'whatsapp','label'=>'WhatsApp','value'=>$cWa,'color'=>'bg-green-50 text-green-600','link'=>'https://wa.me/'.$cWaIntl],
+                        ['icon'=>'location','label'=>'Head Office','value'=>$cAddress,'color'=>'bg-orange-50 text-orange-600','link'=>'#'],
                     ] as $info)
                     <a href="{{ $info['link'] }}"
                        class="flex items-start gap-4 bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-md hover:border-[#27AE22]/30 transition-all group">

@@ -33,7 +33,7 @@
                 {{-- Social Icons --}}
                 <div class="flex items-center gap-3">
                     {{-- Facebook --}}
-                    <a href="{{ $settings['social_facebook'] ?? '#' }}"
+                    <a href="{{ \App\Helpers\Settings::get('social_facebook', '#') }}"
                        target="_blank" rel="noopener"
                        class="w-9 h-9 rounded-full bg-white/10 hover:bg-[#27AE22] flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 group"
                        aria-label="Facebook">
@@ -43,7 +43,7 @@
                     </a>
 
                     {{-- Instagram --}}
-                    <a href="{{ $settings['social_instagram'] ?? '#' }}"
+                    <a href="{{ \App\Helpers\Settings::get('social_instagram', '#') }}"
                        target="_blank" rel="noopener"
                        class="w-9 h-9 rounded-full bg-white/10 hover:bg-[#27AE22] flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 group"
                        aria-label="Instagram">
@@ -53,7 +53,7 @@
                     </a>
 
                     {{-- Twitter/X --}}
-                    <a href="{{ $settings['social_twitter'] ?? '#' }}"
+                    <a href="{{ \App\Helpers\Settings::get('social_twitter', '#') }}"
                        target="_blank" rel="noopener"
                        class="w-9 h-9 rounded-full bg-white/10 hover:bg-[#27AE22] flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 group"
                        aria-label="Twitter">
@@ -63,7 +63,7 @@
                     </a>
 
                     {{-- LinkedIn --}}
-                    <a href="{{ $settings['social_linkedin'] ?? '#' }}"
+                    <a href="{{ \App\Helpers\Settings::get('social_linkedin', '#') }}"
                        target="_blank" rel="noopener"
                        class="w-9 h-9 rounded-full bg-white/10 hover:bg-[#27AE22] flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 group"
                        aria-label="LinkedIn">
@@ -73,7 +73,7 @@
                     </a>
 
                     {{-- YouTube --}}
-                    <a href="{{ $settings['social_youtube'] ?? '#' }}"
+                    <a href="{{ \App\Helpers\Settings::get('social_youtube', '#') }}"
                        target="_blank" rel="noopener"
                        class="w-9 h-9 rounded-full bg-white/10 hover:bg-[#27AE22] flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 group"
                        aria-label="YouTube">
@@ -85,9 +85,12 @@
 
                 {{-- Certifications --}}
                 <div class="mt-6 flex items-center gap-2">
+                    @php $rcNumber = \App\Helpers\Settings::get('rc_number', ''); @endphp
+                    @if($rcNumber)
                     <div class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 font-medium">
-                        RC: {{ $settings['rc_number'] ?? '123456' }}
+                        RC: {{ $rcNumber }}
                     </div>
+                    @endif
                     <div class="px-3 py-1.5 bg-[#27AE22]/10 border border-[#27AE22]/20 rounded-lg text-xs text-[#27AE22] font-medium">
                         EFCC Certified
                     </div>
@@ -212,7 +215,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                             </svg>
                         </div>
-                        <span class="text-gray-400 text-sm leading-relaxed">{{ $settings['address'] ?? '5, Charity Road, Opposite UBA Oko/Oba Ifako-Ijaye Ijaiye Lagos' }}</span>
+                        <span class="text-gray-400 text-sm leading-relaxed">{{ \App\Helpers\Settings::get('address', '5, Charity Road, Opposite UBA Oko/Oba Ifako-Ijaye Ijaiye Lagos') }}</span>
                     </li>
                     <li class="flex items-center gap-3">
                         <div class="w-7 h-7 bg-[#27AE22]/10 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -220,9 +223,9 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                             </svg>
                         </div>
-                        <a href="tel:{{ $settings['phone'] ?? '08105494713' }}"
+                        <a href="tel:{{ \App\Helpers\Settings::get('phone_1', '08105494713') }}"
                            class="text-gray-400 hover:text-[#27AE22] text-sm transition-colors">
-                            {{ $settings['phone'] ?? '08105494713' }}
+                            {{ \App\Helpers\Settings::get('phone_1', '08105494713') }}
                         </a>
                     </li>
                     <li class="flex items-center gap-3">
@@ -231,9 +234,9 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
                         </div>
-                        <a href="mailto:{{ $settings['email'] ?? 'hello@shefahomes.com' }}"
+                        <a href="mailto:{{ \App\Helpers\Settings::get('email', 'info@shefahomesng.com') }}"
                            class="text-gray-400 hover:text-[#27AE22] text-sm transition-colors">
-                            {{ $settings['email'] ?? 'hello@shefahomes.com' }}
+                            {{ \App\Helpers\Settings::get('email', 'info@shefahomesng.com') }}
                         </a>
                     </li>
                 </ul>

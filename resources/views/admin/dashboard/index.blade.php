@@ -5,6 +5,26 @@
 @section('content')
 <div class="space-y-6">
 
+    {{-- Visitor Summary Bar --}}
+    <div class="grid grid-cols-3 gap-4">
+        @foreach([
+            ['Visitors Today',       $visitorStats['today'] ?? 0, 'text-[#1A237E]', 'bg-blue-50'],
+            ['Visitors This Month',  $visitorStats['month'] ?? 0, 'text-purple-700', 'bg-purple-50'],
+            ['Total Unique Visitors',$visitorStats['total'] ?? 0, 'text-emerald-700', 'bg-emerald-50'],
+        ] as [$label, $val, $tc, $bg])
+        <div class="{{ $bg }} rounded-xl p-5 flex items-center gap-4 shadow-sm border border-white">
+            <svg class="w-8 h-8 {{ $tc }} flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            </svg>
+            <div>
+                <p class="text-2xl font-bold {{ $tc }}">{{ number_format($val) }}</p>
+                <p class="text-xs text-gray-500 leading-tight">{{ $label }}</p>
+            </div>
+        </div>
+        @endforeach
+    </div>
+
     {{-- Stat Cards --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
         @php
@@ -34,6 +54,32 @@
     </div>
 
     {{-- Charts Row --}}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl shadow p-6 lg:col-span-2">
+            <h2 class="text-sm font-semibold text-gray-700 mb-4">Daily Visitors (Last 7 Days)</h2>
+            <canvas id="visitorsChart" height="100"></canvas>
+        </div>
+        <div class="bg-white rounded-xl shadow p-6">
+            <h2 class="text-sm font-semibold text-gray-700 mb-4">Visitors by State</h2>
+            @if(isset($visitorsByState) && $visitorsByState->count())
+            <div class="space-y-2">
+                @php $maxCount = $visitorsByState->max('count') ?: 1; @endphp
+                @foreach($visitorsByState as $row)
+                <div class="flex items-center gap-2 text-sm">
+                    <span class="w-24 text-gray-600 truncate text-xs">{{ $row->state ?? 'Unknown' }}</span>
+                    <div class="flex-1 bg-gray-100 rounded-full h-2">
+                        <div class="bg-[#1A237E] h-2 rounded-full" style="width: {{ round($row->count / $maxCount * 100) }}%"></div>
+                    </div>
+                    <span class="text-xs text-gray-500 w-8 text-right">{{ $row->count }}</span>
+                </div>
+                @endforeach
+            </div>
+            @else
+            <p class="text-gray-400 text-sm text-center py-8">No location data yet.<br><span class="text-xs">Tracks after visitors arrive.</span></p>
+            @endif
+        </div>
+    </div>
+
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div class="bg-white rounded-xl shadow p-6">
             <h2 class="text-sm font-semibold text-gray-700 mb-4">Monthly Inquiries</h2>
@@ -44,6 +90,44 @@
             <canvas id="propertiesChart" height="120"></canvas>
         </div>
     </div>
+
+    {{-- Recent Visitors --}}
+    @if(isset($recentVisitors) && $recentVisitors->count())
+    <div class="bg-white rounded-xl shadow">
+        <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+            <h2 class="text-sm font-semibold text-gray-700">Recent Visitors</h2>
+            <span class="text-xs text-gray-400">Live tracking</span>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="bg-gray-50 text-xs text-gray-500 uppercase tracking-wide">
+                        <th class="px-4 py-3 text-left">Page</th>
+                        <th class="px-4 py-3 text-left">Browser</th>
+                        <th class="px-4 py-3 text-left">Device</th>
+                        <th class="px-4 py-3 text-left">State</th>
+                        <th class="px-4 py-3 text-left">Time</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-50">
+                    @foreach($recentVisitors as $v)
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-4 py-2.5 text-gray-700 font-medium truncate max-w-[180px]">/{{ ltrim($v->page, '/') ?: 'Home' }}</td>
+                        <td class="px-4 py-2.5 text-gray-500 text-xs">{{ $v->browser ?? '—' }}</td>
+                        <td class="px-4 py-2.5">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium {{ $v->device === 'mobile' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700' }}">
+                                {{ ucfirst($v->device ?? 'Desktop') }}
+                            </span>
+                        </td>
+                        <td class="px-4 py-2.5 text-gray-500 text-xs">{{ $v->state ?? 'Nigeria' }}</td>
+                        <td class="px-4 py-2.5 text-gray-400 text-xs">{{ $v->created_at->diffForHumans() }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @endif
 
     {{-- Tables Row --}}
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -131,8 +215,29 @@
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const inquiriesData = @json($monthlyInquiries ?? []);
-    const propertiesData = @json($propertiesByState ?? []);
+    const inquiriesData   = @json($monthlyInquiries ?? []);
+    const propertiesData  = @json($propertiesByState ?? []);
+    const dailyVisitData  = @json($dailyVisitors ?? []);
+
+    // Daily Visitors Bar Chart
+    new Chart(document.getElementById('visitorsChart'), {
+        type: 'bar',
+        data: {
+            labels: dailyVisitData.map(d => d.day),
+            datasets: [{
+                label: 'Visitors',
+                data: dailyVisitData.map(d => d.count),
+                backgroundColor: 'rgba(26,35,126,0.8)',
+                borderRadius: 6,
+                hoverBackgroundColor: '#27AE22',
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+        }
+    });
 
     // Monthly Inquiries Line Chart
     new Chart(document.getElementById('inquiriesChart'), {
@@ -154,9 +259,7 @@
         options: {
             responsive: true,
             plugins: { legend: { display: false } },
-            scales: {
-                y: { beginAtZero: true, ticks: { precision: 0 } }
-            }
+            scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
         }
     });
 
@@ -168,16 +271,14 @@
             datasets: [{
                 label: 'Properties',
                 data: propertiesData.map(d => d.count),
-                backgroundColor: '#1D4ED8',
+                backgroundColor: '#27AE22',
                 borderRadius: 4,
             }]
         },
         options: {
             responsive: true,
             plugins: { legend: { display: false } },
-            scales: {
-                y: { beginAtZero: true, ticks: { precision: 0 } }
-            }
+            scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
         }
     });
 </script>

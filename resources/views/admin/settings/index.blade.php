@@ -68,6 +68,12 @@
                             class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none">{{ old('address', $settings['address'] ?? '') }}</textarea>
                     </div>
                     <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Company RC Number</label>
+                        <input type="text" name="rc_number" value="{{ old('rc_number', $settings['rc_number'] ?? '') }}" placeholder="e.g. MCT60842"
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none"/>
+                        <p class="text-xs text-gray-400 mt-1">Shows in the footer. Leave blank to hide.</p>
+                    </div>
+                    <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Logo</label>
                         @if(!empty($settings['logo']))
                         <img src="{{ Storage::url($settings['logo']) }}" class="h-12 mb-2 object-contain"/>

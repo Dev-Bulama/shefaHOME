@@ -114,7 +114,7 @@
                         <div x-show="tab === 'overview'" x-transition>
                             @if($property->description)
                             <div class="prose prose-gray max-w-none text-gray-600 leading-relaxed mb-6">
-                                {!! nl2br(e($property->description)) !!}
+                                {!! $property->description !!}
                             </div>
                             @endif
 

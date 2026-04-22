@@ -4,6 +4,7 @@
 @include('public.home._hero')
 @include('public.home._search')
 @include('public.home._featured', ['featuredProperties' => $featuredProperties])
+@include('public.home._property-categories')
 @include('public.home._stats', ['stats' => $stats])
 @include('public.home._why-us')
 @include('public.home._home-sections')

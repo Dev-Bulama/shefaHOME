@@ -6,7 +6,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class PropertyType extends Model {
     use HasSlug;
-    protected $fillable = ['name','slug','icon','description'];
+    protected $fillable = ['name','slug','icon','description','listing_type'];
     public function getSlugOptions(): SlugOptions { return SlugOptions::create()->generateSlugsFrom('name')->saveSlugsTo('slug'); }
     public function properties() { return $this->hasMany(Property::class); }
 }

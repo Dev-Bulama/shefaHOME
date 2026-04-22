@@ -73,6 +73,25 @@
                 @enderror
             </div>
 
+            {{-- Listing Type --}}
+            <div>
+                <label for="listing_type" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                    Listing Type
+                    <span class="text-xs font-normal text-gray-400 ml-1">(controls which search tab this type appears under)</span>
+                </label>
+                <select id="listing_type" name="listing_type"
+                        class="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22]/40 focus:border-[#27AE22] transition @error('listing_type') border-red-400 @enderror">
+                    <option value="">— All (appears in every tab) —</option>
+                    <option value="rent"         {{ old('listing_type') == 'rent'         ? 'selected' : '' }}>For Rent only</option>
+                    <option value="buy"          {{ old('listing_type') == 'buy'          ? 'selected' : '' }}>For Sale only</option>
+                    <option value="buy_and_rent" {{ old('listing_type') == 'buy_and_rent' ? 'selected' : '' }}>Rent &amp; Sale</option>
+                    <option value="shortlet"     {{ old('listing_type') == 'shortlet'     ? 'selected' : '' }}>Short Let only</option>
+                </select>
+                @error('listing_type')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
             {{-- Description --}}
             <div>
                 <label for="description" class="block text-sm font-semibold text-gray-700 mb-1.5">Description</label>

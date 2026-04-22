@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
-use App\Models\{Slider, Property, Stat, Testimonial, BlogPost, Partner, Award, TeamMember};
+use App\Models\{Slider, Property, PropertyType, Stat, Testimonial, BlogPost, Partner, Award, TeamMember};
 
 class HomeController extends Controller {
     public function index() {
@@ -13,6 +13,8 @@ class HomeController extends Controller {
         $partners = Partner::where('is_active',true)->orderBy('sort_order')->get();
         $awards = Award::orderBy('sort_order')->take(4)->get();
         $featuredTeam = TeamMember::active()->where('is_featured', true)->take(6)->get();
-        return view('public.home.index', compact('sliders','featuredProperties','stats','testimonials','latestPosts','partners','awards','featuredTeam'));
+        $propertyTypes = PropertyType::orderBy('name')->get(['id','name','listing_type']);
+        $states = Property::where('is_active', true)->distinct()->pluck('state')->sort()->values();
+        return view('public.home.index', compact('sliders','featuredProperties','stats','testimonials','latestPosts','partners','awards','featuredTeam','propertyTypes','states'));
     }
 }

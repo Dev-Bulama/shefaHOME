@@ -29,6 +29,7 @@
                     <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Name</th>
                     <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Slug</th>
                     <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Description</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Listing Type</th>
                     <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Properties</th>
                     <th class="px-6 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
@@ -47,6 +48,13 @@
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-500 max-w-xs">
                         {{ Str::limit($type->description, 80) ?: '—' }}
+                    </td>
+                    <td class="px-6 py-4">
+                        @php
+                            $ltMap = ['rent'=>['For Rent','bg-sky-100 text-sky-700'],'buy'=>['For Sale','bg-violet-100 text-violet-700'],'buy_and_rent'=>['Rent & Sale','bg-amber-100 text-amber-700'],'shortlet'=>['Short Let','bg-pink-100 text-pink-700']];
+                            [$ltLabel, $ltClass] = $ltMap[$type->listing_type] ?? ['All','bg-gray-100 text-gray-500'];
+                        @endphp
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold {{ $ltClass }}">{{ $ltLabel }}</span>
                     </td>
                     <td class="px-6 py-4">
                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#1A237E]/10 text-[#1A237E]">
@@ -68,7 +76,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6" class="px-6 py-12 text-center">
+                    <td colspan="7" class="px-6 py-12 text-center">
                         <div class="flex flex-col items-center gap-3">
                             <svg class="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"

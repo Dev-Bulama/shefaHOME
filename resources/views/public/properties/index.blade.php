@@ -119,7 +119,7 @@
                         <div class="px-6 py-5">
                             <h4 class="font-semibold text-[#1A237E] text-sm mb-4 uppercase tracking-wider">Status</h4>
                             <div class="space-y-2">
-                                @foreach(['' => 'All', 'available' => 'Available', 'selling_fast' => 'Selling Fast', 'coming_soon' => 'Coming Soon'] as $val => $label)
+                                @foreach(['' => 'All', 'rent' => 'For Rent', 'buy' => 'For Sale', 'buy_and_rent' => 'Rent & Sale', 'shortlet' => 'Short Let', 'available' => 'Available', 'sold_out' => 'Sold Out', 'coming_soon' => 'Coming Soon'] as $val => $label)
                                 <label class="flex items-center gap-3 cursor-pointer">
                                     <input type="radio" name="status" value="{{ $val }}"
                                            {{ request('status', '') == $val ? 'checked' : '' }}
@@ -180,8 +180,8 @@
 
                             {{-- Status badge --}}
                             @php
-                                $statusMap = ['available'=>'bg-emerald-500','selling_fast'=>'bg-orange-500','sold_out'=>'bg-red-500','coming_soon'=>'bg-blue-500'];
-                                $statusLabel = ['available'=>'Available','selling_fast'=>'Selling Fast','sold_out'=>'Sold Out','coming_soon'=>'Coming Soon'];
+                                $statusMap = ['available'=>'bg-emerald-500','selling_fast'=>'bg-orange-500','sold_out'=>'bg-red-500','coming_soon'=>'bg-blue-500','rent'=>'bg-sky-600','buy'=>'bg-violet-600','buy_and_rent'=>'bg-amber-500','shortlet'=>'bg-pink-500'];
+                                $statusLabel = ['available'=>'Available','selling_fast'=>'Selling Fast','sold_out'=>'Sold Out','coming_soon'=>'Coming Soon','rent'=>'For Rent','buy'=>'For Sale','buy_and_rent'=>'Rent & Sale','shortlet'=>'Short Let'];
                             @endphp
                             <span class="absolute top-3 left-3 {{ $statusMap[$property->status] ?? 'bg-gray-500' }} text-white text-xs font-bold px-3 py-1 rounded-full shadow">
                                 {{ $statusLabel[$property->status] ?? ucfirst($property->status) }}

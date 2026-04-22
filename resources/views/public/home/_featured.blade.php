@@ -40,12 +40,20 @@
                             'selling_fast' => 'bg-orange-500 text-white',
                             'sold_out'     => 'bg-red-500 text-white',
                             'coming_soon'  => 'bg-blue-500 text-white',
+                            'rent'         => 'bg-sky-600 text-white',
+                            'buy'          => 'bg-violet-600 text-white',
+                            'buy_and_rent' => 'bg-amber-500 text-white',
+                            'shortlet'     => 'bg-pink-500 text-white',
                         ];
                         $statusLabels = [
                             'available'    => 'Available',
                             'selling_fast' => 'Selling Fast',
                             'sold_out'     => 'Sold Out',
                             'coming_soon'  => 'Coming Soon',
+                            'rent'         => 'For Rent',
+                            'buy'          => 'For Sale',
+                            'buy_and_rent' => 'Rent & Sale',
+                            'shortlet'     => 'Short Let',
                         ];
                         $badgeClass = $statusClasses[$property->status] ?? 'bg-gray-500 text-white';
                         $badgeLabel = $statusLabels[$property->status] ?? ucfirst($property->status);

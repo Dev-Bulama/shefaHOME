@@ -37,7 +37,7 @@ class PropertyController extends Controller {
             'address' => 'required|string',
             'price_from' => 'required|numeric|min:0',
             'cover_image' => 'required|image|max:5120',
-            'status' => 'required|in:available,sold_out,coming_soon',
+            'status' => 'required|in:available,sold_out,coming_soon,rent,buy,buy_and_rent,shortlet',
         ]);
 
         $data['cover_image'] = ImageService::upload($request->file('cover_image'), 'properties');
@@ -91,7 +91,7 @@ class PropertyController extends Controller {
             'address' => 'required|string',
             'price_from' => 'required|numeric|min:0',
             'cover_image' => 'nullable|image|max:5120',
-            'status' => 'required|in:available,sold_out,coming_soon',
+            'status' => 'required|in:available,sold_out,coming_soon,rent,buy,buy_and_rent,shortlet',
         ]);
 
         if($request->hasFile('cover_image')) {

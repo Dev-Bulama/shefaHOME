@@ -88,11 +88,18 @@
                         </label>
                         <select x-model="status"
                                 class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#27AE22] focus:border-[#27AE22] transition-all appearance-none cursor-pointer text-sm sm:text-base">
-                            <option value="">All Status</option>
-                            <option value="available">Available</option>
-                            <option value="selling_fast">Selling Fast</option>
-                            <option value="sold_out">Sold Out</option>
-                            <option value="coming_soon">Coming Soon</option>
+                            <option value="">All Listings</option>
+                            <optgroup label="Listing Type">
+                                <option value="rent">For Rent</option>
+                                <option value="buy">For Sale</option>
+                                <option value="buy_and_rent">Rent &amp; Sale</option>
+                                <option value="shortlet">Short Let</option>
+                            </optgroup>
+                            <optgroup label="Availability">
+                                <option value="available">Available</option>
+                                <option value="sold_out">Sold Out</option>
+                                <option value="coming_soon">Coming Soon</option>
+                            </optgroup>
                         </select>
                     </div>
 

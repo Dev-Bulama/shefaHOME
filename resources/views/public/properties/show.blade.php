@@ -42,8 +42,8 @@
 
                         {{-- Status badge --}}
                         @php
-                            $sMap = ['available'=>'bg-emerald-500','selling_fast'=>'bg-orange-500','sold_out'=>'bg-red-500','coming_soon'=>'bg-blue-500'];
-                            $sLabel = ['available'=>'Available','selling_fast'=>'Selling Fast','sold_out'=>'Sold Out','coming_soon'=>'Coming Soon'];
+                            $sMap = ['available'=>'bg-emerald-500','selling_fast'=>'bg-orange-500','sold_out'=>'bg-red-500','coming_soon'=>'bg-blue-500','rent'=>'bg-sky-600','buy'=>'bg-violet-600','buy_and_rent'=>'bg-amber-500','shortlet'=>'bg-pink-500'];
+                            $sLabel = ['available'=>'Available','selling_fast'=>'Selling Fast','sold_out'=>'Sold Out','coming_soon'=>'Coming Soon','rent'=>'For Rent','buy'=>'For Sale','buy_and_rent'=>'Rent & Sale','shortlet'=>'Short Let'];
                         @endphp
                         <span class="absolute top-5 left-5 {{ $sMap[$property->status] ?? 'bg-gray-500' }} text-white text-sm font-bold px-4 py-2 rounded-full shadow-lg">
                             {{ $sLabel[$property->status] ?? ucfirst($property->status) }}

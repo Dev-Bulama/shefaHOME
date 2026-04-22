@@ -234,9 +234,16 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Status <span class="text-red-500">*</span></label>
                         <select name="status" required class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none">
-                            @foreach(['available' => 'Available', 'sold_out' => 'Sold Out', 'coming_soon' => 'Coming Soon'] as $val => $lbl)
-                            <option value="{{ $val }}" {{ old('status', $property->status) == $val ? 'selected' : '' }}>{{ $lbl }}</option>
-                            @endforeach
+                            <optgroup label="Listing Type">
+                                @foreach(['rent' => 'Rent', 'buy' => 'Buy', 'buy_and_rent' => 'Buy and Rent', 'shortlet' => 'Shortlet'] as $val => $lbl)
+                                <option value="{{ $val }}" {{ old('status', $property->status) == $val ? 'selected' : '' }}>{{ $lbl }}</option>
+                                @endforeach
+                            </optgroup>
+                            <optgroup label="Availability">
+                                @foreach(['available' => 'Available', 'sold_out' => 'Sold Out', 'coming_soon' => 'Coming Soon'] as $val => $lbl)
+                                <option value="{{ $val }}" {{ old('status', $property->status) == $val ? 'selected' : '' }}>{{ $lbl }}</option>
+                                @endforeach
+                            </optgroup>
                         </select>
                     </div>
                     <div>

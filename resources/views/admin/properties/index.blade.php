@@ -48,9 +48,17 @@
             <label class="block text-xs font-medium text-gray-600 mb-1">Status</label>
             <select name="status" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-yellow-400 focus:outline-none">
                 <option value="">All Status</option>
-                <option value="available"   {{ request('status') == 'available'   ? 'selected' : '' }}>Available</option>
-                <option value="sold_out"    {{ request('status') == 'sold_out'    ? 'selected' : '' }}>Sold Out</option>
-                <option value="coming_soon" {{ request('status') == 'coming_soon' ? 'selected' : '' }}>Coming Soon</option>
+                <optgroup label="Listing Type">
+                    <option value="rent"         {{ request('status') == 'rent'         ? 'selected' : '' }}>Rent</option>
+                    <option value="buy"          {{ request('status') == 'buy'          ? 'selected' : '' }}>Buy</option>
+                    <option value="buy_and_rent" {{ request('status') == 'buy_and_rent' ? 'selected' : '' }}>Buy and Rent</option>
+                    <option value="shortlet"     {{ request('status') == 'shortlet'     ? 'selected' : '' }}>Shortlet</option>
+                </optgroup>
+                <optgroup label="Availability">
+                    <option value="available"   {{ request('status') == 'available'   ? 'selected' : '' }}>Available</option>
+                    <option value="sold_out"    {{ request('status') == 'sold_out'    ? 'selected' : '' }}>Sold Out</option>
+                    <option value="coming_soon" {{ request('status') == 'coming_soon' ? 'selected' : '' }}>Coming Soon</option>
+                </optgroup>
             </select>
         </div>
         <div class="flex gap-2">
@@ -94,7 +102,7 @@
                         <td class="px-4 py-3 text-gray-600">{{ ucfirst($property->type) }}</td>
                         <td class="px-4 py-3">
                             @php
-                                $sc = ['available'=>'bg-green-100 text-green-700','sold_out'=>'bg-red-100 text-red-600','coming_soon'=>'bg-yellow-100 text-yellow-700'];
+                                $sc = ['available'=>'bg-green-100 text-green-700','sold_out'=>'bg-red-100 text-red-600','coming_soon'=>'bg-yellow-100 text-yellow-700','rent'=>'bg-sky-100 text-sky-700','buy'=>'bg-violet-100 text-violet-700','buy_and_rent'=>'bg-amber-100 text-amber-700','shortlet'=>'bg-pink-100 text-pink-700'];
                                 $sc = $sc[$property->status] ?? 'bg-gray-100 text-gray-600';
                             @endphp
                             <span class="px-2 py-0.5 rounded-full text-xs font-medium {{ $sc }}">{{ ucfirst(str_replace('_',' ',$property->status)) }}</span>

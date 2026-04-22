@@ -214,9 +214,17 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Status <span class="text-red-500">*</span></label>
                         <select name="status" required class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none">
-                            <option value="available"   {{ old('status') == 'available'   ? 'selected' : '' }}>Available</option>
-                            <option value="sold_out"    {{ old('status') == 'sold_out'    ? 'selected' : '' }}>Sold Out</option>
-                            <option value="coming_soon" {{ old('status') == 'coming_soon' ? 'selected' : '' }}>Coming Soon</option>
+                            <optgroup label="Listing Type">
+                                <option value="rent"         {{ old('status') == 'rent'         ? 'selected' : '' }}>Rent</option>
+                                <option value="buy"          {{ old('status') == 'buy'          ? 'selected' : '' }}>Buy</option>
+                                <option value="buy_and_rent" {{ old('status') == 'buy_and_rent' ? 'selected' : '' }}>Buy and Rent</option>
+                                <option value="shortlet"     {{ old('status') == 'shortlet'     ? 'selected' : '' }}>Shortlet</option>
+                            </optgroup>
+                            <optgroup label="Availability">
+                                <option value="available"   {{ old('status') == 'available'   ? 'selected' : '' }}>Available</option>
+                                <option value="sold_out"    {{ old('status') == 'sold_out'    ? 'selected' : '' }}>Sold Out</option>
+                                <option value="coming_soon" {{ old('status') == 'coming_soon' ? 'selected' : '' }}>Coming Soon</option>
+                            </optgroup>
                         </select>
                     </div>
                     <div>

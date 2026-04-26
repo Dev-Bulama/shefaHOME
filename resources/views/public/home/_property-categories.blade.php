@@ -81,6 +81,7 @@ $defaults = [
 <p>Whether you\'re a startup, SME, or established company, we provide tailored office solutions that align with your brand image, operational needs, and budget.</p>
 
 <h3>Prime Business Locations We Cover</h3>
+<p>We offer access to office spaces in key commercial hubs across Lagos, including:</p>
 <ul>
   <li>GRA, Ikeja (Premium corporate environment)</li>
   <li>Ikeja Central Business District</li>
@@ -91,6 +92,7 @@ $defaults = [
 </ul>
 
 <h3>Office Space Options Available</h3>
+<p>Our portfolio includes a wide range of office types to suit different business structures:</p>
 <ul>
   <li>Serviced Offices – Ready-to-use with facilities and management</li>
   <li>Private Offices – For small teams and growing companies</li>
@@ -100,6 +102,7 @@ $defaults = [
 </ul>
 
 <h3>Flexible Leasing to Match Your Business</h3>
+<p>We understand that every business has unique needs, so we offer:</p>
 <ul>
   <li>Flexible budget options (we source within your range)</li>
   <li>Short-term &amp; long-term lease arrangements</li>
@@ -130,12 +133,60 @@ $defaults = [
 
     'filling_station' => [
         'title'       => 'Filling Station',
-        'subtitle'    => 'Rent & Buy',
+        'subtitle'    => 'Rent &amp; Buy',
         'pages'       => ['rent', 'buy'],
         'icon'        => '⛽',
         'button_text' => 'View Filling Stations',
         'button_url'  => '/properties?status=buy_and_rent',
-        'description' => '<p>At Shefa Homes, we connect investors and operators with prime filling station properties across Lagos and Ogun State — available for outright purchase or long-term lease.</p><p>Whether you are looking to acquire an operational station or secure a lease on a high-traffic location, our team will source the right opportunity for you.</p>',
+        'description' => '
+<p>At Shefa Homes, we specialize in connecting investors and businesses with profitable filling station opportunities across Lagos and Ogun State.</p>
+<p>Whether you are looking to acquire an existing station, lease an operational outlet, or secure land suitable for fuel station development, we provide tailored solutions that align with your investment goals.</p>
+
+<h3>Strategic Locations Available</h3>
+<p>We source filling stations and suitable sites in high-traffic, high-demand areas, including:</p>
+<ul>
+  <li>Major highways (Lagos/Ibadan Expressway, Lagos/Abeokuta Expressway)</li>
+  <li>Urban commercial zones (Ikeja, Surulere, Lekki, Ikoyi)</li>
+  <li>Growing suburban areas (Ajah, Sangotedo, Ogun axis)</li>
+  <li>Industrial and logistics corridors</li>
+</ul>
+
+<h3>Opportunities We Offer</h3>
+<p>Our portfolio includes a wide range of options:</p>
+<ul>
+  <li>Operational Filling Stations (For Sale) – With existing customer base and infrastructure</li>
+  <li>Filling Stations for Lease – Ready for immediate business operations</li>
+  <li>Development Sites – Strategically located land suitable for new station setup</li>
+  <li>Partnership / JV Opportunities – For investors looking to collaborate</li>
+</ul>
+
+<h3>Flexible Investment Options</h3>
+<p>We understand the scale and complexity of this investment, so we provide:</p>
+<ul>
+  <li>Flexible budget matching (we source based on your financial capacity)</li>
+  <li>Options ranging from small-scale stations to mega stations</li>
+  <li>Support with due diligence and documentation</li>
+  <li>Access to both on-market and off-market opportunities</li>
+</ul>
+
+<h3>Why Work With Shefa Homes?</h3>
+<ul>
+  <li>Strong network within commercial and petroleum property space</li>
+  <li>Access to verified and high-potential opportunities</li>
+  <li>Discreet handling of sensitive and high-value transactions</li>
+  <li>Professional guidance from sourcing to acquisition/lease completion</li>
+</ul>
+
+<h3>Let\'s Help You Secure the Right Opportunity</h3>
+<p>Looking to buy or lease a filling station? Share your requirements:</p>
+<ul>
+  <li>Preferred location</li>
+  <li>Budget range</li>
+  <li>Buy or lease preference</li>
+  <li>Scale (number of pumps, size, etc.)</li>
+</ul>
+<p>We will connect you with carefully vetted opportunities that match your investment strategy.</p>
+',
     ],
 
     'hotel' => [
@@ -210,6 +261,7 @@ $defaults = [
 <p>Whether you are an investor, developer, or corporate organization, we help you secure the right land in the right location — aligned with your vision and budget.</p>
 
 <h3>Strategic Locations We Cover</h3>
+<p>Our network spans high-demand and fast-growing areas across both Mainland and Island, including:</p>
 <ul>
   <li>GRA, Ikeja (Premium Residential &amp; Commercial)</li>
   <li>Magodo (High-end Residential Developments)</li>
@@ -222,6 +274,7 @@ $defaults = [
 </ul>
 
 <h3>Land Categories Available</h3>
+<p>We offer a diverse portfolio tailored to different purposes:</p>
 <ul>
   <li>Residential Land – Ideal for private homes, estates, and gated communities</li>
   <li>Commercial Land – Perfect for offices, retail developments, and mixed-use projects</li>
@@ -229,6 +282,7 @@ $defaults = [
 </ul>
 
 <h3>Flexible &amp; Client-Focused Approach</h3>
+<p>We understand that land acquisition is a major investment, so we offer:</p>
 <ul>
   <li>Flexible budget options (we work within your financial plan)</li>
   <li>Verified lands with clear titles (C of O, Gazette, Excision, etc.)</li>
@@ -313,6 +367,65 @@ $defaults = [
   <li>Specific features (BQ, estate, parking space, etc.)</li>
 </ul>
 <p>We\'ll present you with carefully selected duplex options that match your lifestyle and goals.</p>
+',
+    ],
+
+    'duplex_island' => [
+        'title'       => 'Duplex',
+        'subtitle'    => 'For Sale – Island Properties',
+        'pages'       => ['buy'],
+        'icon'        => '🏡',
+        'button_text' => 'View Island Duplexes',
+        'button_url'  => '/properties?status=buy',
+        'description' => '
+<p>At Shefa Homes, we connect you with premium 4-bedroom detached duplexes located in some of Lagos Island\'s most desirable neighborhoods.</p>
+<p>Whether you\'re buying for personal living, family comfort, or investment purposes, we provide access to carefully selected homes that combine luxury, functionality, and long-term value.</p>
+
+<h3>Prime Island Locations We Cover</h3>
+<p>Our listings span across top residential hubs, including:</p>
+<ul>
+  <li>Lekki Phase 1 (High-end living &amp; central accessibility)</li>
+  <li>Ajah (Affordable luxury &amp; fast-growing communities)</li>
+  <li>Sangotedo (Modern estates &amp; investment hotspots)</li>
+  <li>Other key areas across the Lekki-Ajah corridor</li>
+</ul>
+
+<h3>What to Expect in Our Duplexes</h3>
+<p>Our 4-bedroom detached homes are designed for comfort and modern living:</p>
+<ul>
+  <li>All rooms en-suite with spacious layouts</li>
+  <li>Contemporary living areas with premium finishing</li>
+  <li>Fully fitted modern kitchens</li>
+  <li>Ample parking space within private compounds</li>
+  <li>BQ (Boys\' Quarters) in selected properties</li>
+  <li>Located in secure, gated estates with good road access</li>
+</ul>
+
+<h3>Flexible Options Tailored to You</h3>
+<p>We understand that every buyer has different preferences, so we offer:</p>
+<ul>
+  <li>Flexible budget options (we match homes within your range)</li>
+  <li>Ready-to-move-in homes &amp; off-plan opportunities</li>
+  <li>Options for outright purchase or investment acquisition</li>
+  <li>Homes suited for both owner-occupiers and rental income</li>
+</ul>
+
+<h3>Why Choose Shefa Homes?</h3>
+<ul>
+  <li>Access to verified and premium duplex listings</li>
+  <li>Strong presence across Lagos Island property market</li>
+  <li>Professional guidance from inspection to closing</li>
+  <li>Focus on delivering properties that offer comfort, value &amp; appreciation</li>
+</ul>
+
+<h3>Let\'s Help You Find Your Ideal Home</h3>
+<p>Tell us exactly what you\'re looking for:</p>
+<ul>
+  <li>Preferred location (Lekki, Ajah, Sangotedo, etc.)</li>
+  <li>Budget range</li>
+  <li>Specific features (BQ, smart home, estate type, etc.)</li>
+</ul>
+<p>We\'ll match you with the best available options tailored to your lifestyle and investment goals.</p>
 ',
     ],
 
@@ -424,12 +537,21 @@ $tabs = ['rent' => 'For Rent', 'buy' => 'For Sale', 'shortlet' => 'Short Let'];
             </p>
         </div>
 
-        <div x-data="{ activeTab: 'rent' }">
+        <div x-data="{
+                activeTab: 'rent',
+                switchTab(tab) {
+                    this.activeTab = tab;
+                    this.$nextTick(() => {
+                        this.$el.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('revealed'));
+                    });
+                }
+            }"
+            x-init="$nextTick(() => $el.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('revealed')))">
 
             {{-- Tab Buttons --}}
             <div class="flex flex-wrap justify-center gap-2 mb-10">
                 @foreach($tabs as $tabKey => $tabLabel)
-                <button @click="activeTab = '{{ $tabKey }}'"
+                <button @click="switchTab('{{ $tabKey }}')"
                     :class="activeTab === '{{ $tabKey }}'
                         ? 'bg-[#1A237E] text-white shadow-lg shadow-[#1A237E]/30'
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"

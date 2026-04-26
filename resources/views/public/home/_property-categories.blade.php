@@ -140,12 +140,62 @@ $defaults = [
 
     'hotel' => [
         'title'       => 'Hotel',
-        'subtitle'    => 'Rent & Buy',
+        'subtitle'    => 'For Sale & Rent',
         'pages'       => ['rent', 'buy'],
         'icon'        => '🏨',
         'button_text' => 'View Hotel Properties',
         'button_url'  => '/properties?status=buy_and_rent',
-        'description' => '<p>At Shefa Homes, we source and list hotel properties across Lagos — from boutique hotels to large hospitality facilities — available for purchase or management lease.</p><p>Whether you are an investor seeking an income-generating hospitality asset or an operator looking for a managed property, we will find the right match for you.</p>',
+        'description' => '
+<p>At Shefa Homes, we connect investors and hospitality operators with high-potential hotel opportunities across Lagos and Ogun State.</p>
+<p>Whether you\'re looking to acquire an existing hotel, lease a fully operational facility, or partner on a hospitality project, we provide tailored solutions aligned with your investment and operational goals.</p>
+
+<h3>Strategic Locations Available</h3>
+<p>We source hotels and hospitality assets in prime and high-demand areas, including:</p>
+<ul>
+  <li>Lagos Island (Lekki, Victoria Island, Ikoyi – premium hospitality zones)</li>
+  <li>Lagos Mainland (Ikeja, Surulere, Yaba – business &amp; transit hubs)</li>
+  <li>Airport axis (high occupancy potential)</li>
+  <li>Ogun State corridors (emerging hospitality &amp; industrial demand zones)</li>
+</ul>
+
+<h3>Opportunities We Offer</h3>
+<p>Our portfolio covers a wide range of hospitality assets:</p>
+<ul>
+  <li>Operational Hotels (For Sale) – With existing clientele and revenue flow</li>
+  <li>Hotels for Lease – Ready for immediate operation</li>
+  <li>Partially Completed / Conversion Projects</li>
+  <li>Management &amp; Partnership Opportunities</li>
+  <li>Boutique hotels, serviced apartments, and large-scale hospitality facilities</li>
+</ul>
+
+<h3>Flexible Investment Structure</h3>
+<p>We understand that hospitality investments vary in scale, so we offer:</p>
+<ul>
+  <li>Flexible budget matching (aligned with your capacity)</li>
+  <li>Options ranging from small boutique hotels to large facilities</li>
+  <li>Support with due diligence and documentation</li>
+  <li>Access to off-market and discreet listings</li>
+</ul>
+
+<h3>Key Features You May Find</h3>
+<p>Depending on the property, features may include:</p>
+<ul>
+  <li>Multiple fully furnished guest rooms (en-suite)</li>
+  <li>Reception &amp; lobby areas</li>
+  <li>Restaurant / bar / lounge spaces</li>
+  <li>Swimming pool &amp; leisure facilities</li>
+  <li>Backup power supply (generator/transformer)</li>
+  <li>Conference &amp; event spaces</li>
+</ul>
+
+<h3>Why Work With Shefa Homes?</h3>
+<ul>
+  <li>Strong network in the commercial and hospitality property market</li>
+  <li>Access to verified, high-potential hotel assets</li>
+  <li>Discreet handling of high-value transactions</li>
+  <li>End-to-end support — from sourcing to acquisition or lease</li>
+</ul>
+',
     ],
 
     'land' => [
@@ -213,7 +263,57 @@ $defaults = [
         'icon'        => '🏘️',
         'button_text' => 'View Duplexes',
         'button_url'  => '/properties?status=buy',
-        'description' => '<p>At Shefa Homes, we list premium duplex properties across Lagos\'s most desirable residential neighbourhoods — from Lekki and Magodo to Surulere and Ikeja GRA.</p><p>Whether you are buying your first home or expanding your portfolio, we will connect you with the right duplex at the right price.</p>',
+        'description' => '
+<p>At Shefa Homes, we help you secure well-located 4-bedroom detached duplexes across Lagos Mainland\'s most desirable residential neighborhoods.</p>
+<p>Whether you\'re buying for comfortable family living, rental income, or long-term investment, we connect you with homes that offer space, accessibility, and value.</p>
+
+<h3>Prime Mainland Locations We Cover</h3>
+<p>Our listings are carefully sourced from key residential hubs, including:</p>
+<ul>
+  <li>Ikeja GRA (Premium, serene, and highly secured environment)</li>
+  <li>Ikeja (Central location with excellent infrastructure)</li>
+  <li>Magodo (Well-planned estates with high livability)</li>
+  <li>Ogba (Affordable and fast-developing residential zone)</li>
+  <li>Surulere (Strategic central location with strong rental demand)</li>
+</ul>
+
+<h3>Features of Our Duplexes</h3>
+<p>Our properties are designed to deliver comfort, functionality, and modern living:</p>
+<ul>
+  <li>4 spacious en-suite bedrooms</li>
+  <li>Large living and family lounges</li>
+  <li>Fully fitted modern kitchens</li>
+  <li>Ample parking space within private compounds</li>
+  <li>Optional BQ (Boys\' Quarters)</li>
+  <li>Located in secure estates or well-developed neighborhoods</li>
+</ul>
+
+<h3>Flexible Buying Options</h3>
+<p>We make property acquisition easier and more tailored to your needs:</p>
+<ul>
+  <li>Flexible budget matching (we work within your range)</li>
+  <li>Ready-to-move-in &amp; newly built homes</li>
+  <li>Options for personal residence or investment purposes</li>
+  <li>High rental yield potential in key Mainland areas</li>
+</ul>
+
+<h3>Why Choose Shefa Homes?</h3>
+<ul>
+  <li>Access to verified Mainland property listings</li>
+  <li>Strong presence in Ikeja, Magodo, Surulere, and surrounding areas</li>
+  <li>Professional support from inspection to closing</li>
+  <li>Focus on properties with good appreciation and rental value</li>
+</ul>
+
+<h3>Let\'s Help You Find the Right Home</h3>
+<p>Tell us your preferences, and we\'ll handle the search:</p>
+<ul>
+  <li>Preferred location</li>
+  <li>Budget range</li>
+  <li>Specific features (BQ, estate, parking space, etc.)</li>
+</ul>
+<p>We\'ll present you with carefully selected duplex options that match your lifestyle and goals.</p>
+',
     ],
 
     'short_let' => [
@@ -223,7 +323,66 @@ $defaults = [
         'icon'        => '🛏️',
         'button_text' => 'View Short Lets',
         'button_url'  => '/properties?status=shortlet',
-        'description' => '<p>At Shefa Homes, we offer a curated selection of fully-furnished short-let apartments and homes across Lagos — ideal for business travellers, relocating professionals, and vacation stays.</p><p>Daily, weekly, and monthly options available across Victoria Island, Lekki, Ikeja GRA, and more.</p>',
+        'description' => '
+<p>At Shefa Homes, we offer access to fully furnished shortlet apartments across Lagos, designed for comfort, convenience, and a premium living experience.</p>
+<p>Whether you\'re visiting, relocating, on business, or simply need a temporary luxury stay, we connect you with apartments that feel just like home — only better.</p>
+
+<h3>Prime Locations Available</h3>
+<p>Our shortlet apartments are located in some of Lagos\' most vibrant and secure neighborhoods, including:</p>
+<ul>
+  <li>Lekki Phase 1 (Lifestyle &amp; entertainment hub)</li>
+  <li>Ikoyi (Luxury &amp; executive living)</li>
+  <li>Victoria Island (Business &amp; commercial center)</li>
+  <li>Ajah / Sangotedo (Affordable luxury &amp; serene environment)</li>
+  <li>Ikeja (Mainland convenience &amp; proximity to the airport)</li>
+</ul>
+
+<h3>Apartment Options</h3>
+<p>We provide a variety of shortlet options to suit your stay:</p>
+<ul>
+  <li>Studio Apartments</li>
+  <li>1-, 2- &amp; 3-Bedroom Apartments</li>
+  <li>Luxury Duplex Shortlets</li>
+  <li>Serviced Apartments for Corporate Clients</li>
+</ul>
+
+<h3>What You Can Expect</h3>
+<p>Our apartments are designed to deliver a seamless experience:</p>
+<ul>
+  <li>Fully furnished &amp; tastefully finished interiors</li>
+  <li>High-speed internet &amp; smart TVs</li>
+  <li>24/7 power supply &amp; security</li>
+  <li>Housekeeping services (in selected apartments)</li>
+  <li>Fully equipped kitchens</li>
+  <li>Secure parking space</li>
+</ul>
+
+<h3>Flexible Booking Options</h3>
+<p>We make your stay easy and convenient:</p>
+<ul>
+  <li>Daily, weekly, and monthly booking options</li>
+  <li>Flexible pricing based on duration and apartment type</li>
+  <li>Options for individuals, families, and corporate clients</li>
+</ul>
+
+<h3>Why Choose Shefa Homes?</h3>
+<ul>
+  <li>Access to verified and high-quality shortlet apartments</li>
+  <li>Prime locations with easy accessibility</li>
+  <li>Seamless booking and customer support</li>
+  <li>Perfect balance of comfort, privacy, and luxury</li>
+</ul>
+
+<h3>Book Your Stay Today</h3>
+<p>Tell us what you need, and we\'ll match you with the perfect apartment:</p>
+<ul>
+  <li>Preferred location</li>
+  <li>Budget range</li>
+  <li>Duration of stay</li>
+  <li>Number of guests</li>
+</ul>
+<p>We\'ll provide you with carefully selected options tailored to your needs.</p>
+',
     ],
 ];
 

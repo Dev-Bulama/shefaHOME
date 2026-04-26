@@ -26,8 +26,8 @@ class NavigationMenuSeeder extends Seeder
             // Properties children
             'Properties' => [
                 ['label' => 'All Properties', 'url' => '/properties',                   'sort_order' => 1],
-                ['label' => 'For Sale',        'url' => '/properties?status=for_sale',   'sort_order' => 2],
-                ['label' => 'For Rent',        'url' => '/properties?status=for_rent',   'sort_order' => 3],
+                ['label' => 'For Sale',        'url' => '/properties?status=buy',        'sort_order' => 2],
+                ['label' => 'For Rent',        'url' => '/properties?status=rent',       'sort_order' => 3],
                 ['label' => 'Shortlets',       'url' => '/properties?status=shortlet',   'sort_order' => 4],
                 ['label' => 'Map View',        'url' => '/properties?view=map',          'sort_order' => 5],
             ],

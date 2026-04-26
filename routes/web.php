@@ -83,6 +83,7 @@ Route::get('/client/login', [AuthController::class, 'showClientLogin'])->name('c
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('properties', Admin\PropertyController::class);
+    Route::delete('properties-bulk', [Admin\PropertyController::class, 'bulkDestroy'])->name('properties.bulk-destroy');
     Route::post('properties/{id}/gallery', [Admin\PropertyController::class, 'uploadGallery'])->name('properties.gallery.upload');
     Route::delete('properties/{id}/gallery/{imageId}', [Admin\PropertyController::class, 'deleteGalleryImage'])->name('properties.gallery.delete');
     Route::post('properties/gallery/reorder', [Admin\PropertyController::class, 'reorderGallery'])->name('properties.gallery.reorder');

@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 class PropertyController extends Controller {
     public function index(Request $request) {
-        $query = Property::with('propertyType','estate')->withTrashed();
+        $query = Property::with('propertyType','estate');
         if($request->search) $query->where('title','like','%'.$request->search.'%');
         if($request->state) $query->where('state',$request->state);
         if($request->type) $query->where('property_type_id',$request->type);
@@ -17,6 +17,14 @@ class PropertyController extends Controller {
         $propertyTypes = PropertyType::all();
         $states = Property::distinct()->pluck('state')->sort();
         return view('admin.properties.index', compact('properties','propertyTypes','states'));
+    }
+
+    public function bulkDestroy(Request $request) {
+        $ids = $request->input('ids', []);
+        if(!empty($ids)) {
+            Property::whereIn('id', $ids)->delete();
+        }
+        return response()->json(['success' => true, 'deleted' => count($ids)]);
     }
 
     public function create() {

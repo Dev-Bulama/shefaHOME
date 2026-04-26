@@ -3,7 +3,7 @@
 @section('page-title', 'Properties')
 
 @section('content')
-<div class="space-y-4">
+<div x-data="propertyIndex()" class="space-y-4">
 
     {{-- Header --}}
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -35,16 +35,7 @@
                 @endforeach
             </select>
         </div>
-        <div class="min-w-[140px]">
-            <label class="block text-xs font-medium text-gray-600 mb-1">Type</label>
-            <select name="type" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-yellow-400 focus:outline-none">
-                <option value="">All Types</option>
-                <option value="residential" {{ request('type') == 'residential' ? 'selected' : '' }}>Residential</option>
-                <option value="commercial"  {{ request('type') == 'commercial'  ? 'selected' : '' }}>Commercial</option>
-                <option value="mixed"       {{ request('type') == 'mixed'       ? 'selected' : '' }}>Mixed Use</option>
-            </select>
-        </div>
-        <div class="min-w-[140px]">
+        <div class="min-w-[160px]">
             <label class="block text-xs font-medium text-gray-600 mb-1">Status</label>
             <select name="status" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-yellow-400 focus:outline-none">
                 <option value="">All Status</option>
@@ -67,24 +58,57 @@
         </div>
     </form>
 
+    {{-- Bulk action bar (shows when rows selected) --}}
+    <div x-show="selected.length > 0"
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0 -translate-y-2"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         class="bg-red-50 border border-red-200 rounded-xl px-5 py-3 flex items-center justify-between gap-4"
+         style="display:none;">
+        <span class="text-sm font-medium text-red-700">
+            <span x-text="selected.length"></span> propert<span x-text="selected.length === 1 ? 'y' : 'ies'"></span> selected
+        </span>
+        <div class="flex items-center gap-3">
+            <button @click="clearSelection()" class="text-sm text-gray-600 hover:text-gray-800 font-medium">Cancel</button>
+            <button @click="bulkDelete()"
+                    class="bg-red-600 hover:bg-red-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                </svg>
+                Delete Selected
+            </button>
+        </div>
+    </div>
+
     {{-- Table --}}
     <div class="bg-white rounded-xl shadow">
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
                 <thead>
                     <tr class="bg-gray-50 text-xs text-gray-500 uppercase tracking-wide border-b border-gray-100">
+                        <th class="px-4 py-3 text-left w-10">
+                            <input type="checkbox" @change="toggleAll($event)"
+                                   :checked="allSelected"
+                                   class="w-4 h-4 rounded border-gray-300 text-yellow-500 focus:ring-yellow-400 cursor-pointer"/>
+                        </th>
                         <th class="px-4 py-3 text-left">Image</th>
                         <th class="px-4 py-3 text-left">Title</th>
-                        <th class="px-4 py-3 text-left">State</th>
+                        <th class="px-4 py-3 text-left">Location</th>
                         <th class="px-4 py-3 text-left">Type</th>
                         <th class="px-4 py-3 text-left">Status</th>
-                        <th class="px-4 py-3 text-left">Price (₦)</th>
+                        <th class="px-4 py-3 text-left">Price From</th>
                         <th class="px-4 py-3 text-left">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-50">
                     @forelse ($properties as $property)
-                    <tr class="hover:bg-gray-50">
+                    <tr class="hover:bg-gray-50" :class="selected.includes({{ $property->id }}) ? 'bg-yellow-50' : ''">
+                        <td class="px-4 py-3">
+                            <input type="checkbox"
+                                   :value="{{ $property->id }}"
+                                   x-model="selected"
+                                   class="w-4 h-4 rounded border-gray-300 text-yellow-500 focus:ring-yellow-400 cursor-pointer"/>
+                        </td>
                         <td class="px-4 py-3">
                             @if ($property->cover_image)
                             <img src="{{ Storage::url($property->cover_image) }}" alt="{{ $property->title }}"
@@ -97,32 +121,43 @@
                             </div>
                             @endif
                         </td>
-                        <td class="px-4 py-3 font-medium text-gray-800 max-w-[180px] truncate">{{ $property->title }}</td>
-                        <td class="px-4 py-3 text-gray-600">{{ $property->state }}</td>
-                        <td class="px-4 py-3 text-gray-600">{{ ucfirst($property->type) }}</td>
+                        <td class="px-4 py-3 font-medium text-gray-800 max-w-[200px]">
+                            <div class="truncate">{{ $property->title }}</div>
+                            @if($property->is_featured)
+                            <span class="inline-block text-[10px] bg-yellow-100 text-yellow-700 font-semibold px-1.5 py-0.5 rounded mt-0.5">Featured</span>
+                            @endif
+                        </td>
+                        <td class="px-4 py-3 text-gray-600 text-xs">
+                            {{ $property->lga ? $property->lga.', ' : '' }}{{ $property->state }}
+                        </td>
+                        <td class="px-4 py-3 text-gray-600 text-xs">{{ $property->propertyType->name ?? '—' }}</td>
                         <td class="px-4 py-3">
                             @php
                                 $sc = ['available'=>'bg-green-100 text-green-700','sold_out'=>'bg-red-100 text-red-600','coming_soon'=>'bg-yellow-100 text-yellow-700','rent'=>'bg-sky-100 text-sky-700','buy'=>'bg-violet-100 text-violet-700','buy_and_rent'=>'bg-amber-100 text-amber-700','shortlet'=>'bg-pink-100 text-pink-700'];
-                                $sc = $sc[$property->status] ?? 'bg-gray-100 text-gray-600';
+                                $cls = $sc[$property->status] ?? 'bg-gray-100 text-gray-600';
                             @endphp
-                            <span class="px-2 py-0.5 rounded-full text-xs font-medium {{ $sc }}">{{ ucfirst(str_replace('_',' ',$property->status)) }}</span>
+                            <span class="px-2 py-0.5 rounded-full text-xs font-medium {{ $cls }}">{{ ucfirst(str_replace('_',' ',$property->status)) }}</span>
                         </td>
-                        <td class="px-4 py-3 text-gray-700">{{ number_format($property->price) }}</td>
+                        <td class="px-4 py-3 text-gray-700 text-xs">
+                            @if($property->price_from > 0)
+                                ₦{{ number_format($property->price_from) }}
+                            @else
+                                <span class="text-gray-400 italic">On request</span>
+                            @endif
+                        </td>
                         <td class="px-4 py-3">
-                            <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-3">
                                 <a href="{{ route('admin.properties.edit', $property) }}"
                                    class="text-blue-600 hover:text-blue-800 text-xs font-medium">Edit</a>
-                                <form method="POST" action="{{ route('admin.properties.destroy', $property) }}"
-                                      onsubmit="return confirm('Delete this property?')" class="inline">
-                                    @csrf @method('DELETE')
-                                    <button type="submit" class="text-red-500 hover:text-red-700 text-xs font-medium">Delete</button>
-                                </form>
+                                <button type="button"
+                                        @click="deleteSingle({{ $property->id }}, '{{ addslashes($property->title) }}')"
+                                        class="text-red-500 hover:text-red-700 text-xs font-medium">Delete</button>
                             </div>
                         </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="7" class="px-4 py-10 text-center text-gray-400">No properties found.</td>
+                        <td colspan="8" class="px-4 py-10 text-center text-gray-400">No properties found.</td>
                     </tr>
                     @endforelse
                 </tbody>
@@ -134,5 +169,74 @@
         </div>
         @endif
     </div>
+
+    {{-- Hidden CSRF form for single delete --}}
+    <form id="deleteSingleForm" method="POST" style="display:none;">
+        @csrf
+        @method('DELETE')
+    </form>
+
 </div>
 @endsection
+
+@push('scripts')
+<script>
+function propertyIndex() {
+    return {
+        selected: [],
+
+        get allSelected() {
+            const checkboxes = document.querySelectorAll('tbody input[type=checkbox]');
+            return checkboxes.length > 0 && this.selected.length === checkboxes.length;
+        },
+
+        toggleAll(e) {
+            if (e.target.checked) {
+                this.selected = Array.from(document.querySelectorAll('tbody input[type=checkbox]'))
+                    .map(cb => parseInt(cb.value));
+            } else {
+                this.selected = [];
+            }
+        },
+
+        clearSelection() {
+            this.selected = [];
+        },
+
+        deleteSingle(id, title) {
+            if (!confirm(`Delete "${title}"?\n\nThis action cannot be undone.`)) return;
+
+            const form = document.getElementById('deleteSingleForm');
+            form.action = `/admin/properties/${id}`;
+            form.submit();
+        },
+
+        async bulkDelete() {
+            if (this.selected.length === 0) return;
+            const count = this.selected.length;
+            if (!confirm(`Delete ${count} selected propert${count === 1 ? 'y' : 'ies'}?\n\nThis action cannot be undone.`)) return;
+
+            try {
+                const res = await fetch('{{ route('admin.properties.bulk-destroy') }}', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content,
+                        'Accept': 'application/json',
+                    },
+                    body: JSON.stringify({ ids: this.selected }),
+                });
+                const data = await res.json();
+                if (data.success) {
+                    window.location.reload();
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
+            } catch (e) {
+                alert('Network error. Please try again.');
+            }
+        },
+    };
+}
+</script>
+@endpush

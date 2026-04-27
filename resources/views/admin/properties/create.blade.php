@@ -14,7 +14,7 @@
         <a href="{{ route('admin.properties.index') }}" class="text-sm text-gray-500 hover:text-gray-700">← Back to Properties</a>
     </div>
 
-    <form method="POST" action="{{ route('admin.properties.store') }}" enctype="multipart/form-data" id="propertyForm">
+    <form method="POST" action="{{ route('admin.properties.store') }}" enctype="multipart/form-data" id="propertyForm" novalidate>
         @csrf
 
         {{-- Tabs --}}
@@ -274,8 +274,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css">
 <script>
 function propertyForm() {
+    // If validation errors exist, open the first tab that contains an error
+    function detectErrorTab() {
+        const tabSections = document.querySelectorAll('[x-show^="activeTab"]');
+        for (const section of tabSections) {
+            if (section.querySelector('.text-red-500')) {
+                const match = section.getAttribute('x-show').match(/'(\w+)'/);
+                if (match) return match[1];
+            }
+        }
+        return 'basic';
+    }
+
     return {
-        activeTab: 'basic',
+        activeTab: detectErrorTab(),
         plans: @json(old('payment_plans_json') ? json_decode(old('payment_plans_json'), true) : []),
         addPlan() { this.plans.push({ name: '', duration: '', monthly_amount: '' }); },
         removePlan(i) { this.plans.splice(i, 1); }

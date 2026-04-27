@@ -202,6 +202,7 @@ class PageContentController extends Controller
             . '<p>We\'ll match you with the best available options tailored to your lifestyle and investment goals.</p>';
 
         $sections = [
+            ['section'=>'warehouse',       'key'=>'image',       'label'=>'Warehouse – Image',            'type'=>'image',   'value'=>'',                      'sort_order'=>199],
             ['section'=>'warehouse',       'key'=>'title',       'label'=>'Warehouse – Title',            'type'=>'text',    'value'=>'Warehouse',             'sort_order'=>200],
             ['section'=>'warehouse',       'key'=>'subtitle',    'label'=>'Warehouse – Subtitle',         'type'=>'text',    'value'=>'To Rent',               'sort_order'=>201],
             ['section'=>'warehouse',       'key'=>'description', 'label'=>'Warehouse – Description',      'type'=>'html',    'value'=>$warehouseDesc,          'sort_order'=>202],
@@ -209,6 +210,7 @@ class PageContentController extends Controller
             ['section'=>'warehouse',       'key'=>'button_url',  'label'=>'Warehouse – Button URL',       'type'=>'url',     'value'=>'/properties?status=rent','sort_order'=>204],
             ['section'=>'warehouse',       'key'=>'visible',     'label'=>'Warehouse – Visible',          'type'=>'boolean', 'value'=>'1',                     'sort_order'=>205],
 
+            ['section'=>'office_space',    'key'=>'image',       'label'=>'Office Space – Image',         'type'=>'image',   'value'=>'',                      'sort_order'=>209],
             ['section'=>'office_space',    'key'=>'title',       'label'=>'Office Space – Title',         'type'=>'text',    'value'=>'Office Space',          'sort_order'=>210],
             ['section'=>'office_space',    'key'=>'subtitle',    'label'=>'Office Space – Subtitle',      'type'=>'text',    'value'=>'To Rent',               'sort_order'=>211],
             ['section'=>'office_space',    'key'=>'description', 'label'=>'Office Space – Description',   'type'=>'html',    'value'=>$officeDesc,             'sort_order'=>212],
@@ -216,6 +218,7 @@ class PageContentController extends Controller
             ['section'=>'office_space',    'key'=>'button_url',  'label'=>'Office Space – Button URL',    'type'=>'url',     'value'=>'/properties?status=rent','sort_order'=>214],
             ['section'=>'office_space',    'key'=>'visible',     'label'=>'Office Space – Visible',       'type'=>'boolean', 'value'=>'1',                     'sort_order'=>215],
 
+            ['section'=>'land',            'key'=>'image',       'label'=>'Land – Image',                 'type'=>'image',   'value'=>'',                      'sort_order'=>219],
             ['section'=>'land',            'key'=>'title',       'label'=>'Land – Title',                 'type'=>'text',    'value'=>'Land',                  'sort_order'=>220],
             ['section'=>'land',            'key'=>'subtitle',    'label'=>'Land – Subtitle',              'type'=>'text',    'value'=>'For Sale',              'sort_order'=>221],
             ['section'=>'land',            'key'=>'description', 'label'=>'Land – Description',           'type'=>'html',    'value'=>$landDesc,               'sort_order'=>222],
@@ -223,6 +226,7 @@ class PageContentController extends Controller
             ['section'=>'land',            'key'=>'button_url',  'label'=>'Land – Button URL',            'type'=>'url',     'value'=>'/properties?status=buy','sort_order'=>224],
             ['section'=>'land',            'key'=>'visible',     'label'=>'Land – Visible',               'type'=>'boolean', 'value'=>'1',                     'sort_order'=>225],
 
+            ['section'=>'duplex',          'key'=>'image',       'label'=>'Duplex – Image',               'type'=>'image',   'value'=>'',                      'sort_order'=>229],
             ['section'=>'duplex',          'key'=>'title',       'label'=>'Duplex – Title',               'type'=>'text',    'value'=>'Duplex',                'sort_order'=>230],
             ['section'=>'duplex',          'key'=>'subtitle',    'label'=>'Duplex – Subtitle',            'type'=>'text',    'value'=>'For Sale',              'sort_order'=>231],
             ['section'=>'duplex',          'key'=>'description', 'label'=>'Duplex – Description',         'type'=>'html',    'value'=>$duplexDesc,             'sort_order'=>232],
@@ -230,13 +234,15 @@ class PageContentController extends Controller
             ['section'=>'duplex',          'key'=>'button_url',  'label'=>'Duplex – Button URL',          'type'=>'url',     'value'=>'/properties?status=buy','sort_order'=>234],
             ['section'=>'duplex',          'key'=>'visible',     'label'=>'Duplex – Visible',             'type'=>'boolean', 'value'=>'1',                     'sort_order'=>235],
 
-            ['section'=>'duplex_island',    'key'=>'title',       'label'=>'Duplex Island – Title',        'type'=>'text',    'value'=>'Duplex',                    'sort_order'=>236],
-            ['section'=>'duplex_island',    'key'=>'subtitle',    'label'=>'Duplex Island – Subtitle',     'type'=>'text',    'value'=>'For Sale – Island Properties','sort_order'=>237],
-            ['section'=>'duplex_island',    'key'=>'description', 'label'=>'Duplex Island – Description',  'type'=>'html',    'value'=>$duplexIslandDesc,           'sort_order'=>238],
-            ['section'=>'duplex_island',    'key'=>'button_text', 'label'=>'Duplex Island – Button Text',  'type'=>'text',    'value'=>'View Island Duplexes',      'sort_order'=>239],
-            ['section'=>'duplex_island',    'key'=>'button_url',  'label'=>'Duplex Island – Button URL',   'type'=>'url',     'value'=>'/properties?status=buy',    'sort_order'=>2391],
-            ['section'=>'duplex_island',    'key'=>'visible',     'label'=>'Duplex Island – Visible',      'type'=>'boolean', 'value'=>'1',                         'sort_order'=>2392],
+            ['section'=>'duplex_island',   'key'=>'image',       'label'=>'Duplex Island – Image',        'type'=>'image',   'value'=>'',                      'sort_order'=>2355],
+            ['section'=>'duplex_island',   'key'=>'title',       'label'=>'Duplex Island – Title',        'type'=>'text',    'value'=>'Duplex',                    'sort_order'=>236],
+            ['section'=>'duplex_island',   'key'=>'subtitle',    'label'=>'Duplex Island – Subtitle',     'type'=>'text',    'value'=>'For Sale – Island Properties','sort_order'=>237],
+            ['section'=>'duplex_island',   'key'=>'description', 'label'=>'Duplex Island – Description',  'type'=>'html',    'value'=>$duplexIslandDesc,           'sort_order'=>238],
+            ['section'=>'duplex_island',   'key'=>'button_text', 'label'=>'Duplex Island – Button Text',  'type'=>'text',    'value'=>'View Island Duplexes',      'sort_order'=>239],
+            ['section'=>'duplex_island',   'key'=>'button_url',  'label'=>'Duplex Island – Button URL',   'type'=>'url',     'value'=>'/properties?status=buy',    'sort_order'=>2391],
+            ['section'=>'duplex_island',   'key'=>'visible',     'label'=>'Duplex Island – Visible',      'type'=>'boolean', 'value'=>'1',                         'sort_order'=>2392],
 
+            ['section'=>'filling_station', 'key'=>'image',       'label'=>'Filling Station – Image',      'type'=>'image',   'value'=>'',                      'sort_order'=>2395],
             ['section'=>'filling_station', 'key'=>'title',       'label'=>'Filling Station – Title',      'type'=>'text',    'value'=>'Filling Station',       'sort_order'=>240],
             ['section'=>'filling_station', 'key'=>'subtitle',    'label'=>'Filling Station – Subtitle',   'type'=>'text',    'value'=>'Rent & Buy',            'sort_order'=>241],
             ['section'=>'filling_station', 'key'=>'description', 'label'=>'Filling Station – Description','type'=>'html',    'value'=>$fillingStationDesc,     'sort_order'=>242],
@@ -244,6 +250,7 @@ class PageContentController extends Controller
             ['section'=>'filling_station', 'key'=>'button_url',  'label'=>'Filling Station – Button URL', 'type'=>'url',     'value'=>'/properties?status=buy_and_rent','sort_order'=>244],
             ['section'=>'filling_station', 'key'=>'visible',     'label'=>'Filling Station – Visible',    'type'=>'boolean', 'value'=>'1',                     'sort_order'=>245],
 
+            ['section'=>'hotel',           'key'=>'image',       'label'=>'Hotel – Image',                'type'=>'image',   'value'=>'',                      'sort_order'=>249],
             ['section'=>'hotel',           'key'=>'title',       'label'=>'Hotel – Title',                'type'=>'text',    'value'=>'Hotel',                 'sort_order'=>250],
             ['section'=>'hotel',           'key'=>'subtitle',    'label'=>'Hotel – Subtitle',             'type'=>'text',    'value'=>'For Sale & Rent',       'sort_order'=>251],
             ['section'=>'hotel',           'key'=>'description', 'label'=>'Hotel – Description',          'type'=>'html',    'value'=>$hotelDesc,              'sort_order'=>252],
@@ -251,6 +258,7 @@ class PageContentController extends Controller
             ['section'=>'hotel',           'key'=>'button_url',  'label'=>'Hotel – Button URL',           'type'=>'url',     'value'=>'/properties?status=buy_and_rent','sort_order'=>254],
             ['section'=>'hotel',           'key'=>'visible',     'label'=>'Hotel – Visible',              'type'=>'boolean', 'value'=>'1',                     'sort_order'=>255],
 
+            ['section'=>'short_let',       'key'=>'image',       'label'=>'Short Let – Image',            'type'=>'image',   'value'=>'',                      'sort_order'=>259],
             ['section'=>'short_let',       'key'=>'title',       'label'=>'Short Let – Title',            'type'=>'text',    'value'=>'Short Let',             'sort_order'=>260],
             ['section'=>'short_let',       'key'=>'subtitle',    'label'=>'Short Let – Subtitle',         'type'=>'text',    'value'=>'Short Let Only',        'sort_order'=>261],
             ['section'=>'short_let',       'key'=>'description', 'label'=>'Short Let – Description',      'type'=>'html',    'value'=>$shortLetDesc,           'sort_order'=>262],

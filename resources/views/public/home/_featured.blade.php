@@ -85,22 +85,30 @@
                         <span class="text-[#27AE22] text-xs font-semibold uppercase tracking-wider">
                             {{ $property->propertyType->name ?? 'Estate' }}
                         </span>
+                        @if($property->lga)
                         <span class="text-gray-300">•</span>
-                        <span class="text-gray-400 text-xs">{{ $property->state ?? '' }}</span>
+                        <span class="text-gray-400 text-xs">{{ $property->lga }}</span>
+                        @endif
                     </div>
 
-                    {{-- Name --}}
+                    {{-- Title --}}
                     <h3 class="font-display text-xl font-bold text-[#1A237E] mb-2 group-hover:text-[#27AE22] transition-colors leading-snug">
                         {{ $property->name }}
                     </h3>
 
                     {{-- Location --}}
+                    @php
+                        $displayAddress = $property->address
+                            ?: ($property->lga && $property->state
+                                ? $property->lga.', '.$property->state
+                                : ($property->lga ?: $property->state));
+                    @endphp
                     <div class="flex items-center gap-1.5 text-gray-500 text-sm mb-4">
                         <svg class="w-4 h-4 text-[#27AE22] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
-                        <span>{{ $property->location }}, {{ $property->state }}</span>
+                        <span>{{ $displayAddress }}</span>
                     </div>
 
                     {{-- Plot sizes --}}

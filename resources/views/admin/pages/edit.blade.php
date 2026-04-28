@@ -135,8 +135,8 @@
                             <div id="{{ $qId }}" data-initial="{!! htmlspecialchars($qInitVal, ENT_QUOTES) !!}" style="min-height:220px;"></div>
                             {{-- Source / raw-HTML mode --}}
                             <textarea id="{{ $qId }}_source"
-                                      class="hidden w-full px-3 py-2 text-sm font-mono focus:outline-none resize-y border-t border-gray-200"
-                                      style="min-height:220px;"></textarea>
+                                      class="w-full px-3 py-2 text-sm font-mono focus:outline-none resize-y border-t border-gray-200"
+                                      style="display:none; min-height:220px;"></textarea>
                             {{-- Footer bar --}}
                             <div class="flex items-center justify-between gap-2 px-3 py-2 bg-gray-50 border-t border-gray-200">
                                 <button type="button"
@@ -296,15 +296,13 @@
 
     document.querySelector('form[action*="pages"]').addEventListener('submit', function () {
         editors.forEach(function (e) {
-            // If source mode is visible, use that value instead
-            const src = document.getElementById(e.inputId.replace('_input', '_source'));
-            const ta  = document.getElementById(e.inputId);
+            const ta = document.getElementById(e.inputId);
             if (!ta) return;
-            if (src && src.style.display !== 'none') {
-                ta.value = src.value;
-            } else {
-                ta.value = e.quill.root.innerHTML;
-            }
+            const srcId = e.inputId.slice(0, -'_input'.length) + '_source';
+            const src   = document.getElementById(srcId);
+            // Use computed style — reliable regardless of whether display came from class or inline
+            const srcVisible = src && window.getComputedStyle(src).display !== 'none';
+            ta.value = srcVisible ? src.value : e.quill.root.innerHTML;
         });
     });
 })();
@@ -317,14 +315,14 @@ window.toggleHtmlSource = function (qId) {
     const q         = window._quillMap[qId];
     if (!editorEl || !sourceEl || !q) return;
 
-    const inSource = sourceEl.style.display !== 'none';
+    // Use computed style to check current state
+    const inSource = window.getComputedStyle(sourceEl).display !== 'none';
 
     if (inSource) {
         // Source → WYSIWYG: load raw HTML into Quill
         q.clipboard.dangerouslyPasteHTML(sourceEl.value);
         sourceEl.style.display = 'none';
         editorEl.closest('.ql-container') && (editorEl.closest('.ql-container').style.display = '');
-        // Show the ql-toolbar
         const wrap = editorEl.parentElement;
         const toolbar = wrap ? wrap.querySelector('.ql-toolbar') : null;
         if (toolbar) toolbar.style.display = '';

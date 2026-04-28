@@ -131,7 +131,23 @@
                             $qInitVal = preg_replace('/<(style|script)[^>]*>.*?<\/\1>/is', '', $field->value ?? '');
                         @endphp
                         <div class="border border-gray-200 rounded-lg overflow-hidden">
-                            <div id="{{ $qId }}" style="min-height:220px;">{!! $qInitVal !!}</div>
+                            {{-- WYSIWYG editor (Quill attaches here) --}}
+                            <div id="{{ $qId }}" data-initial="{!! htmlspecialchars($qInitVal, ENT_QUOTES) !!}" style="min-height:220px;"></div>
+                            {{-- Source / raw-HTML mode --}}
+                            <textarea id="{{ $qId }}_source"
+                                      class="hidden w-full px-3 py-2 text-sm font-mono focus:outline-none resize-y border-t border-gray-200"
+                                      style="min-height:220px;"></textarea>
+                            {{-- Footer bar --}}
+                            <div class="flex items-center justify-between gap-2 px-3 py-2 bg-gray-50 border-t border-gray-200">
+                                <button type="button"
+                                        id="{{ $qId }}_toggle"
+                                        onclick="toggleHtmlSource('{{ $qId }}')"
+                                        class="inline-flex items-center gap-1 text-xs font-mono font-semibold text-gray-500 hover:text-[#1A237E] border border-gray-200 hover:border-[#1A237E] px-2 py-1 rounded transition">
+                                    &lt;/&gt; Source
+                                </button>
+                                <span class="text-xs text-gray-400">Tip: use &lt;/&gt; Source to paste raw HTML</span>
+                            </div>
+                            {{-- Hidden submit target --}}
                             <textarea name="content[{{ $field->section }}][{{ $field->key }}]"
                                       id="{{ $qId }}_input"
                                       class="hidden">{{ $field->value }}</textarea>
@@ -259,11 +275,19 @@
         ['clean']
     ];
 
+    // Map of editorId -> Quill instance, used by the source toggle
+    window._quillMap = {};
     const editors = [];
 
-    document.querySelectorAll('[id^="quill_"]:not([id$="_input"])').forEach(function (el) {
+    document.querySelectorAll('[id^="quill_"]:not([id$="_input"]):not([id$="_source"])').forEach(function (el) {
         try {
+            const initialHTML = el.dataset.initial || '';
             const q = new Quill(el, { theme: 'snow', modules: { toolbar: toolbarOptions } });
+            if (initialHTML.trim()) {
+                // dangerouslyPasteHTML correctly maps <h3>, <ul>, <li> etc to Quill's Delta
+                q.clipboard.dangerouslyPasteHTML(initialHTML);
+            }
+            window._quillMap[el.id] = q;
             editors.push({ quill: q, inputId: el.id + '_input' });
         } catch (err) {
             console.warn('Quill init failed for', el.id, err);
@@ -272,11 +296,51 @@
 
     document.querySelector('form[action*="pages"]').addEventListener('submit', function () {
         editors.forEach(function (e) {
-            const ta = document.getElementById(e.inputId);
-            if (ta) ta.value = e.quill.root.innerHTML;
+            // If source mode is visible, use that value instead
+            const src = document.getElementById(e.inputId.replace('_input', '_source'));
+            const ta  = document.getElementById(e.inputId);
+            if (!ta) return;
+            if (src && src.style.display !== 'none') {
+                ta.value = src.value;
+            } else {
+                ta.value = e.quill.root.innerHTML;
+            }
         });
     });
 })();
+
+// Source toggle — called by each field's button
+window.toggleHtmlSource = function (qId) {
+    const editorEl  = document.getElementById(qId);
+    const sourceEl  = document.getElementById(qId + '_source');
+    const toggleBtn = document.getElementById(qId + '_toggle');
+    const q         = window._quillMap[qId];
+    if (!editorEl || !sourceEl || !q) return;
+
+    const inSource = sourceEl.style.display !== 'none';
+
+    if (inSource) {
+        // Source → WYSIWYG: load raw HTML into Quill
+        q.clipboard.dangerouslyPasteHTML(sourceEl.value);
+        sourceEl.style.display = 'none';
+        editorEl.closest('.ql-container') && (editorEl.closest('.ql-container').style.display = '');
+        // Show the ql-toolbar
+        const wrap = editorEl.parentElement;
+        const toolbar = wrap ? wrap.querySelector('.ql-toolbar') : null;
+        if (toolbar) toolbar.style.display = '';
+        toggleBtn.textContent = '</> Source';
+    } else {
+        // WYSIWYG → Source: copy Quill HTML to textarea
+        sourceEl.value = q.root.innerHTML;
+        sourceEl.style.display = 'block';
+        // Hide the Quill editor area (but not the container wrapping div)
+        const wrap = editorEl.parentElement;
+        const toolbar = wrap ? wrap.querySelector('.ql-toolbar') : null;
+        if (toolbar) toolbar.style.display = 'none';
+        editorEl.closest('.ql-container') && (editorEl.closest('.ql-container').style.display = 'none');
+        toggleBtn.textContent = 'WYSIWYG';
+    }
+};
 </script>
 @endpush
 

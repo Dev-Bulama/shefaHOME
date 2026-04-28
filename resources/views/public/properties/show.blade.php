@@ -6,7 +6,7 @@
 @section('content')
 
 {{-- Breadcrumb --}}
-<nav class="bg-[#1A237E] py-3">
+<nav class="bg-[#1A237E] pt-[5.75rem] pb-3">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ol class="flex items-center gap-2 text-sm text-gray-400 flex-wrap">
             <li><a href="{{ route('home') }}" class="hover:text-[#27AE22] transition-colors">Home</a></li>

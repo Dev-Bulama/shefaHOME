@@ -19,6 +19,7 @@ class Property extends Model {
     public function clientProperties() { return $this->hasMany(ClientProperty::class); }
     public function investorReturns() { return $this->hasMany(InvestorReturn::class); }
 
+    public function getNameAttribute(): string { return $this->title ?? ''; }
     public function getLocationAttribute(): string { return ltrim($this->lga ?? '', ', '); }
     public function getCoverImageUrlAttribute() { return asset('uploads/'.$this->cover_image); }
     public function getPlotSizesArrayAttribute() { return $this->plot_sizes ? json_decode($this->plot_sizes, true) : []; }

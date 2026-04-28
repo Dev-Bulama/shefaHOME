@@ -195,15 +195,23 @@
                         <div class="p-5 flex flex-col flex-1">
                             <div class="flex items-center gap-2 mb-2">
                                 <span class="text-[#27AE22] text-xs font-semibold uppercase tracking-wider">{{ $property->propertyType->name ?? 'Estate' }}</span>
+                                @if($property->lga)
                                 <span class="text-gray-300">•</span>
-                                <span class="text-gray-400 text-xs">{{ $property->state }}</span>
+                                <span class="text-gray-400 text-xs">{{ $property->lga }}</span>
+                                @endif
                             </div>
                             <h3 class="font-display font-bold text-[#1A237E] text-base mb-1.5 group-hover:text-[#27AE22] transition-colors leading-snug line-clamp-2">
                                 {{ $property->name }}
                             </h3>
+                            @php
+                                $displayAddr = $property->address
+                                    ?: ($property->lga && $property->state
+                                        ? $property->lga.', '.$property->state
+                                        : ($property->lga ?: $property->state));
+                            @endphp
                             <div class="flex items-center gap-1.5 text-gray-400 text-xs mb-3">
                                 <svg class="w-3.5 h-3.5 text-[#27AE22]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                                {{ $property->location }}, {{ $property->state }}
+                                {{ $displayAddr }}
                             </div>
                             @if(!empty($property->plot_sizes_array))
                             <div class="flex flex-wrap gap-1.5 mb-3">

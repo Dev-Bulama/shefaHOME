@@ -126,31 +126,27 @@
                                   class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#27AE22] focus:outline-none resize-y">{{ $field->value }}</textarea>
 
                         @elseif($field->type === 'html')
-                        @php
-                            $qId      = 'quill_'.preg_replace('/[^a-z0-9]/i','_',$field->section.'_'.$field->key);
-                            $qInitVal = preg_replace('/<(style|script)[^>]*>.*?<\/\1>/is', '', $field->value ?? '');
-                        @endphp
+                        @php $hId = 'html_'.preg_replace('/[^a-z0-9]/i','_',$field->section.'_'.$field->key); @endphp
                         <div class="border border-gray-200 rounded-lg overflow-hidden">
-                            {{-- WYSIWYG editor (Quill attaches here) --}}
-                            <div id="{{ $qId }}" data-initial="{!! htmlspecialchars($qInitVal, ENT_QUOTES) !!}" style="min-height:220px;"></div>
-                            {{-- Source / raw-HTML mode --}}
-                            <textarea id="{{ $qId }}_source"
-                                      class="w-full px-3 py-2 text-sm font-mono focus:outline-none resize-y border-t border-gray-200"
-                                      style="display:none; min-height:220px;"></textarea>
-                            {{-- Footer bar --}}
-                            <div class="flex items-center justify-between gap-2 px-3 py-2 bg-gray-50 border-t border-gray-200">
-                                <button type="button"
-                                        id="{{ $qId }}_toggle"
-                                        onclick="toggleHtmlSource('{{ $qId }}')"
-                                        class="inline-flex items-center gap-1 text-xs font-mono font-semibold text-gray-500 hover:text-[#1A237E] border border-gray-200 hover:border-[#1A237E] px-2 py-1 rounded transition">
-                                    &lt;/&gt; Source
+                            <textarea id="{{ $hId }}"
+                                      name="content[{{ $field->section }}][{{ $field->key }}]"
+                                      class="w-full px-4 py-3 text-sm font-mono text-gray-700 focus:outline-none resize-y"
+                                      style="min-height:220px; border:none; display:block;"
+                                      placeholder="Paste your HTML here…"
+                            >{{ $field->value }}</textarea>
+                            {{-- Live preview panel --}}
+                            <div id="{{ $hId }}_preview"
+                                 class="html-preview-body px-5 py-4 border-t border-gray-200 bg-white"
+                                 style="display:none;"></div>
+                            <div class="flex items-center justify-between gap-3 px-3 py-2 bg-gray-50 border-t border-gray-200">
+                                <button type="button" onclick="toggleHtmlPreview('{{ $hId }}')"
+                                        id="{{ $hId }}_previewbtn"
+                                        class="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-[#1A237E] border border-gray-200 hover:border-[#1A237E] px-3 py-1.5 rounded transition">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                    Preview
                                 </button>
-                                <span class="text-xs text-gray-400">Tip: use &lt;/&gt; Source to paste raw HTML</span>
+                                <span class="text-xs text-gray-400">Paste raw HTML — saves exactly as typed. &lt;style&gt; blocks are stripped on the public page.</span>
                             </div>
-                            {{-- Hidden submit target --}}
-                            <textarea name="content[{{ $field->section }}][{{ $field->key }}]"
-                                      id="{{ $qId }}_input"
-                                      class="hidden">{{ $field->value }}</textarea>
                         </div>
 
                         @elseif($field->type === 'boolean')
@@ -253,90 +249,41 @@
 
 </div>
 @push('styles')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css">
 <style>
-    .ql-toolbar.ql-snow { border-top:none; border-left:none; border-right:none; background:#f9fafb; }
-    .ql-container.ql-snow { border:none; font-size:0.9rem; }
-    .ql-editor { min-height:200px; }
+    /* Live HTML preview panel — same typography as the public modal */
+    .html-preview-body { font-size:0.9375rem; line-height:1.8; color:#374151; }
+    .html-preview-body h1,.html-preview-body h2,.html-preview-body h3 { font-weight:700; color:#1A237E; margin-top:1.4rem; margin-bottom:.4rem; padding-bottom:.3rem; border-bottom:2px solid rgba(39,174,34,.2); }
+    .html-preview-body h1 { font-size:1.2rem; } .html-preview-body h2 { font-size:1.1rem; } .html-preview-body h3 { font-size:1rem; }
+    .html-preview-body h1:first-child,.html-preview-body h2:first-child,.html-preview-body h3:first-child { margin-top:0; }
+    .html-preview-body p { margin-bottom:.85rem; }
+    .html-preview-body ul { list-style:none; padding:0; margin:0 0 1rem; }
+    .html-preview-body ul li { display:flex; align-items:flex-start; gap:.6rem; padding:.25rem 0; }
+    .html-preview-body ul li::before { content:''; flex-shrink:0; width:7px; height:7px; border-radius:50%; background:#27AE22; margin-top:.55rem; }
+    .html-preview-body ol { list-style:none; counter-reset:c; padding:0; margin:0 0 1rem; }
+    .html-preview-body ol li { display:flex; align-items:flex-start; gap:.6rem; padding:.25rem 0; counter-increment:c; }
+    .html-preview-body ol li::before { content:counter(c)'.'; flex-shrink:0; font-weight:700; color:#27AE22; min-width:1.4rem; }
+    .html-preview-body strong,.html-preview-body b { color:#1A237E; font-weight:600; }
+    .html-preview-body a { color:#27AE22; text-decoration:underline; }
+    .html-preview-body blockquote { border-left:3px solid #27AE22; padding:.5rem 1rem; margin:1rem 0; background:rgba(39,174,34,.05); border-radius:0 .5rem .5rem 0; color:#6b7280; font-style:italic; }
 </style>
 @endpush
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
 <script>
-(function () {
-    const toolbarOptions = [
-        ['bold', 'italic', 'underline', 'strike'],
-        ['blockquote'],
-        [{ header: [1, 2, 3, false] }],
-        [{ list: 'ordered' }, { list: 'bullet' }],
-        [{ color: [] }, { background: [] }],
-        ['link'],
-        ['clean']
-    ];
-
-    // Map of editorId -> Quill instance, used by the source toggle
-    window._quillMap = {};
-    const editors = [];
-
-    document.querySelectorAll('[id^="quill_"]:not([id$="_input"]):not([id$="_source"])').forEach(function (el) {
-        try {
-            const initialHTML = el.dataset.initial || '';
-            const q = new Quill(el, { theme: 'snow', modules: { toolbar: toolbarOptions } });
-            if (initialHTML.trim()) {
-                // dangerouslyPasteHTML correctly maps <h3>, <ul>, <li> etc to Quill's Delta
-                q.clipboard.dangerouslyPasteHTML(initialHTML);
-            }
-            window._quillMap[el.id] = q;
-            editors.push({ quill: q, inputId: el.id + '_input' });
-        } catch (err) {
-            console.warn('Quill init failed for', el.id, err);
-        }
-    });
-
-    document.querySelector('form[action*="pages"]').addEventListener('submit', function () {
-        editors.forEach(function (e) {
-            const ta = document.getElementById(e.inputId);
-            if (!ta) return;
-            const srcId = e.inputId.slice(0, -'_input'.length) + '_source';
-            const src   = document.getElementById(srcId);
-            // Use computed style — reliable regardless of whether display came from class or inline
-            const srcVisible = src && window.getComputedStyle(src).display !== 'none';
-            ta.value = srcVisible ? src.value : e.quill.root.innerHTML;
-        });
-    });
-})();
-
-// Source toggle — called by each field's button
-window.toggleHtmlSource = function (qId) {
-    const editorEl  = document.getElementById(qId);
-    const sourceEl  = document.getElementById(qId + '_source');
-    const toggleBtn = document.getElementById(qId + '_toggle');
-    const q         = window._quillMap[qId];
-    if (!editorEl || !sourceEl || !q) return;
-
-    // Use computed style to check current state
-    const inSource = window.getComputedStyle(sourceEl).display !== 'none';
-
-    if (inSource) {
-        // Source → WYSIWYG: load raw HTML into Quill
-        q.clipboard.dangerouslyPasteHTML(sourceEl.value);
-        sourceEl.style.display = 'none';
-        editorEl.closest('.ql-container') && (editorEl.closest('.ql-container').style.display = '');
-        const wrap = editorEl.parentElement;
-        const toolbar = wrap ? wrap.querySelector('.ql-toolbar') : null;
-        if (toolbar) toolbar.style.display = '';
-        toggleBtn.textContent = '</> Source';
+window.toggleHtmlPreview = function (hId) {
+    const ta      = document.getElementById(hId);
+    const preview = document.getElementById(hId + '_preview');
+    const btn     = document.getElementById(hId + '_previewbtn');
+    if (!ta || !preview) return;
+    const visible = window.getComputedStyle(preview).display !== 'none';
+    if (visible) {
+        preview.style.display = 'none';
+        btn.innerHTML = btn.innerHTML.replace('Hide Preview', 'Preview');
     } else {
-        // WYSIWYG → Source: copy Quill HTML to textarea
-        sourceEl.value = q.root.innerHTML;
-        sourceEl.style.display = 'block';
-        // Hide the Quill editor area (but not the container wrapping div)
-        const wrap = editorEl.parentElement;
-        const toolbar = wrap ? wrap.querySelector('.ql-toolbar') : null;
-        if (toolbar) toolbar.style.display = 'none';
-        editorEl.closest('.ql-container') && (editorEl.closest('.ql-container').style.display = 'none');
-        toggleBtn.textContent = 'WYSIWYG';
+        // Strip <style>/<script> before rendering so admin CSS doesn't bleed
+        preview.innerHTML = ta.value.replace(/<(style|script)[^>]*>[\s\S]*?<\/\1>/gi, '');
+        preview.style.display = 'block';
+        btn.innerHTML = btn.innerHTML.replace('Preview', 'Hide Preview');
     }
 };
 </script>

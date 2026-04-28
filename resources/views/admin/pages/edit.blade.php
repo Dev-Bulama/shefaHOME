@@ -126,11 +126,12 @@
                                   class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#27AE22] focus:outline-none resize-y">{{ $field->value }}</textarea>
 
                         @elseif($field->type === 'html')
+                        @php $qId = 'quill_'.preg_replace('/[^a-z0-9]/i','_',$field->section.'_'.$field->key); @endphp
                         <div class="border border-gray-200 rounded-lg overflow-hidden">
-                            <div class="bg-gray-50 border-b border-gray-200 px-3 py-1.5 text-xs text-gray-400">HTML allowed — use &lt;p&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;strong&gt;, etc.</div>
+                            <div id="{{ $qId }}" style="min-height:220px;">{!! $field->value !!}</div>
                             <textarea name="content[{{ $field->section }}][{{ $field->key }}]"
-                                      rows="6"
-                                      class="w-full px-3 py-2 text-sm font-mono focus:outline-none resize-y focus:ring-2 focus:ring-[#27AE22]">{{ $field->value }}</textarea>
+                                      id="{{ $qId }}_input"
+                                      class="hidden">{{ $field->value }}</textarea>
                         </div>
 
                         @elseif($field->type === 'boolean')
@@ -232,6 +233,46 @@
     </form>
 
 </div>
+@push('styles')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css">
+<style>
+    .ql-toolbar.ql-snow { border-top:none; border-left:none; border-right:none; background:#f9fafb; }
+    .ql-container.ql-snow { border:none; font-size:0.9rem; }
+    .ql-editor { min-height:200px; }
+</style>
+@endpush
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+<script>
+(function () {
+    const toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike'],
+        ['blockquote'],
+        [{ header: [1, 2, 3, false] }],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        [{ color: [] }, { background: [] }],
+        ['link'],
+        ['clean']
+    ];
+
+    const editors = [];
+
+    document.querySelectorAll('[id^="quill_"]:not([id$="_input"])').forEach(function (el) {
+        const q = new Quill(el, { theme: 'snow', modules: { toolbar: toolbarOptions } });
+        editors.push({ quill: q, inputId: el.id + '_input' });
+    });
+
+    document.querySelector('form[action*="pages"]').addEventListener('submit', function () {
+        editors.forEach(function (e) {
+            const ta = document.getElementById(e.inputId);
+            if (ta) ta.value = e.quill.root.innerHTML;
+        });
+    });
+})();
+</script>
+@endpush
+
 @push('scripts')
 <script>
 function deleteField(id, btn) {

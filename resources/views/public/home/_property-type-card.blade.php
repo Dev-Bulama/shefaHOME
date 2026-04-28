@@ -3,8 +3,10 @@
     $isEven  = ($loop->index ?? 0) % 2 === 0;
     $hasDesc = !empty($section['description']) && trim(strip_tags($section['description'])) !== '';
 
-    $stripped  = preg_replace('/<(style|script)[^>]*>.*?<\/\1>/is', '', $section['description'] ?? '');
-    $plainText = trim(preg_replace('/\s+/', ' ', strip_tags($stripped)));
+    // Strip <style>/<script> blocks entirely — global CSS in descriptions bleeds into the page layout.
+    // Inline styles on elements still work; the .cat-modal-body class handles typography.
+    $safeDesc  = preg_replace('/<(style|script)[^>]*>.*?<\/\1>/is', '', $section['description'] ?? '');
+    $plainText = trim(preg_replace('/\s+/', ' ', strip_tags($safeDesc)));
     $excerpt   = mb_strlen($plainText) > 240 ? mb_substr($plainText, 0, 240) . '…' : $plainText;
 
     $img      = $section['image'] ?? '';
@@ -129,7 +131,7 @@
 
                 {{-- Scrollable description --}}
                 <div class="flex-1 overflow-y-auto px-6 py-6 cat-modal-body">
-                    {!! $section['description'] !!}
+                    {!! $safeDesc !!}
                 </div>
 
                 {{-- Footer CTA --}}

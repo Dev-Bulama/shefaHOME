@@ -126,9 +126,12 @@
                                   class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#27AE22] focus:outline-none resize-y">{{ $field->value }}</textarea>
 
                         @elseif($field->type === 'html')
-                        @php $qId = 'quill_'.preg_replace('/[^a-z0-9]/i','_',$field->section.'_'.$field->key); @endphp
+                        @php
+                            $qId      = 'quill_'.preg_replace('/[^a-z0-9]/i','_',$field->section.'_'.$field->key);
+                            $qInitVal = preg_replace('/<(style|script)[^>]*>.*?<\/\1>/is', '', $field->value ?? '');
+                        @endphp
                         <div class="border border-gray-200 rounded-lg overflow-hidden">
-                            <div id="{{ $qId }}" style="min-height:220px;">{!! $field->value !!}</div>
+                            <div id="{{ $qId }}" style="min-height:220px;">{!! $qInitVal !!}</div>
                             <textarea name="content[{{ $field->section }}][{{ $field->key }}]"
                                       id="{{ $qId }}_input"
                                       class="hidden">{{ $field->value }}</textarea>
@@ -259,8 +262,12 @@
     const editors = [];
 
     document.querySelectorAll('[id^="quill_"]:not([id$="_input"])').forEach(function (el) {
-        const q = new Quill(el, { theme: 'snow', modules: { toolbar: toolbarOptions } });
-        editors.push({ quill: q, inputId: el.id + '_input' });
+        try {
+            const q = new Quill(el, { theme: 'snow', modules: { toolbar: toolbarOptions } });
+            editors.push({ quill: q, inputId: el.id + '_input' });
+        } catch (err) {
+            console.warn('Quill init failed for', el.id, err);
+        }
     });
 
     document.querySelector('form[action*="pages"]').addEventListener('submit', function () {

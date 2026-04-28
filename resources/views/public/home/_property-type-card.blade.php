@@ -3,7 +3,8 @@
     $isEven  = ($loop->index ?? 0) % 2 === 0;
     $hasDesc = !empty($section['description']) && trim(strip_tags($section['description'])) !== '';
 
-    $plainText = trim(preg_replace('/\s+/', ' ', strip_tags($section['description'] ?? '')));
+    $stripped  = preg_replace('/<(style|script)[^>]*>.*?<\/\1>/is', '', $section['description'] ?? '');
+    $plainText = trim(preg_replace('/\s+/', ' ', strip_tags($stripped)));
     $excerpt   = mb_strlen($plainText) > 240 ? mb_substr($plainText, 0, 240) . '…' : $plainText;
 
     $img      = $section['image'] ?? '';

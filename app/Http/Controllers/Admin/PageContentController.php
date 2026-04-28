@@ -285,6 +285,14 @@ class PageContentController extends Controller
 
         foreach ($fields as $section => $keys) {
             foreach ($keys as $key => $value) {
+                // Decode values that were base64-encoded client-side to bypass WAF
+                if (is_string($value) && str_starts_with($value, '__b64__:')) {
+                    $decoded = base64_decode(substr($value, 8), true);
+                    if ($decoded !== false) {
+                        $value = $decoded;
+                    }
+                }
+
                 $record = PageContent::where([
                     'page'    => $page,
                     'section' => $section,

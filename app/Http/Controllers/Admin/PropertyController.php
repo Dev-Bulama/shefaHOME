@@ -33,21 +33,30 @@ class PropertyController extends Controller {
         return view('admin.properties.create', compact('propertyTypes','estates'));
     }
 
+    private function decodeDescription(?string $value): string {
+        if ($value && str_starts_with($value, '__b64__:')) {
+            $decoded = base64_decode(substr($value, 8), true);
+            return ($decoded !== false) ? $decoded : '';
+        }
+        return $value ?? '';
+    }
+
     public function store(Request $request) {
         $data = $request->validate([
-            'title' => 'required|string|max:255',
+            'title'            => 'required|string|max:255',
             'property_type_id' => 'required|exists:property_types,id',
-            'estate_id' => 'nullable|exists:estates,id',
-            'short_description' => 'required|string|max:500',
-            'description' => 'required|string',
-            'state' => 'required|string',
-            'lga' => 'required|string',
-            'address' => 'required|string',
-            'price_from' => 'required|numeric|min:0',
-            'cover_image' => 'required|image|max:5120',
-            'status' => 'required|in:available,sold_out,coming_soon,rent,buy,buy_and_rent,shortlet',
+            'estate_id'        => 'nullable|exists:estates,id',
+            'short_description'=> 'required|string|max:500',
+            'description'      => 'nullable|string',
+            'state'            => 'required|string',
+            'lga'              => 'required|string',
+            'address'          => 'required|string',
+            'price_from'       => 'required|numeric|min:0',
+            'cover_image'      => 'required|image|max:5120',
+            'status'           => 'required|in:available,sold_out,coming_soon,rent,buy,buy_and_rent,shortlet',
         ]);
 
+        $data['description'] = $this->decodeDescription($request->input('description'));
         $data['cover_image'] = ImageService::upload($request->file('cover_image'), 'properties');
         $data['price_to'] = $request->price_to ?: null;
         $data['plot_sizes'] = $request->plot_sizes ? json_encode(array_filter(explode(',', $request->plot_sizes))) : null;
@@ -89,18 +98,20 @@ class PropertyController extends Controller {
     public function update(Request $request, $id) {
         $property = Property::findOrFail($id);
         $data = $request->validate([
-            'title' => 'required|string|max:255',
+            'title'            => 'required|string|max:255',
             'property_type_id' => 'required|exists:property_types,id',
-            'estate_id' => 'nullable|exists:estates,id',
-            'short_description' => 'required|string|max:500',
-            'description' => 'required|string',
-            'state' => 'required|string',
-            'lga' => 'required|string',
-            'address' => 'required|string',
-            'price_from' => 'required|numeric|min:0',
-            'cover_image' => 'nullable|image|max:5120',
-            'status' => 'required|in:available,sold_out,coming_soon,rent,buy,buy_and_rent,shortlet',
+            'estate_id'        => 'nullable|exists:estates,id',
+            'short_description'=> 'required|string|max:500',
+            'description'      => 'nullable|string',
+            'state'            => 'required|string',
+            'lga'              => 'required|string',
+            'address'          => 'required|string',
+            'price_from'       => 'required|numeric|min:0',
+            'cover_image'      => 'nullable|image|max:5120',
+            'status'           => 'required|in:available,sold_out,coming_soon,rent,buy,buy_and_rent,shortlet',
         ]);
+
+        $data['description'] = $this->decodeDescription($request->input('description'));
 
         if($request->hasFile('cover_image')) {
             ImageService::delete($property->cover_image);

@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" href="/favicon.ico">
 <title>@yield('title', 'Sign In') | SHEFAHOMES</title>
 <meta name="description" content="@yield('description', 'Access your SHEFAHOMES account.')">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -72,13 +74,24 @@ h1,h2,h3,.font-display { font-family: 'Playfair Display', serif; }
 
         {{-- Top: Logo --}}
         <div class="relative z-10">
+            @php
+                $authLogo       = \App\Helpers\Settings::get('logo');
+                $authLogoHeight = \App\Helpers\Settings::get('logo_height', '48');
+            @endphp
             <a href="{{ route('home') }}" class="flex items-center gap-3 w-fit">
+                @if($authLogo)
+                    <img src="{{ \Illuminate\Support\Facades\Storage::url($authLogo) }}"
+                         alt="SHEFAHOMES"
+                         style="height: {{ intval($authLogoHeight) }}px;"
+                         class="w-auto object-contain">
+                @else
                 <div class="w-10 h-10 bg-[#27AE22] rounded-xl flex items-center justify-center shadow-lg">
                     <svg class="w-6 h-6 text-[#1A237E]" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
                     </svg>
                 </div>
                 <span class="text-white font-display font-bold text-xl tracking-wide">SHEFAHOMES</span>
+                @endif
             </a>
         </div>
 
@@ -142,13 +155,20 @@ h1,h2,h3,.font-display { font-family: 'Playfair Display', serif; }
 
         {{-- Mobile Logo --}}
         <div class="lg:hidden mb-8 text-center">
-            <a href="{{ route('home') }}" class="inline-flex items-center gap-2">
+            <a href="{{ route('home') }}" class="inline-flex items-center gap-2 justify-center">
+                @if($authLogo ?? false)
+                    <img src="{{ \Illuminate\Support\Facades\Storage::url($authLogo) }}"
+                         alt="SHEFAHOMES"
+                         style="height: {{ intval($authLogoHeight ?? 48) }}px;"
+                         class="w-auto object-contain">
+                @else
                 <div class="w-9 h-9 bg-[#1A237E] rounded-xl flex items-center justify-center">
                     <svg class="w-5 h-5 text-[#27AE22]" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
                     </svg>
                 </div>
                 <span class="font-display font-bold text-[#1A237E] text-xl tracking-wide">SHEFAHOMES</span>
+                @endif
             </a>
         </div>
 

@@ -14,5 +14,6 @@ class BlogPost extends Model {
     public function category() { return $this->belongsTo(BlogCategory::class, 'blog_category_id'); }
     public function author() { return $this->belongsTo(User::class, 'author_id'); }
     public function getFeaturedImageUrlAttribute() { return asset('uploads/'.$this->featured_image); }
+    public function getContentAttribute(): string { return $this->body ?? ''; }
     public function scopePublished($q) { return $q->where('is_published', true)->whereNotNull('published_at')->where('published_at','<=',now()); }
 }

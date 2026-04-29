@@ -13,6 +13,19 @@
         <a href="{{ route('admin.properties.index') }}" class="text-sm text-gray-500 hover:text-gray-700">← Back to Properties</a>
     </div>
 
+    {{-- Validation error banner --}}
+    @if($errors->any())
+    <div class="bg-red-50 border border-red-200 rounded-xl px-5 py-4 flex gap-3">
+        <svg class="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div>
+            <p class="text-sm font-semibold text-red-700 mb-1">Please fix the following errors:</p>
+            <ul class="list-disc list-inside text-sm text-red-600 space-y-0.5">
+                @foreach($errors->all() as $err)<li>{{ $err }}</li>@endforeach
+            </ul>
+        </div>
+    </div>
+    @endif
+
     <form method="POST" action="{{ route('admin.properties.update', $property) }}" enctype="multipart/form-data" id="propertyForm" novalidate>
         @csrf
         @method('PUT')
@@ -82,13 +95,20 @@
                     </div>
                     <div class="md:col-span-2">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                        <div id="descriptionEditor" class="border border-gray-200 rounded-lg min-h-[200px]">{!! old('description', $property->description) !!}</div>
+                        @php
+                            $descVal = old('description', $property->description ?? '');
+                            if (is_string($descVal) && str_starts_with($descVal, '__b64__:')) {
+                                $descVal = base64_decode(substr($descVal, 8)) ?: '';
+                            }
+                        @endphp
+                        <div id="descriptionEditor" class="border border-gray-200 rounded-lg min-h-[200px]">{!! $descVal !!}</div>
                         <input type="hidden" name="description" id="descriptionInput"/>
                     </div>
                     <div class="md:col-span-2">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Address / Landmark</label>
-                        <input type="text" name="address" value="{{ old('address', $property->address) }}"
-                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none"/>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Address / Landmark <span class="text-red-500">*</span></label>
+                        <input type="text" name="address" value="{{ old('address', $property->address) }}" required
+                            class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none @error('address') border-red-400 @enderror"/>
+                        @error('address')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Google Maps URL</label>
@@ -315,7 +335,8 @@ const quill = new Quill('#descriptionEditor', {
     modules: { toolbar: [['bold','italic','underline'],['blockquote'],['link'],['image'],[{list:'ordered'},{list:'bullet'}],[{header:[1,2,3,false]}]] }
 });
 function syncDescription() {
-    document.getElementById('descriptionInput').value = quill.root.innerHTML;
+    const html = quill.root.innerHTML;
+    document.getElementById('descriptionInput').value = '__b64__:' + btoa(unescape(encodeURIComponent(html)));
 }
 function previewCover(input) {
     if (input.files && input.files[0]) {

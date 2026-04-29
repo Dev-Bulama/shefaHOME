@@ -502,26 +502,57 @@ $defaults = [
 // ── Override with DB content if available (admin-editable) ─────────────────
 $sections = [];
 foreach ($defaults as $id => $def) {
-    $sKey    = str_replace('_', '_', $id); // same key
-    $dbDesc  = PC::get('home', $sKey . '.description', '');
-    $dbTitle = PC::get('home', $sKey . '.title',       '');
+    $visible = PC::get('home', $id . '.visible', '1');
+    if ($visible === '0') continue;
+
+    $dbPages = PC::get('home', $id . '.pages', '');
+    $pages   = $dbPages ? array_filter(array_map('trim', explode(',', $dbPages))) : $def['pages'];
 
     $sections[$id] = [
-        'title'       => $dbTitle       ?: $def['title'],
-        'subtitle'    => PC::get('home', $sKey . '.subtitle',    '') ?: $def['subtitle'],
-        'description' => $dbDesc        ?: $def['description'],
-        'button_text' => PC::get('home', $sKey . '.button_text', '') ?: $def['button_text'],
-        'button_url'  => PC::get('home', $sKey . '.button_url',  '') ?: $def['button_url'],
-        'image'       => PC::get('home', $sKey . '.image',   ''),
-        'image_2'     => PC::get('home', $sKey . '.image_2', ''),
-        'image_3'     => PC::get('home', $sKey . '.image_3', ''),
-        'pages'       => $def['pages'],
-        'icon'        => $def['icon'],
+        'title'       => PC::get('home', $id . '.title',       '') ?: $def['title'],
+        'subtitle'    => PC::get('home', $id . '.subtitle',    '') ?: $def['subtitle'],
+        'description' => PC::get('home', $id . '.description', '') ?: $def['description'],
+        'button_text' => PC::get('home', $id . '.button_text', '') ?: $def['button_text'],
+        'button_url'  => PC::get('home', $id . '.button_url',  '') ?: $def['button_url'],
+        'image'       => PC::get('home', $id . '.image',   ''),
+        'image_2'     => PC::get('home', $id . '.image_2', ''),
+        'image_3'     => PC::get('home', $id . '.image_3', ''),
+        'icon'        => PC::get('home', $id . '.icon',    '') ?: $def['icon'],
+        'pages'       => $pages,
     ];
-
-    $visible = PC::get('home', $sKey . '.visible', '1');
-    if ($visible === '0') unset($sections[$id]);
 }
+
+// ── Load any extra sections added via Admin → Add Category Section ──────────
+try {
+    $extraTitles = \App\Models\PageContent::where('page', 'home')
+        ->whereNotIn('section', array_keys($defaults))
+        ->where('key', 'title')
+        ->where('value', '!=', '')
+        ->orderBy('sort_order')
+        ->get();
+
+    foreach ($extraTitles as $rec) {
+        $sid = $rec->section;
+        if (PC::get('home', $sid . '.visible', '1') === '0') continue;
+
+        $rawPages = PC::get('home', $sid . '.pages', 'rent');
+        $pages    = array_filter(array_map('trim', explode(',', $rawPages)));
+        if (empty($pages)) $pages = ['rent'];
+
+        $sections[$sid] = [
+            'title'       => $rec->value,
+            'subtitle'    => PC::get('home', $sid . '.subtitle',    ''),
+            'description' => PC::get('home', $sid . '.description', ''),
+            'button_text' => PC::get('home', $sid . '.button_text', ''),
+            'button_url'  => PC::get('home', $sid . '.button_url',  ''),
+            'image'       => PC::get('home', $sid . '.image',   ''),
+            'image_2'     => PC::get('home', $sid . '.image_2', ''),
+            'image_3'     => PC::get('home', $sid . '.image_3', ''),
+            'icon'        => PC::get('home', $sid . '.icon', '🏠'),
+            'pages'       => $pages,
+        ];
+    }
+} catch (\Throwable $e) {}
 
 $tabs = ['rent' => 'For Rent', 'buy' => 'For Sale', 'shortlet' => 'Short Let'];
 @endphp

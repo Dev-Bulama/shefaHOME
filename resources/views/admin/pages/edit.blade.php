@@ -4,7 +4,7 @@
 @section('breadcrumb', 'Page Content')
 
 @section('content')
-<div x-data="{ showAddField: false }" class="space-y-6">
+<div x-data="{ showAddField: false, showAddCategory: false }" class="space-y-6">
 
     <div class="flex items-center justify-between flex-wrap gap-3">
         <div class="flex items-center gap-3">
@@ -19,8 +19,17 @@
                 <p class="text-sm text-gray-500">Edit content fields — changes are saved immediately.</p>
             </div>
         </div>
-        <div class="flex gap-2">
-            <button @click="showAddField = !showAddField"
+        <div class="flex gap-2 flex-wrap">
+            @if($page === 'home')
+            <button @click="showAddCategory = !showAddCategory; showAddField = false"
+                    class="inline-flex items-center gap-2 px-4 py-2 bg-[#27AE22] hover:bg-[#1D9418] text-white text-sm font-semibold rounded-lg transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                </svg>
+                Add Category Section
+            </button>
+            @endif
+            <button @click="showAddField = !showAddField; showAddCategory = false"
                     class="inline-flex items-center gap-2 px-4 py-2 border border-[#1A237E]/30 text-[#1A237E] text-sm font-medium rounded-lg hover:bg-[#1A237E]/5 transition">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
@@ -74,6 +83,80 @@
             </div>
         </form>
     </div>
+
+    {{-- Add Category Section Form (home page only) --}}
+    @if($page === 'home')
+    <div x-show="showAddCategory" x-transition class="bg-green-50 border border-green-200 rounded-xl p-5" style="display:none;">
+        <h3 class="font-semibold text-gray-800 mb-1 text-sm">Add New Category Section</h3>
+        <p class="text-xs text-gray-500 mb-4">This creates a new card in the "Explore by Category" section on the homepage. Fill in the details, save, then edit the description and images below.</p>
+        <form method="POST" action="{{ route('admin.pages.addCategory', $page) }}">
+            @csrf
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {{-- Section ID --}}
+                <div>
+                    <label class="block text-xs font-medium text-gray-600 mb-1">Section ID <span class="text-red-500">*</span>
+                        <span class="text-gray-400 font-normal">(lowercase, underscores only)</span>
+                    </label>
+                    <input type="text" name="section_id" required placeholder="e.g. penthouse" pattern="[a-z0-9_]+"
+                           class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#27AE22] focus:outline-none font-mono"/>
+                </div>
+                {{-- Title --}}
+                <div>
+                    <label class="block text-xs font-medium text-gray-600 mb-1">Title <span class="text-red-500">*</span></label>
+                    <input type="text" name="title" required placeholder="e.g. Penthouse"
+                           class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#27AE22] focus:outline-none"/>
+                </div>
+                {{-- Subtitle --}}
+                <div>
+                    <label class="block text-xs font-medium text-gray-600 mb-1">Subtitle</label>
+                    <input type="text" name="subtitle" placeholder="e.g. For Sale"
+                           class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#27AE22] focus:outline-none"/>
+                </div>
+                {{-- Icon --}}
+                <div>
+                    <label class="block text-xs font-medium text-gray-600 mb-1">Icon (emoji)</label>
+                    <input type="text" name="icon" placeholder="e.g. 🏙️" maxlength="10"
+                           class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#27AE22] focus:outline-none"/>
+                </div>
+                {{-- Button Text --}}
+                <div>
+                    <label class="block text-xs font-medium text-gray-600 mb-1">Button Text</label>
+                    <input type="text" name="button_text" placeholder="e.g. View Penthouses"
+                           class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#27AE22] focus:outline-none"/>
+                </div>
+                {{-- Button URL --}}
+                <div>
+                    <label class="block text-xs font-medium text-gray-600 mb-1">Button URL</label>
+                    <input type="text" name="button_url" placeholder="/properties?status=buy"
+                           class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#27AE22] focus:outline-none font-mono"/>
+                </div>
+            </div>
+            {{-- Tabs --}}
+            <div class="mt-3">
+                <label class="block text-xs font-medium text-gray-600 mb-2">Show on Tab(s) <span class="text-red-500">*</span></label>
+                <div class="flex flex-wrap gap-4">
+                    <label class="flex items-center gap-2 cursor-pointer text-sm">
+                        <input type="checkbox" name="tabs[]" value="rent" class="rounded text-[#27AE22] focus:ring-[#27AE22]">
+                        <span>For Rent</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer text-sm">
+                        <input type="checkbox" name="tabs[]" value="buy" class="rounded text-[#27AE22] focus:ring-[#27AE22]">
+                        <span>For Sale</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer text-sm">
+                        <input type="checkbox" name="tabs[]" value="shortlet" class="rounded text-[#27AE22] focus:ring-[#27AE22]">
+                        <span>Short Let</span>
+                    </label>
+                </div>
+            </div>
+            <div class="mt-4 flex justify-end">
+                <button type="submit" class="bg-[#27AE22] hover:bg-[#1D9418] text-white text-sm font-semibold px-6 py-2 rounded-lg transition">
+                    Create Category Section
+                </button>
+            </div>
+        </form>
+    </div>
+    @endif
 
     {{-- Content form --}}
     <form id="page-content-form" method="POST" action="{{ route('admin.pages.update', $page) }}" enctype="multipart/form-data">

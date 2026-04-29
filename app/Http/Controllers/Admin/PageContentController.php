@@ -219,6 +219,8 @@ class PageContentController extends Controller
             ['section'=>'warehouse',       'key'=>'button_text', 'label'=>'Warehouse – Button Text',      'type'=>'text',    'value'=>'View Warehouses',       'sort_order'=>203],
             ['section'=>'warehouse',       'key'=>'button_url',  'label'=>'Warehouse – Button URL',       'type'=>'url',     'value'=>'/properties?status=rent','sort_order'=>204],
             ['section'=>'warehouse',       'key'=>'visible',     'label'=>'Warehouse – Visible',          'type'=>'boolean', 'value'=>'1',                     'sort_order'=>205],
+            ['section'=>'warehouse',       'key'=>'icon',        'label'=>'Warehouse – Icon (emoji)',     'type'=>'text',    'value'=>'🏭',                    'sort_order'=>206],
+            ['section'=>'warehouse',       'key'=>'pages',       'label'=>'Warehouse – Tab(s) (rent/buy/shortlet, comma-separated)', 'type'=>'text', 'value'=>'rent', 'sort_order'=>207],
 
             ['section'=>'office_space',    'key'=>'image',       'label'=>'Office Space – Image',         'type'=>'image',   'value'=>'',                      'sort_order'=>209],
             ['section'=>'office_space',    'key'=>'image_2',     'label'=>'Office Space – Image 2',       'type'=>'image',   'value'=>'',                      'sort_order'=>2091],
@@ -229,6 +231,8 @@ class PageContentController extends Controller
             ['section'=>'office_space',    'key'=>'button_text', 'label'=>'Office Space – Button Text',   'type'=>'text',    'value'=>'View Office Spaces',    'sort_order'=>213],
             ['section'=>'office_space',    'key'=>'button_url',  'label'=>'Office Space – Button URL',    'type'=>'url',     'value'=>'/properties?status=rent','sort_order'=>214],
             ['section'=>'office_space',    'key'=>'visible',     'label'=>'Office Space – Visible',       'type'=>'boolean', 'value'=>'1',                     'sort_order'=>215],
+            ['section'=>'office_space',    'key'=>'icon',        'label'=>'Office Space – Icon (emoji)',  'type'=>'text',    'value'=>'🏢',                    'sort_order'=>216],
+            ['section'=>'office_space',    'key'=>'pages',       'label'=>'Office Space – Tab(s)',        'type'=>'text',    'value'=>'rent',                  'sort_order'=>217],
 
             ['section'=>'land',            'key'=>'image',       'label'=>'Land – Image',                 'type'=>'image',   'value'=>'',                      'sort_order'=>219],
             ['section'=>'land',            'key'=>'image_2',     'label'=>'Land – Image 2',               'type'=>'image',   'value'=>'',                      'sort_order'=>2191],
@@ -239,6 +243,8 @@ class PageContentController extends Controller
             ['section'=>'land',            'key'=>'button_text', 'label'=>'Land – Button Text',           'type'=>'text',    'value'=>'View Land Listings',    'sort_order'=>223],
             ['section'=>'land',            'key'=>'button_url',  'label'=>'Land – Button URL',            'type'=>'url',     'value'=>'/properties?status=buy','sort_order'=>224],
             ['section'=>'land',            'key'=>'visible',     'label'=>'Land – Visible',               'type'=>'boolean', 'value'=>'1',                     'sort_order'=>225],
+            ['section'=>'land',            'key'=>'icon',        'label'=>'Land – Icon (emoji)',          'type'=>'text',    'value'=>'🌍',                    'sort_order'=>226],
+            ['section'=>'land',            'key'=>'pages',       'label'=>'Land – Tab(s)',                'type'=>'text',    'value'=>'buy',                   'sort_order'=>227],
 
             ['section'=>'duplex',          'key'=>'image',       'label'=>'Duplex – Image',               'type'=>'image',   'value'=>'',                      'sort_order'=>229],
             ['section'=>'duplex',          'key'=>'image_2',     'label'=>'Duplex – Image 2',             'type'=>'image',   'value'=>'',                      'sort_order'=>2291],
@@ -249,6 +255,8 @@ class PageContentController extends Controller
             ['section'=>'duplex',          'key'=>'button_text', 'label'=>'Duplex – Button Text',         'type'=>'text',    'value'=>'View Duplexes',         'sort_order'=>233],
             ['section'=>'duplex',          'key'=>'button_url',  'label'=>'Duplex – Button URL',          'type'=>'url',     'value'=>'/properties?status=buy','sort_order'=>234],
             ['section'=>'duplex',          'key'=>'visible',     'label'=>'Duplex – Visible',             'type'=>'boolean', 'value'=>'1',                     'sort_order'=>235],
+            ['section'=>'duplex',          'key'=>'icon',        'label'=>'Duplex – Icon (emoji)',        'type'=>'text',    'value'=>'🏘️',                   'sort_order'=>236],
+            ['section'=>'duplex',          'key'=>'pages',       'label'=>'Duplex – Tab(s)',              'type'=>'text',    'value'=>'buy',                   'sort_order'=>237],
 
             ['section'=>'duplex_island',   'key'=>'image',       'label'=>'Duplex Island – Image',        'type'=>'image',   'value'=>'',                      'sort_order'=>2355],
             ['section'=>'duplex_island',   'key'=>'image_2',     'label'=>'Duplex Island – Image 2',      'type'=>'image',   'value'=>'',                      'sort_order'=>2356],
@@ -259,6 +267,8 @@ class PageContentController extends Controller
             ['section'=>'duplex_island',   'key'=>'button_text', 'label'=>'Duplex Island – Button Text',  'type'=>'text',    'value'=>'View Island Duplexes',      'sort_order'=>239],
             ['section'=>'duplex_island',   'key'=>'button_url',  'label'=>'Duplex Island – Button URL',   'type'=>'url',     'value'=>'/properties?status=buy',    'sort_order'=>2391],
             ['section'=>'duplex_island',   'key'=>'visible',     'label'=>'Duplex Island – Visible',      'type'=>'boolean', 'value'=>'1',                         'sort_order'=>2392],
+            ['section'=>'duplex_island',   'key'=>'icon',        'label'=>'Duplex Island – Icon (emoji)', 'type'=>'text',    'value'=>'🏡',                        'sort_order'=>2393],
+            ['section'=>'duplex_island',   'key'=>'pages',       'label'=>'Duplex Island – Tab(s)',       'type'=>'text',    'value'=>'buy',                       'sort_order'=>2394],
 
             ['section'=>'filling_station', 'key'=>'image',       'label'=>'Filling Station – Image',      'type'=>'image',   'value'=>'',                      'sort_order'=>2395],
             ['section'=>'filling_station', 'key'=>'image_2',     'label'=>'Filling Station – Image 2',    'type'=>'image',   'value'=>'',                      'sort_order'=>2396],
@@ -269,6 +279,8 @@ class PageContentController extends Controller
             ['section'=>'filling_station', 'key'=>'button_text', 'label'=>'Filling Station – Button Text','type'=>'text',    'value'=>'View Filling Stations', 'sort_order'=>243],
             ['section'=>'filling_station', 'key'=>'button_url',  'label'=>'Filling Station – Button URL', 'type'=>'url',     'value'=>'/properties?status=buy_and_rent','sort_order'=>244],
             ['section'=>'filling_station', 'key'=>'visible',     'label'=>'Filling Station – Visible',    'type'=>'boolean', 'value'=>'1',                     'sort_order'=>245],
+            ['section'=>'filling_station', 'key'=>'icon',        'label'=>'Filling Station – Icon',       'type'=>'text',    'value'=>'⛽',                    'sort_order'=>246],
+            ['section'=>'filling_station', 'key'=>'pages',       'label'=>'Filling Station – Tab(s)',     'type'=>'text',    'value'=>'rent,buy',              'sort_order'=>247],
 
             ['section'=>'hotel',           'key'=>'image',       'label'=>'Hotel – Image',                'type'=>'image',   'value'=>'',                      'sort_order'=>249],
             ['section'=>'hotel',           'key'=>'image_2',     'label'=>'Hotel – Image 2',              'type'=>'image',   'value'=>'',                      'sort_order'=>2491],
@@ -279,6 +291,8 @@ class PageContentController extends Controller
             ['section'=>'hotel',           'key'=>'button_text', 'label'=>'Hotel – Button Text',          'type'=>'text',    'value'=>'View Hotel Properties', 'sort_order'=>253],
             ['section'=>'hotel',           'key'=>'button_url',  'label'=>'Hotel – Button URL',           'type'=>'url',     'value'=>'/properties?status=buy_and_rent','sort_order'=>254],
             ['section'=>'hotel',           'key'=>'visible',     'label'=>'Hotel – Visible',              'type'=>'boolean', 'value'=>'1',                     'sort_order'=>255],
+            ['section'=>'hotel',           'key'=>'icon',        'label'=>'Hotel – Icon (emoji)',         'type'=>'text',    'value'=>'🏨',                    'sort_order'=>256],
+            ['section'=>'hotel',           'key'=>'pages',       'label'=>'Hotel – Tab(s)',               'type'=>'text',    'value'=>'rent,buy',              'sort_order'=>257],
 
             ['section'=>'short_let',       'key'=>'image',       'label'=>'Short Let – Image',            'type'=>'image',   'value'=>'',                      'sort_order'=>259],
             ['section'=>'short_let',       'key'=>'image_2',     'label'=>'Short Let – Image 2',          'type'=>'image',   'value'=>'',                      'sort_order'=>2591],
@@ -289,6 +303,8 @@ class PageContentController extends Controller
             ['section'=>'short_let',       'key'=>'button_text', 'label'=>'Short Let – Button Text',      'type'=>'text',    'value'=>'View Short Lets',       'sort_order'=>263],
             ['section'=>'short_let',       'key'=>'button_url',  'label'=>'Short Let – Button URL',       'type'=>'url',     'value'=>'/properties?status=shortlet','sort_order'=>264],
             ['section'=>'short_let',       'key'=>'visible',     'label'=>'Short Let – Visible',          'type'=>'boolean', 'value'=>'1',                     'sort_order'=>265],
+            ['section'=>'short_let',       'key'=>'icon',        'label'=>'Short Let – Icon (emoji)',     'type'=>'text',    'value'=>'🛏️',                   'sort_order'=>266],
+            ['section'=>'short_let',       'key'=>'pages',       'label'=>'Short Let – Tab(s)',           'type'=>'text',    'value'=>'shortlet',              'sort_order'=>267],
         ];
 
         foreach ($sections as $row) {
@@ -476,6 +492,50 @@ class PageContentController extends Controller
         );
 
         return back()->with('success', 'New field added.');
+    }
+
+    public function addCategorySection(Request $request, string $page)
+    {
+        abort_unless($page === 'home', 404);
+
+        $data = $request->validate([
+            'section_id'  => ['required', 'string', 'max:60', 'regex:/^[a-z0-9_]+$/'],
+            'title'       => 'required|string|max:120',
+            'subtitle'    => 'nullable|string|max:120',
+            'icon'        => 'nullable|string|max:20',
+            'tabs'        => 'required|array|min:1',
+            'tabs.*'      => 'in:rent,buy,shortlet',
+            'button_text' => 'nullable|string|max:120',
+            'button_url'  => 'nullable|string|max:255',
+        ]);
+
+        $sid   = $data['section_id'];
+        $label = ucwords(str_replace('_', ' ', $sid));
+        $base  = PageContent::where('page', 'home')->max('sort_order') + 1;
+
+        $fields = [
+            ['key'=>'image',       'label'=>"$label – Image",                         'type'=>'image',   'value'=>''],
+            ['key'=>'image_2',     'label'=>"$label – Image 2",                       'type'=>'image',   'value'=>''],
+            ['key'=>'image_3',     'label'=>"$label – Image 3",                       'type'=>'image',   'value'=>''],
+            ['key'=>'icon',        'label'=>"$label – Icon (emoji)",                  'type'=>'text',    'value'=>$data['icon'] ?? '🏠'],
+            ['key'=>'title',       'label'=>"$label – Title",                         'type'=>'text',    'value'=>$data['title']],
+            ['key'=>'subtitle',    'label'=>"$label – Subtitle",                      'type'=>'text',    'value'=>$data['subtitle'] ?? ''],
+            ['key'=>'description', 'label'=>"$label – Description",                   'type'=>'html',    'value'=>''],
+            ['key'=>'button_text', 'label'=>"$label – Button Text",                   'type'=>'text',    'value'=>$data['button_text'] ?? ''],
+            ['key'=>'button_url',  'label'=>"$label – Button URL",                    'type'=>'url',     'value'=>$data['button_url'] ?? ''],
+            ['key'=>'pages',       'label'=>"$label – Tab(s) (rent/buy/shortlet)",    'type'=>'text',    'value'=>implode(',', $data['tabs'])],
+            ['key'=>'visible',     'label'=>"$label – Visible",                       'type'=>'boolean', 'value'=>'1'],
+        ];
+
+        foreach ($fields as $i => $field) {
+            PageContent::firstOrCreate(
+                ['page' => 'home', 'section' => $sid, 'key' => $field['key']],
+                array_merge($field, ['page' => 'home', 'section' => $sid, 'sort_order' => $base + $i])
+            );
+        }
+
+        PageContentHelper::flushCache();
+        return back()->with('success', "Category section \"{$data['title']}\" added. Fill in the fields below.");
     }
 
     public function deleteField(int $id)

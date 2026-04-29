@@ -3,18 +3,26 @@
     $isEven  = ($loop->index ?? 0) % 2 === 0;
     $hasDesc = !empty($section['description']) && trim(strip_tags($section['description'])) !== '';
 
-    // Strip <style>/<script> blocks entirely — global CSS in descriptions bleeds into the page layout.
-    // Inline styles on elements still work; the .cat-modal-body class handles typography.
     $safeDesc  = preg_replace('/<(style|script)[^>]*>.*?<\/\1>/is', '', $section['description'] ?? '');
     $plainText = trim(preg_replace('/\s+/', ' ', strip_tags($safeDesc)));
     $excerpt   = mb_strlen($plainText) > 240 ? mb_substr($plainText, 0, 240) . '…' : $plainText;
 
-    $img      = $section['image'] ?? '';
-    $imageUrl = $img
-        ? (str_starts_with($img, 'http') || str_starts_with($img, '//')
+    // Collect all images (image, image_2, image_3); filter empties; resolve URLs
+    $rawImages = array_filter([
+        $section['image']   ?? '',
+        $section['image_2'] ?? '',
+        $section['image_3'] ?? '',
+    ]);
+    $slideImages = [];
+    foreach ($rawImages as $img) {
+        $slideImages[] = (str_starts_with($img, 'http') || str_starts_with($img, '//')
             ? $img
-            : asset('uploads/' . $img))
-        : 'https://picsum.photos/seed/cat_' . $id . '/1200/700';
+            : asset('uploads/' . $img));
+    }
+    if (empty($slideImages)) {
+        $slideImages = ['https://picsum.photos/seed/cat_' . $id . '/1200/700'];
+    }
+    $slideCount = count($slideImages);
 @endphp
 
 {{-- x-init $watch keeps body-scroll in sync without getting stuck --}}
@@ -25,20 +33,70 @@
 
     <div class="flex flex-col {{ $isEven ? 'lg:flex-row' : 'lg:flex-row-reverse' }}">
 
-        {{-- ── Image panel ──────────────────────────────────────────── --}}
-        <div class="relative overflow-hidden lg:w-1/2 category-img-panel">
-            <img src="{{ $imageUrl }}"
+        {{-- ── Image panel (single image or auto-sliding carousel) ──── --}}
+        <div class="relative overflow-hidden lg:w-1/2 category-img-panel"
+             x-data="{
+                 cur: 0,
+                 total: {{ $slideCount }},
+                 timer: null,
+                 init() { if (this.total > 1) this.startAuto(); },
+                 startAuto() { this.timer = setInterval(() => { this.cur = (this.cur + 1) % this.total; }, 4500); },
+                 prev() { clearInterval(this.timer); this.cur = (this.cur - 1 + this.total) % this.total; this.startAuto(); },
+                 next() { clearInterval(this.timer); this.cur = (this.cur + 1) % this.total; this.startAuto(); },
+                 goTo(i) { clearInterval(this.timer); this.cur = i; this.startAuto(); }
+             }">
+
+            {{-- Slides --}}
+            @foreach($slideImages as $si => $slideUrl)
+            <img src="{{ $slideUrl }}"
                  alt="{{ $section['title'] }}"
+                 x-show="cur === {{ $si }}"
+                 x-transition:enter="transition ease-in-out duration-700"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition ease-in-out duration-500"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
                  class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                 loading="lazy"
-                 onerror="this.src='https://picsum.photos/seed/cat_{{ $id }}/1200/700'">
+                 loading="{{ $si === 0 ? 'eager' : 'lazy' }}"
+                 onerror="this.src='https://picsum.photos/seed/cat_{{ $id }}_{{ $si }}/1200/700'"
+                 style="{{ $si !== 0 ? 'display:none;' : '' }}">
+            @endforeach
+
             <div class="absolute inset-0 bg-black/20 pointer-events-none"></div>
+
+            {{-- Icon badge --}}
             <div class="absolute top-5 {{ $isEven ? 'left-5' : 'right-5' }} z-10">
                 <span class="inline-flex items-center gap-1.5 bg-white/90 backdrop-blur-sm text-[#1A237E] text-xs font-bold px-3.5 py-1.5 rounded-full shadow-md">
                     <span class="text-base leading-none">{{ $section['icon'] ?? '🏠' }}</span>
                     <span>{{ $section['subtitle'] }}</span>
                 </span>
             </div>
+
+            @if($slideCount > 1)
+            {{-- Prev / Next arrows --}}
+            <button @click.stop="prev()"
+                    class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-md transition-all hover:scale-110">
+                <svg class="w-4 h-4 text-[#1A237E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            <button @click.stop="next()"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-md transition-all hover:scale-110">
+                <svg class="w-4 h-4 text-[#1A237E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
+
+            {{-- Dot indicators --}}
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5">
+                @foreach($slideImages as $di => $__)
+                <button @click.stop="goTo({{ $di }})"
+                        :class="cur === {{ $di }} ? 'bg-white w-5' : 'bg-white/50 w-2'"
+                        class="h-2 rounded-full transition-all duration-300 hover:bg-white/80"></button>
+                @endforeach
+            </div>
+            @endif
         </div>
 
         {{-- ── Content panel ────────────────────────────────────────── --}}

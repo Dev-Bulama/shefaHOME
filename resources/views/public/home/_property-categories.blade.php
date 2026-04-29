@@ -512,7 +512,9 @@ foreach ($defaults as $id => $def) {
         'description' => $dbDesc        ?: $def['description'],
         'button_text' => PC::get('home', $sKey . '.button_text', '') ?: $def['button_text'],
         'button_url'  => PC::get('home', $sKey . '.button_url',  '') ?: $def['button_url'],
-        'image'       => PC::get('home', $sKey . '.image',       ''),
+        'image'       => PC::get('home', $sKey . '.image',   ''),
+        'image_2'     => PC::get('home', $sKey . '.image_2', ''),
+        'image_3'     => PC::get('home', $sKey . '.image_3', ''),
         'pages'       => $def['pages'],
         'icon'        => $def['icon'],
     ];

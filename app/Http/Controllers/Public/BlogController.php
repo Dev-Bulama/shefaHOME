@@ -15,9 +15,10 @@ class BlogController extends Controller {
     public function show(string $slug) {
         $post = BlogPost::published()->where('slug',$slug)->with('category','author')->firstOrFail();
         $post->increment('views');
-        $related = BlogPost::published()->where('blog_category_id',$post->blog_category_id)->where('id','!=',$post->id)->take(3)->get();
+        $relatedPosts = BlogPost::published()->where('blog_category_id',$post->blog_category_id)->where('id','!=',$post->id)->take(3)->get();
+        $recentPosts  = BlogPost::published()->where('id','!=',$post->id)->latest('published_at')->take(5)->get();
         $categories = BlogCategory::withCount(['posts' => fn($q) => $q->published()])->get();
-        return view('public.blog.show', compact('post','related','categories'));
+        return view('public.blog.show', compact('post','relatedPosts','recentPosts','categories'));
     }
 
     public function category(string $slug) {

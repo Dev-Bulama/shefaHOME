@@ -21,6 +21,8 @@ class PageContentController extends Controller
         'blog'           => 'Blog',
         'careers'        => 'Careers',
         'faqs'           => 'FAQs',
+        'gallery'        => 'Gallery',
+        'privacy-policy' => 'Privacy Policy',
     ];
 
     public function index()
@@ -43,6 +45,12 @@ class PageContentController extends Controller
 
         if ($page === 'home') {
             $this->seedHomePropertyTypeSections();
+        }
+        if ($page === 'gallery') {
+            $this->seedGalleryPageContent();
+        }
+        if ($page === 'privacy-policy') {
+            $this->seedPrivacyPolicyContent();
         }
 
         $pageName = self::$pages[$page];
@@ -203,6 +211,8 @@ class PageContentController extends Controller
 
         $sections = [
             ['section'=>'warehouse',       'key'=>'image',       'label'=>'Warehouse – Image',            'type'=>'image',   'value'=>'',                      'sort_order'=>199],
+            ['section'=>'warehouse',       'key'=>'image_2',     'label'=>'Warehouse – Image 2',          'type'=>'image',   'value'=>'',                      'sort_order'=>1991],
+            ['section'=>'warehouse',       'key'=>'image_3',     'label'=>'Warehouse – Image 3',          'type'=>'image',   'value'=>'',                      'sort_order'=>1992],
             ['section'=>'warehouse',       'key'=>'title',       'label'=>'Warehouse – Title',            'type'=>'text',    'value'=>'Warehouse',             'sort_order'=>200],
             ['section'=>'warehouse',       'key'=>'subtitle',    'label'=>'Warehouse – Subtitle',         'type'=>'text',    'value'=>'To Rent',               'sort_order'=>201],
             ['section'=>'warehouse',       'key'=>'description', 'label'=>'Warehouse – Description',      'type'=>'html',    'value'=>$warehouseDesc,          'sort_order'=>202],
@@ -211,6 +221,8 @@ class PageContentController extends Controller
             ['section'=>'warehouse',       'key'=>'visible',     'label'=>'Warehouse – Visible',          'type'=>'boolean', 'value'=>'1',                     'sort_order'=>205],
 
             ['section'=>'office_space',    'key'=>'image',       'label'=>'Office Space – Image',         'type'=>'image',   'value'=>'',                      'sort_order'=>209],
+            ['section'=>'office_space',    'key'=>'image_2',     'label'=>'Office Space – Image 2',       'type'=>'image',   'value'=>'',                      'sort_order'=>2091],
+            ['section'=>'office_space',    'key'=>'image_3',     'label'=>'Office Space – Image 3',       'type'=>'image',   'value'=>'',                      'sort_order'=>2092],
             ['section'=>'office_space',    'key'=>'title',       'label'=>'Office Space – Title',         'type'=>'text',    'value'=>'Office Space',          'sort_order'=>210],
             ['section'=>'office_space',    'key'=>'subtitle',    'label'=>'Office Space – Subtitle',      'type'=>'text',    'value'=>'To Rent',               'sort_order'=>211],
             ['section'=>'office_space',    'key'=>'description', 'label'=>'Office Space – Description',   'type'=>'html',    'value'=>$officeDesc,             'sort_order'=>212],
@@ -219,6 +231,8 @@ class PageContentController extends Controller
             ['section'=>'office_space',    'key'=>'visible',     'label'=>'Office Space – Visible',       'type'=>'boolean', 'value'=>'1',                     'sort_order'=>215],
 
             ['section'=>'land',            'key'=>'image',       'label'=>'Land – Image',                 'type'=>'image',   'value'=>'',                      'sort_order'=>219],
+            ['section'=>'land',            'key'=>'image_2',     'label'=>'Land – Image 2',               'type'=>'image',   'value'=>'',                      'sort_order'=>2191],
+            ['section'=>'land',            'key'=>'image_3',     'label'=>'Land – Image 3',               'type'=>'image',   'value'=>'',                      'sort_order'=>2192],
             ['section'=>'land',            'key'=>'title',       'label'=>'Land – Title',                 'type'=>'text',    'value'=>'Land',                  'sort_order'=>220],
             ['section'=>'land',            'key'=>'subtitle',    'label'=>'Land – Subtitle',              'type'=>'text',    'value'=>'For Sale',              'sort_order'=>221],
             ['section'=>'land',            'key'=>'description', 'label'=>'Land – Description',           'type'=>'html',    'value'=>$landDesc,               'sort_order'=>222],
@@ -227,6 +241,8 @@ class PageContentController extends Controller
             ['section'=>'land',            'key'=>'visible',     'label'=>'Land – Visible',               'type'=>'boolean', 'value'=>'1',                     'sort_order'=>225],
 
             ['section'=>'duplex',          'key'=>'image',       'label'=>'Duplex – Image',               'type'=>'image',   'value'=>'',                      'sort_order'=>229],
+            ['section'=>'duplex',          'key'=>'image_2',     'label'=>'Duplex – Image 2',             'type'=>'image',   'value'=>'',                      'sort_order'=>2291],
+            ['section'=>'duplex',          'key'=>'image_3',     'label'=>'Duplex – Image 3',             'type'=>'image',   'value'=>'',                      'sort_order'=>2292],
             ['section'=>'duplex',          'key'=>'title',       'label'=>'Duplex – Title',               'type'=>'text',    'value'=>'Duplex',                'sort_order'=>230],
             ['section'=>'duplex',          'key'=>'subtitle',    'label'=>'Duplex – Subtitle',            'type'=>'text',    'value'=>'For Sale',              'sort_order'=>231],
             ['section'=>'duplex',          'key'=>'description', 'label'=>'Duplex – Description',         'type'=>'html',    'value'=>$duplexDesc,             'sort_order'=>232],
@@ -235,6 +251,8 @@ class PageContentController extends Controller
             ['section'=>'duplex',          'key'=>'visible',     'label'=>'Duplex – Visible',             'type'=>'boolean', 'value'=>'1',                     'sort_order'=>235],
 
             ['section'=>'duplex_island',   'key'=>'image',       'label'=>'Duplex Island – Image',        'type'=>'image',   'value'=>'',                      'sort_order'=>2355],
+            ['section'=>'duplex_island',   'key'=>'image_2',     'label'=>'Duplex Island – Image 2',      'type'=>'image',   'value'=>'',                      'sort_order'=>2356],
+            ['section'=>'duplex_island',   'key'=>'image_3',     'label'=>'Duplex Island – Image 3',      'type'=>'image',   'value'=>'',                      'sort_order'=>2357],
             ['section'=>'duplex_island',   'key'=>'title',       'label'=>'Duplex Island – Title',        'type'=>'text',    'value'=>'Duplex',                    'sort_order'=>236],
             ['section'=>'duplex_island',   'key'=>'subtitle',    'label'=>'Duplex Island – Subtitle',     'type'=>'text',    'value'=>'For Sale – Island Properties','sort_order'=>237],
             ['section'=>'duplex_island',   'key'=>'description', 'label'=>'Duplex Island – Description',  'type'=>'html',    'value'=>$duplexIslandDesc,           'sort_order'=>238],
@@ -243,6 +261,8 @@ class PageContentController extends Controller
             ['section'=>'duplex_island',   'key'=>'visible',     'label'=>'Duplex Island – Visible',      'type'=>'boolean', 'value'=>'1',                         'sort_order'=>2392],
 
             ['section'=>'filling_station', 'key'=>'image',       'label'=>'Filling Station – Image',      'type'=>'image',   'value'=>'',                      'sort_order'=>2395],
+            ['section'=>'filling_station', 'key'=>'image_2',     'label'=>'Filling Station – Image 2',    'type'=>'image',   'value'=>'',                      'sort_order'=>2396],
+            ['section'=>'filling_station', 'key'=>'image_3',     'label'=>'Filling Station – Image 3',    'type'=>'image',   'value'=>'',                      'sort_order'=>2397],
             ['section'=>'filling_station', 'key'=>'title',       'label'=>'Filling Station – Title',      'type'=>'text',    'value'=>'Filling Station',       'sort_order'=>240],
             ['section'=>'filling_station', 'key'=>'subtitle',    'label'=>'Filling Station – Subtitle',   'type'=>'text',    'value'=>'Rent & Buy',            'sort_order'=>241],
             ['section'=>'filling_station', 'key'=>'description', 'label'=>'Filling Station – Description','type'=>'html',    'value'=>$fillingStationDesc,     'sort_order'=>242],
@@ -251,6 +271,8 @@ class PageContentController extends Controller
             ['section'=>'filling_station', 'key'=>'visible',     'label'=>'Filling Station – Visible',    'type'=>'boolean', 'value'=>'1',                     'sort_order'=>245],
 
             ['section'=>'hotel',           'key'=>'image',       'label'=>'Hotel – Image',                'type'=>'image',   'value'=>'',                      'sort_order'=>249],
+            ['section'=>'hotel',           'key'=>'image_2',     'label'=>'Hotel – Image 2',              'type'=>'image',   'value'=>'',                      'sort_order'=>2491],
+            ['section'=>'hotel',           'key'=>'image_3',     'label'=>'Hotel – Image 3',              'type'=>'image',   'value'=>'',                      'sort_order'=>2492],
             ['section'=>'hotel',           'key'=>'title',       'label'=>'Hotel – Title',                'type'=>'text',    'value'=>'Hotel',                 'sort_order'=>250],
             ['section'=>'hotel',           'key'=>'subtitle',    'label'=>'Hotel – Subtitle',             'type'=>'text',    'value'=>'For Sale & Rent',       'sort_order'=>251],
             ['section'=>'hotel',           'key'=>'description', 'label'=>'Hotel – Description',          'type'=>'html',    'value'=>$hotelDesc,              'sort_order'=>252],
@@ -259,6 +281,8 @@ class PageContentController extends Controller
             ['section'=>'hotel',           'key'=>'visible',     'label'=>'Hotel – Visible',              'type'=>'boolean', 'value'=>'1',                     'sort_order'=>255],
 
             ['section'=>'short_let',       'key'=>'image',       'label'=>'Short Let – Image',            'type'=>'image',   'value'=>'',                      'sort_order'=>259],
+            ['section'=>'short_let',       'key'=>'image_2',     'label'=>'Short Let – Image 2',          'type'=>'image',   'value'=>'',                      'sort_order'=>2591],
+            ['section'=>'short_let',       'key'=>'image_3',     'label'=>'Short Let – Image 3',          'type'=>'image',   'value'=>'',                      'sort_order'=>2592],
             ['section'=>'short_let',       'key'=>'title',       'label'=>'Short Let – Title',            'type'=>'text',    'value'=>'Short Let',             'sort_order'=>260],
             ['section'=>'short_let',       'key'=>'subtitle',    'label'=>'Short Let – Subtitle',         'type'=>'text',    'value'=>'Short Let Only',        'sort_order'=>261],
             ['section'=>'short_let',       'key'=>'description', 'label'=>'Short Let – Description',      'type'=>'html',    'value'=>$shortLetDesc,           'sort_order'=>262],
@@ -274,6 +298,114 @@ class PageContentController extends Controller
             );
         }
 
+        PageContentHelper::flushCache();
+    }
+
+    private function seedGalleryPageContent(): void
+    {
+        $fields = [
+            ['section'=>'hero', 'key'=>'eyebrow',     'label'=>'Gallery – Eyebrow Text',    'type'=>'text',    'value'=>'Our Portfolio',                                                        'sort_order'=>1],
+            ['section'=>'hero', 'key'=>'title',       'label'=>'Gallery – Page Title',      'type'=>'text',    'value'=>'Gallery',                                                              'sort_order'=>2],
+            ['section'=>'hero', 'key'=>'description', 'label'=>'Gallery – Hero Description','type'=>'textarea','value'=>'Explore our completed projects, community events, and real estate developments across Nigeria.','sort_order'=>3],
+            ['section'=>'cta',  'key'=>'title',       'label'=>'Gallery – CTA Title',       'type'=>'text',    'value'=>'Interested in Our Properties?',                                        'sort_order'=>10],
+            ['section'=>'cta',  'key'=>'description', 'label'=>'Gallery – CTA Description', 'type'=>'textarea','value'=>'Browse our premium estates and find the right investment for you.',   'sort_order'=>11],
+        ];
+        foreach ($fields as $row) {
+            PageContent::firstOrCreate(
+                ['page' => 'gallery', 'section' => $row['section'], 'key' => $row['key']],
+                array_merge($row, ['page' => 'gallery'])
+            );
+        }
+        PageContentHelper::flushCache();
+    }
+
+    private function seedPrivacyPolicyContent(): void
+    {
+        $privacyHtml = '<h2>1. Introduction</h2>
+<p>Welcome to <strong>Shefa Homes and Properties Ltd</strong> ("we", "our", or "us"). We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.</p>
+
+<h2>2. Information We Collect</h2>
+<p>We may collect the following types of information:</p>
+<ul>
+<li><strong>Personal Identification Information:</strong> Name, email address, phone number, and postal address.</li>
+<li><strong>Property Inquiry Data:</strong> Details about properties you inquire about, preferred locations, budget range, and purchase intent.</li>
+<li><strong>Usage Data:</strong> IP address, browser type, pages visited, time spent on pages, and referring URLs.</li>
+<li><strong>Communication Records:</strong> Records of any correspondence you send us via email, phone, or our contact forms.</li>
+</ul>
+
+<h2>3. How We Use Your Information</h2>
+<p>We use the information we collect to:</p>
+<ul>
+<li>Respond to your property inquiries and provide relevant listings.</li>
+<li>Send you marketing communications about our properties and services (where you have consented).</li>
+<li>Improve our website and tailor our services to your needs.</li>
+<li>Process transactions and manage your account.</li>
+<li>Comply with applicable laws and regulations.</li>
+</ul>
+
+<h2>4. Sharing Your Information</h2>
+<p>We do not sell, trade, or rent your personal information to third parties. We may share your information with:</p>
+<ul>
+<li>Trusted service providers who assist us in operating our website and delivering our services, subject to confidentiality agreements.</li>
+<li>Legal authorities where required by law or to protect our legal rights.</li>
+<li>Business partners (such as mortgage brokers or legal services) only with your explicit consent.</li>
+</ul>
+
+<h2>5. Cookies and Tracking</h2>
+<p>Our website uses cookies to enhance your browsing experience. Cookies are small data files stored on your device. You may choose to disable cookies through your browser settings; however, this may affect some functionality of our website.</p>
+<p>We use cookies for:</p>
+<ul>
+<li>Session management and authentication.</li>
+<li>Analytics and performance tracking (Google Analytics).</li>
+<li>Remembering your preferences.</li>
+</ul>
+
+<h2>6. Data Security</h2>
+<p>We implement appropriate technical and organisational measures to protect your personal data against unauthorised access, alteration, disclosure, or destruction. However, no internet transmission is completely secure, and we cannot guarantee absolute security.</p>
+
+<h2>7. Data Retention</h2>
+<p>We retain your personal information for as long as necessary to fulfil the purposes outlined in this policy, or as required by law. When your data is no longer needed, we will securely delete or anonymise it.</p>
+
+<h2>8. Your Rights</h2>
+<p>Depending on your location, you may have the following rights regarding your personal data:</p>
+<ul>
+<li><strong>Access:</strong> Request a copy of the personal data we hold about you.</li>
+<li><strong>Correction:</strong> Request correction of inaccurate or incomplete data.</li>
+<li><strong>Deletion:</strong> Request deletion of your personal data, subject to legal obligations.</li>
+<li><strong>Objection:</strong> Object to our processing of your data for marketing purposes.</li>
+<li><strong>Portability:</strong> Request that we transfer your data to another organisation.</li>
+</ul>
+<p>To exercise any of these rights, please contact us at the details below.</p>
+
+<h2>9. Third-Party Links</h2>
+<p>Our website may contain links to third-party websites. We are not responsible for the privacy practices of those sites and encourage you to review their privacy policies.</p>
+
+<h2>10. Children\'s Privacy</h2>
+<p>Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children. If you believe we have inadvertently collected such data, please contact us immediately.</p>
+
+<h2>11. Changes to This Policy</h2>
+<p>We may update this Privacy Policy from time to time. We will notify you of significant changes by posting the new policy on this page with an updated date. Your continued use of our services after any changes constitutes your acceptance of the revised policy.</p>
+
+<h2>12. Contact Us</h2>
+<p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us:</p>
+<ul>
+<li><strong>Shefa Homes and Properties Ltd</strong></li>
+<li>Email: info@shefahomes.com</li>
+<li>Phone: +234 912 238 8541</li>
+<li>Address: Lagos, Nigeria</li>
+</ul>';
+
+        $fields = [
+            ['section'=>'hero', 'key'=>'title',          'label'=>'Privacy Policy – Page Title',    'type'=>'text',    'value'=>'Privacy Policy',          'sort_order'=>1],
+            ['section'=>'hero', 'key'=>'last_updated',   'label'=>'Privacy Policy – Last Updated',  'type'=>'text',    'value'=>'Last updated: January 2025','sort_order'=>2],
+            ['section'=>'page', 'key'=>'content',        'label'=>'Privacy Policy – Full Content',  'type'=>'html',    'value'=>$privacyHtml,              'sort_order'=>10],
+        ];
+        foreach ($fields as $row) {
+            PageContent::firstOrCreate(
+                ['page' => 'privacy-policy', 'section' => $row['section'], 'key' => $row['key']],
+                array_merge($row, ['page' => 'privacy-policy'])
+            );
+        }
         PageContentHelper::flushCache();
     }
 

@@ -5,14 +5,20 @@
 
 @section('content')
 
+@php
+use App\Helpers\PageContent as PC;
+$galleryEyebrow = PC::get('gallery', 'hero.eyebrow',     'Our Portfolio');
+$galleryTitle   = PC::get('gallery', 'hero.title',       'Gallery');
+$galleryDesc    = PC::get('gallery', 'hero.description', 'Explore our completed projects, community events, and real estate developments across Nigeria.');
+@endphp
 {{-- Hero --}}
 <section class="relative bg-[#1A237E] py-24 overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-br from-[#1A237E] to-[#0D1566]"></div>
     <div class="absolute bottom-0 right-0 w-80 h-80 opacity-10 rounded-full" style="background:radial-gradient(circle, #27AE22, transparent 70%)"></div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-4">Our Portfolio</span>
-        <h1 class="font-display text-5xl lg:text-6xl font-bold text-white mb-5">Gallery</h1>
-        <p class="text-gray-300 text-xl max-w-2xl mx-auto">Explore our completed projects, community events, and real estate developments across Nigeria.</p>
+        <span class="inline-block text-[#27AE22] font-semibold text-sm tracking-widest uppercase mb-4">{{ $galleryEyebrow }}</span>
+        <h1 class="font-display text-5xl lg:text-6xl font-bold text-white mb-5">{{ $galleryTitle }}</h1>
+        <p class="text-gray-300 text-xl max-w-2xl mx-auto">{{ $galleryDesc }}</p>
     </div>
 </section>
 

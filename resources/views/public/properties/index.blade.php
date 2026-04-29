@@ -131,8 +131,10 @@
                             </div>
                         </div>
 
-                        {{-- Hidden sort --}}
-                        <input type="hidden" name="sort" value="{{ request('sort', 'latest') }}">
+                        {{-- Hidden sort — preserve current sort when sidebar filters are submitted --}}
+                        <input type="hidden" name="sort" value="{{ request('sort', 'featured') }}">
+                        {{-- Preserve keyword search --}}
+                        @if(request('search'))<input type="hidden" name="search" value="{{ request('search') }}">@endif
                     </form>
                 </div>
             </aside>
@@ -141,25 +143,69 @@
             <div class="flex-1 min-w-0">
 
                 {{-- Toolbar --}}
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 bg-white rounded-2xl px-6 py-4 shadow-sm border border-gray-100">
-                    <p class="text-gray-500 text-sm">
-                        Showing
-                        <span class="font-semibold text-[#1A237E]">{{ $properties->firstItem() ?? 0 }}</span>
-                        –
-                        <span class="font-semibold text-[#1A237E]">{{ $properties->lastItem() ?? 0 }}</span>
-                        of
-                        <span class="font-semibold text-[#1A237E]">{{ $properties->total() }}</span>
-                        properties
-                    </p>
-                    <div class="flex items-center gap-3">
-                        <label class="text-sm text-gray-500 font-medium">Sort:</label>
-                        <select onchange="window.location.href='?{{ http_build_query(array_merge(request()->except(['sort', 'page']), [])) }}&sort=' + this.value"
-                                class="border border-gray-200 rounded-xl px-4 py-2 text-sm text-[#1A237E] focus:outline-none focus:ring-2 focus:ring-[#27AE22] bg-gray-50">
-                            <option value="latest" {{ request('sort','latest')=='latest'?'selected':'' }}>Latest First</option>
-                            <option value="price_asc" {{ request('sort')=='price_asc'?'selected':'' }}>Price: Low to High</option>
-                            <option value="price_desc" {{ request('sort')=='price_desc'?'selected':'' }}>Price: High to Low</option>
-                            <option value="popular" {{ request('sort')=='popular'?'selected':'' }}>Most Popular</option>
-                        </select>
+                <div class="bg-white rounded-2xl px-5 py-4 shadow-sm border border-gray-100 mb-4 space-y-3">
+                    {{-- Search + Sort row --}}
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                        {{-- Keyword search --}}
+                        <form method="GET" action="{{ route('properties.index') }}" class="flex-1 flex gap-2">
+                            @foreach(request()->except(['search','page']) as $k => $v)
+                                @if(is_array($v))
+                                    @foreach($v as $vi)<input type="hidden" name="{{ $k }}[]" value="{{ $vi }}">@endforeach
+                                @else
+                                    <input type="hidden" name="{{ $k }}" value="{{ $v }}">
+                                @endif
+                            @endforeach
+                            <input type="text" name="search" value="{{ request('search') }}"
+                                   placeholder="Search by property name…"
+                                   class="flex-1 border border-gray-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#27AE22] text-[#1A237E]">
+                            <button type="submit" class="bg-[#1A237E] hover:bg-[#27AE22] text-white hover:text-[#1A237E] px-4 py-2 rounded-xl transition text-sm font-semibold">Search</button>
+                        </form>
+                        {{-- Sort --}}
+                        <div class="flex items-center gap-2 flex-shrink-0">
+                            <label class="text-sm text-gray-500 font-medium whitespace-nowrap">Sort:</label>
+                            <select onchange="window.location.href='?{{ http_build_query(request()->except(['sort','page'])) }}&sort=' + this.value"
+                                    class="border border-gray-200 rounded-xl px-3 py-2 text-sm text-[#1A237E] focus:outline-none focus:ring-2 focus:ring-[#27AE22] bg-gray-50">
+                                <option value="featured"  {{ request('sort','featured') === 'featured'  ? 'selected' : '' }}>Featured First</option>
+                                <option value="latest"    {{ request('sort') === 'latest'    ? 'selected' : '' }}>Latest First</option>
+                                <option value="price_asc" {{ request('sort') === 'price_asc' ? 'selected' : '' }}>Price: Low → High</option>
+                                <option value="price_desc"{{ request('sort') === 'price_desc'? 'selected' : '' }}>Price: High → Low</option>
+                                <option value="popular"   {{ request('sort') === 'popular'   ? 'selected' : '' }}>Most Popular</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    {{-- Result count + active filter pills --}}
+                    @php
+                        $statusLabels = ['rent'=>'For Rent','buy'=>'For Sale','buy_and_rent'=>'Rent & Sale','shortlet'=>'Short Let','available'=>'Available','sold_out'=>'Sold Out','coming_soon'=>'Coming Soon','selling_fast'=>'Selling Fast'];
+                        $activeFilters = [];
+                        if (request('search'))    $activeFilters[] = ['label'=>'Search: '.request('search'),             'remove'=>request()->except(['search','page'])];
+                        if (request('status'))    $activeFilters[] = ['label'=>$statusLabels[request('status')] ?? request('status'), 'remove'=>request()->except(['status','page'])];
+                        if (request('type'))      $activeFilters[] = ['label'=>'Type: '.($propertyTypes->find(request('type'))?->name ?? '#'.request('type')), 'remove'=>request()->except(['type','page'])];
+                        if (request('min_price')) $activeFilters[] = ['label'=>'Min ₦'.number_format(request('min_price')), 'remove'=>request()->except(['min_price','page'])];
+                        if (request('max_price')) $activeFilters[] = ['label'=>'Max ₦'.number_format(request('max_price')), 'remove'=>request()->except(['max_price','page'])];
+                        foreach((array)request('state',[]) as $st) {
+                            $remaining = request()->except('page');
+                            $remaining['state'] = array_values(array_filter((array)request('state'), fn($s) => $s !== $st));
+                            $activeFilters[] = ['label'=>$st, 'remove'=>$remaining];
+                        }
+                    @endphp
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="text-xs text-gray-400">
+                            {{ $properties->total() }} {{ Str::plural('property', $properties->total()) }}
+                            @if($properties->total() > 0 && $properties->lastItem())
+                                — showing {{ $properties->firstItem() }}–{{ $properties->lastItem() }}
+                            @endif
+                        </span>
+                        @foreach($activeFilters as $af)
+                        <a href="?{{ http_build_query($af['remove']) }}"
+                           class="inline-flex items-center gap-1 bg-[#1A237E]/8 text-[#1A237E] text-xs font-medium px-2.5 py-1 rounded-full hover:bg-red-50 hover:text-red-600 transition-colors">
+                            {{ $af['label'] }}
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </a>
+                        @endforeach
+                        @if(count($activeFilters) > 1)
+                        <a href="{{ route('properties.index') }}" class="text-xs text-red-500 hover:text-red-700 font-medium transition-colors">Clear all</a>
+                        @endif
                     </div>
                 </div>
 

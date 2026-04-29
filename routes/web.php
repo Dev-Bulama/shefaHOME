@@ -148,6 +148,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::get('pages/{page}/edit', [Admin\PageContentController::class, 'edit'])->name('pages.edit');
     Route::post('pages/{page}', [Admin\PageContentController::class, 'update'])->name('pages.update');
     Route::post('pages/{page}/fields', [Admin\PageContentController::class, 'addField'])->name('pages.addField');
+    Route::post('pages/{page}/add-category', [Admin\PageContentController::class, 'addCategorySection'])->name('pages.addCategory');
     Route::delete('pages/fields/{id}', [Admin\PageContentController::class, 'deleteField'])->name('pages.deleteField');
 });
 

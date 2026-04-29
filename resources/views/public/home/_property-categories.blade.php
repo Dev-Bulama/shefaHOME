@@ -524,23 +524,25 @@ foreach ($defaults as $id => $def) {
 
 // ── Load any extra sections added via Admin → Add Category Section ──────────
 try {
-    $extraTitles = \App\Models\PageContent::where('page', 'home')
+    // Only sections with a 'pages' key are category sections — this prevents
+    // picking up hero, stats, and other non-category home page sections.
+    $extraSections = \App\Models\PageContent::where('page', 'home')
         ->whereNotIn('section', array_keys($defaults))
-        ->where('key', 'title')
-        ->where('value', '!=', '')
+        ->where('key', 'pages')
         ->orderBy('sort_order')
         ->get();
 
-    foreach ($extraTitles as $rec) {
-        $sid = $rec->section;
+    foreach ($extraSections as $rec) {
+        $sid   = $rec->section;
+        $title = PC::get('home', $sid . '.title', '');
+        if (!$title) continue;
         if (PC::get('home', $sid . '.visible', '1') === '0') continue;
 
-        $rawPages = PC::get('home', $sid . '.pages', 'rent');
-        $pages    = array_filter(array_map('trim', explode(',', $rawPages)));
+        $pages = array_filter(array_map('trim', explode(',', $rec->value)));
         if (empty($pages)) $pages = ['rent'];
 
         $sections[$sid] = [
-            'title'       => $rec->value,
+            'title'       => $title,
             'subtitle'    => PC::get('home', $sid . '.subtitle',    ''),
             'description' => PC::get('home', $sid . '.description', ''),
             'button_text' => PC::get('home', $sid . '.button_text', ''),
